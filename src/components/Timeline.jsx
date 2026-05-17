@@ -3,25 +3,25 @@ import { CheckCircle2, Zap, Circle } from 'lucide-react'
 
 const stages = [
   {
-    stage:'Pre-Seed', period:'2023–2024', status:'done', tag:'Complete',
+    stage:'Pre-Seed', period:'December 2025 – April 2026', status:'done', tag:'Complete',
     tagline:'Build and validate',
     desc:'Zero product, zero users — just a problem worth solving. We spent this period validating the need, building the first prototype, and confirming real demand existed.',
     items:['Problem validated with 40+ potential users','First working prototype shipped','Core data model designed','Brand identity established'],
   },
   {
-    stage:'Seed', period:'2024–Present', status:'active', tag:'Active',
+    stage:'Seed', period:'April 2026 – Present', status:'active', tag:'Active',
     tagline:'Product ready. Market credible.',
     desc:'StackSense has a working product, active development cycles, and growing beta interest. We\'re collecting feedback, iterating quickly, and building operational foundations to scale.',
     items:['Core features complete and in active development','Beta interest from early adopters','Feedback loops with initial users','Preparing go-to-market and hiring strategy'],
   },
   {
-    stage:'Series A', period:'Target 2025', status:'upcoming', tag:'Upcoming',
+    stage:'Series A', period:'?', status:'upcoming', tag:'Upcoming',
     tagline:'Scale what works',
     desc:'With proven traction, Series A marks the shift from product-finding to growth-building. Investment goes directly into team expansion, product acceleration, and market leadership.',
     items:['Strong user base with high retention','Revenue-generating with clear monetisation','Expanded product and engineering team','Partnerships with health-tech platforms'],
   },
   {
-    stage:'Series B', period:'Target 2026+', status:'upcoming', tag:'Upcoming',
+    stage:'Series B', period:'?', status:'upcoming', tag:'Upcoming',
     tagline:'Expand and lead',
     desc:'Category expansion and market dominance. Platform extensions into adjacent use cases, new markets, and enterprise-grade infrastructure. StackSense becomes the definitive platform.',
     items:['Market leadership in core segment','Enterprise and professional tiers launched','International expansion underway','Third-party integration ecosystem'],
