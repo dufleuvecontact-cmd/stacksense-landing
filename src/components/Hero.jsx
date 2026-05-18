@@ -205,7 +205,16 @@ export default function Hero() {
               <span className="italic-serif teal-text">spreadsheets?</span>
             </h1>
 
-            <p className="sr d3 lead" style={{ maxWidth: 680, marginBottom: '2.2rem' }}>
+            <p className="sr d3" style={{ 
+              maxWidth: 680, 
+              marginBottom: '2.2rem',
+              fontFamily: '"Helvetica Neue", Helvetica, system-ui, -apple-system, Arial, sans-serif',
+              fontSize: '1.2rem',
+              fontWeight: 500,
+              lineHeight: 1.6,
+              color: 'var(--text-2)',
+              letterSpacing: '0.015em'
+            }}>
               Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
             </p>
 
