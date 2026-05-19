@@ -228,7 +228,7 @@ export default function Hero() {
                 </a>
               </div>
               <div className="small" style={{ marginTop: '.85rem', fontWeight: 600, color: 'var(--teal-deep)', background: 'var(--teal-muted)', padding: '.25rem .85rem', borderRadius: 100 }}>
-                🎁 Lock in Founding Member pricing: $9.99/mo forever + 6 months free
+                Lock in Founding Member pricing: $9.99/mo forever + 6 months free
               </div>
             </div>
 
