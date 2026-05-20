@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StackSense Data Retention Policy</title>
+  <style>
+    body { margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#0c1116; color:#e5e7eb; }
+    a { color:#22d3ee; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .page { max-width:900px; margin:0 auto; padding:2rem; }
+    header { margin-bottom:2rem; }
+    h1 { font-size:2rem; margin-bottom:.5rem; }
+    h2 { font-size:1.35rem; margin-top:2rem; margin-bottom:1rem; }
+    h3 { font-size:1.05rem; margin-top:1.5rem; margin-bottom:.7rem; }
+    p, li { line-height:1.75; }
+    ul, ol { margin:0 0 1rem 1.4rem; }
+    .lang-switch { display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0; }
+    .lang-switch button { background:#111827; border:1px solid #334155; color:#e2e8f0; padding:.7rem 1rem; border-radius:.75rem; cursor:pointer; }
+    .lang-switch button.active { border-color:#22d3ee; color:#22d3ee; }
+    .card { background:rgba(15,23,42,.95); border:1px solid rgba(148,163,184,.15); border-radius:1.25rem; padding:1.75rem; }
+    .note { color:#94a3b8; margin-top:.5rem; }
+    table { width:100%; border-collapse:collapse; margin-top:1rem; margin-bottom:1rem; }
+    th, td { padding:.85rem .75rem; border:1px solid rgba(148,163,184,.15); text-align:left; }
+    th { background:rgba(148,163,184,.08); font-weight:700; }
+    .footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid rgba(148,163,184,.15); color:#94a3b8; }
+    @media(max-width:640px){ .page { padding:1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p style="font-size:.9rem; color:#94a3b8; margin-bottom:.5rem;">Effective: 05/20/26 · Version: 1.0</p>
+      <h1>StackSense Data Retention Policy</h1>
+      <div class="lang-switch">
+        <button id="show-en" class="active">English</button>
+        <button id="show-fr">Français</button>
+      </div>
+      <p class="note">This policy defines how long StackSense keeps each category of personal data, why, and how it gets deleted. It supports the Privacy Policy and internal compliance obligations.</p>
+    </header>
+
+    <div class="card" id="content-en">
+      <h2>Purpose</h2>
+      <p>Define how long StackSense keeps each category of personal data, why, and how it gets deleted. This document supports the Privacy Policy section 7 and is required by GDPR Article 5(1)(e), Quebec Law 25, and several state privacy laws.</p>
+      <p>This is both a user-facing commitment (summarized in the Privacy Policy) and an internal engineering specification.</p>
+
+      <h2>1. Retention principles</h2>
+      <ol>
+        <li>We collect only the minimum data needed</li>
+        <li>We keep it only as long as needed to deliver the service or meet a legal obligation</li>
+        <li>We delete it on a documented schedule</li>
+        <li>Users can trigger early deletion through the data rights panel</li>
+        <li>Some categories must be retained longer because law requires it (billing, tax)</li>
+        <li>Backups are deleted on a rolling cycle, not instantly, and users are informed of this</li>
+      </ol>
+
+      <h2>2. Retention schedule by data category</h2>
+      <table>
+        <thead>
+          <tr><th>Data category</th><th>Source</th><th>Retention while account active</th><th>Retention after account deletion</th><th>Legal basis for retention period</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Account email and hashed password</td><td>User signup</td><td>Until account is deleted</td><td>Soft-deleted immediately. Hard-deleted within 90 days.</td><td>Performance of contract while active. Limited post-deletion for backup cycle.</td></tr>
+          <tr><td>Supplement, peptide, dose logs</td><td>User entry</td><td>Until account is deleted</td><td>Permanently deleted within 90 days from primary DB. Up to 6 months in backups.</td><td>Performance of contract. Health data deletion is mandatory under GDPR right to erasure.</td></tr>
+          <tr><td>Symptom logs</td><td>User entry</td><td>Until account is deleted</td><td>Permanently deleted within 90 days. Up to 6 months in backups.</td><td>Same.</td></tr>
+          <tr><td>Body composition data</td><td>User entry</td><td>Until account is deleted</td><td>Permanently deleted within 90 days.</td><td>Same.</td></tr>
+          <tr><td>Injection site notes</td><td>User entry</td><td>Until account is deleted</td><td>Permanently deleted within 90 days.</td><td>Same.</td></tr>
+          <tr><td>Photos attached to logs</td><td>User upload</td><td>Until account is deleted or user deletes the photo</td><td>Permanently deleted within 90 days.</td><td>Same.</td></tr>
+          <tr><td>Protocol notes / cycle plans</td><td>User entry</td><td>Until account is deleted</td><td>Permanently deleted within 90 days.</td><td>Same.</td></tr>
+          <tr><td>Subscription tier and status</td><td>Stripe + our DB</td><td>Until account is deleted</td><td>Anonymized after deletion. Tier never linked back.</td><td>Service delivery.</td></tr>
+          <tr><td>Billing records (invoices, payment history)</td><td>Stripe</td><td>7 years from issuance</td><td>7 years from issuance</td><td>Canadian tax law (Income Tax Act), Quebec consumer protection law, GAAP. <strong>This overrides user deletion requests for billing records only.</strong> Users get a clear notice about this in the deletion flow.</td></tr>
+          <tr><td>Stripe customer record</td><td>Stripe</td><td>Until account is deleted</td><td>Anonymized in Stripe (PII fields cleared) after 90 days. Stripe retains transaction records for their compliance reasons (PCI-DSS, AML).</td><td>Stripe DPA defines their retention.</td></tr>
+          <tr><td>IP address (server logs)</td><td>Web server, Vercel</td><td>30 days</td><td>30 days</td><td>Security investigation window. Required for abuse prevention.</td></tr>
+          <tr><td>User-agent strings, device type</td><td>Web server</td><td>30 days</td><td>30 days</td><td>Same.</td></tr>
+          <tr><td>PostHog / Plausible analytics events</td><td>App</td><td>90 days</td><td>n/a (anonymized at collection)</td><td>Trend analysis. Beyond 90 days we use aggregates.</td></tr>
+          <tr><td>Sentry crash reports (if user opted in)</td><td>App</td><td>90 days</td><td>90 days</td><td>Bug investigation.</td></tr>
+          <tr><td>Email correspondence (to privacy@, support@)</td><td>Gmail/Workspace</td><td>3 years</td><td>3 years</td><td>Limitations period for consumer claims. We may shorten this once we have legal counsel.</td></tr>
+          <tr><td>Compliance records (DPAs, breach register, DPIA, audit logs)</td><td>Internal</td><td>Indefinite for active records, 7 years after retirement</td><td>Same</td><td>Required for regulator inspection.</td></tr>
+          <tr><td>Signup ToS and Privacy acceptance records</td><td>DB</td><td>Indefinite while account exists, 7 years after deletion</td><td>7 years</td><td>Required to prove consent in disputes.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. Definitions</h2>
+      <ul>
+        <li><strong>Soft delete:</strong> account is marked deleted, user can no longer log in, data is not accessible through the app, but row still exists for the deletion grace period.</li>
+        <li><strong>Hard delete:</strong> row is removed from the primary database.</li>
+        <li><strong>Backup deletion:</strong> data is removed from the primary database but may persist in encrypted backups for the duration of the backup rotation cycle. After the rotation cycle, the backups roll off and the data is gone.</li>
+        <li><strong>Anonymization:</strong> PII fields are nulled or replaced with non-identifying values. The record continues to exist for the legally-required purpose (e.g., billing) but cannot be linked to the user.</li>
+      </ul>
+
+      <h2>4. Deletion grace period</h2>
+      <p>When a user deletes their account, we apply the following grace period to prevent accidents:</p>
+      <ul>
+        <li><strong>0 to 24 hours after deletion request:</strong> Account is soft-deleted. User can sign in and reverse the deletion by clicking a recovery link in the deletion-confirmation email.</li>
+        <li><strong>24 hours to 7 days after deletion:</strong> Account remains soft-deleted. Recovery requires emailing <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> with proof of identity.</li>
+        <li><strong>After 7 days:</strong> Hard deletion runs on the next nightly cron job. Recovery is no longer possible.</li>
+        <li><strong>7 days to 90 days:</strong> Data is purged from primary DB. Backups roll off on their normal cycle (we use Supabase point-in-time recovery with a 7-day retention plus weekly snapshots retained 30 days, so worst case ~6 months for the oldest snapshot to roll off).</li>
+        <li><strong>After 90 days:</strong> All identifying health data is gone from primary systems. Backups may still hold up to 6-month-old snapshots. We do not selectively delete from backups. When backups age out on rotation, that data is gone.</li>
+      </ul>
+      <p>Users are told this explicitly in the deletion flow and in the Privacy Policy.</p>
+
+      <h2>5. Implementation requirements</h2>
+      <h3>Database schema</h3>
+      <p>Add the following fields to the <code>users</code> table (or equivalent):</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN deleted_at TIMESTAMPTZ NULL;
+ALTER TABLE users ADD COLUMN purge_after TIMESTAMPTZ NULL;
+ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
+      <p>For all health-data tables, add either a <code>user_id</code> foreign key (which lets cascade-delete handle the wipe) or a <code>deleted_at</code> column (for soft-delete patterns).</p>
+
+      <h3>Soft-delete flow</h3>
+      <p>When a user submits a deletion request from the in-app panel or by email:</p>
+      <ol>
+        <li>Set <code>users.deleted_at = NOW()</code></li>
+        <li>Set <code>users.purge_after = NOW() + INTERVAL '7 days'</code></li>
+        <li>Sign the user out of all sessions</li>
+        <li>Send confirmation email with recovery link (works for 7 days)</li>
+        <li>Log the request in the deletion audit log</li>
+      </ol>
+
+      <h3>Hard-delete cron job</h3>
+      <p>Daily, run a job that:</p>
+      <ol>
+        <li>Finds all users with <code>purge_after < NOW()</code> and <code>deleted_at IS NOT NULL</code></li>
+        <li>For each user, in this order:</li>
+      </ol>
+      <ul>
+        <li>Delete from <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code>, and any other health-data tables</li>
+        <li>Delete from <code>marketing_preferences</code></li>
+        <li>Anonymize the <code>users</code> row: clear <code>email</code>, <code>display_name</code>, <code>password_hash</code>, replace <code>email</code> with <code>deleted-{user_id}@deleted.stacksense.ca</code>, keep only <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> for compliance proof</li>
+        <li>Do NOT delete the row entirely. We keep the anonymized stub for consent proof if a future complaint arises.</li>
+        <li>Anonymize the Stripe customer record (Stripe API: update customer with empty PII, then archive)</li>
+      </ul>
+      <p>Log every action in the deletion audit log and email the user from <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> confirming deletion (sent to the original email since we have not yet anonymized at that point - anonymize last, after email send).</p>
+
+      <h2>Retention enforcement for other categories</h2>
+      <ul>
+        <li><strong>Analytics:</strong> PostHog/Plausible auto-roll-off after 90 days. Verify retention setting in vendor dashboard.</li>
+        <li><strong>Sentry:</strong> Set retention to 90 days in Sentry project settings.</li>
+        <li><strong>Server logs:</strong> Configure log retention to 30 days in Vercel.</li>
+        <li><strong>Backups:</strong> Supabase point-in-time recovery is 7 days by default on paid plans; daily backups retained 30 days on Pro. Set explicit retention in vendor dashboard.</li>
+      </ul>
+
+      <h2>Audit log</h2>
+      <p>Maintain a <code>data_deletion_log</code> table:</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">CREATE TABLE data_deletion_log (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL,
+  action TEXT NOT NULL,
+  initiated_by TEXT NOT NULL,
+  reason TEXT,
+  details JSONB,
+  occurred_at TIMESTAMPTZ DEFAULT NOW()
+);
+</pre>
+      <p>Retain audit log indefinitely while StackSense operates. This is your proof that you honor user rights.</p>
+
+      <h2>6. Exception: legal hold</h2>
+      <p>If StackSense receives a litigation hold or regulator preservation order, the deletion job must skip affected users. Implement an admin flag:</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN legal_hold BOOLEAN DEFAULT FALSE;</pre>
+      <p>Cron job: <code>WHERE deleted_at IS NOT NULL AND purge_after < NOW() AND legal_hold = FALSE</code>.</p>
+      <p>When a hold is in place, the user remains soft-deleted but data is preserved. Inform the user that we have received a legal order (unless prohibited from doing so).</p>
+
+      <h2>7. Exception: billing records</h2>
+      <p>Stripe customer records and our local billing-summary records (<code>subscription_history</code>, <code>invoices</code>, <code>payment_history</code>) are retained for 7 years from the transaction date. This is to satisfy:</p>
+      <ul>
+        <li>Canadian Income Tax Act record-keeping rules (6 years)</li>
+        <li>Quebec Consumer Protection Act dispute window</li>
+        <li>GAAP financial recordkeeping</li>
+        <li>Potential chargeback windows (varies but lengthy)</li>
+      </ul>
+      <p>Tell users this in the deletion flow:</p>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">When you delete your account, your health data is gone from our active database within 90 days. Your billing records will be retained for 7 years because tax law requires it. These records show only that you paid for the service, the amount, and the date. They do not include health data.</blockquote>
+      <p>This honors the user's right to erasure to the maximum extent permitted under Article 17(3)(b) GDPR (compliance with legal obligation).</p>
+
+      <h2>8. User-triggered partial deletions</h2>
+      <p>Users can also delete individual logs (a wrong entry, a private note) without deleting their whole account. These deletions follow the same backup-rotation rule: gone from primary DB immediately, gone from backups on rotation.</p>
+      <p>We do not maintain a "trash bin" by default. If a user wants undo, that's a product feature, not a compliance one. Currently out of scope.</p>
+
+      <h2>9. Vendor responsibilities</h2>
+      <p>Each vendor processing user data must also honor deletion within a comparable timeline. Verified via:</p>
+      <table>
+        <thead>
+          <tr><th>Vendor</th><th>Their retention commitment</th><th>Where documented</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supabase</td><td>Honors data deletion within standard backup window</td><td>DPA</td></tr>
+          <tr><td>Vercel</td><td>Logs auto-delete on schedule, no persistent user PII</td><td>DPA</td></tr>
+          <tr><td>Stripe</td><td>Anonymizes customer PII on request, retains transaction data per their compliance</td><td>DPA</td></tr>
+          <tr><td>Anthropic</td><td>No personal data sent under our integration. Generic compound queries only.</td><td>DPA + architecture review</td></tr>
+          <tr><td>PostHog / Plausible</td><td>Anonymized at collection, 90-day retention</td><td>Privacy settings + DPA</td></tr>
+          <tr><td>Sentry</td><td>90-day retention setting we control</td><td>Project settings</td></tr>
+        </tbody>
+      </table>
+      <p>When we delete a user, we trigger downstream deletion at each vendor where required.</p>
+
+      <h2>10. User communication</h2>
+      <p>Summarize this in plain English in the Privacy Policy section 7 and the in-app data rights panel. Don't make users read this whole policy.</p>
+      <p>User-facing summary:</p>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">When you delete your account, your health data is gone from our active database within 90 days. Backups roll off over the following 6 months. Your billing records are retained for 7 years because tax law requires it.</blockquote>
+
+      <h2>11. Review</h2>
+      <p>This policy is reviewed annually, or whenever:</p>
+      <ul>
+        <li>A new data category is added</li>
+        <li>A new vendor is engaged</li>
+        <li>Law changes require it</li>
+        <li>An incident reveals a gap</li>
+      </ul>
+      <p>Last reviewed: 05/20/26</p>
+      <p><strong>End of Data Retention Policy. Version 1.0.</strong></p>
+    </div>
+
+    <div class="card" id="content-fr" hidden>
+      <h2>Politique de conservation des données StackSense</h2>
+      <p>Cette politique définit pendant combien de temps StackSense conserve chaque catégorie de données personnelles, pourquoi et comment elles sont supprimées. Elle soutient la section 7 de la Politique de confidentialité et les obligations de conformité internes.</p>
+      <p>Il s'agit à la fois d'un engagement public et d'une spécification technique interne.</p>
+
+      <h2>1. Principes de conservation</h2>
+      <ol>
+        <li>Nous ne collectons que le minimum de données nécessaire</li>
+        <li>Nous ne les conservons que le temps nécessaire pour fournir le service ou répondre à une obligation légale</li>
+        <li>Nous les supprimons selon un calendrier documenté</li>
+        <li>Les utilisateurs peuvent déclencher une suppression anticipée via le panneau de droits des données</li>
+        <li>Certaines catégories doivent être conservées plus longtemps parce que la loi l'exige (facturation, fiscalité)</li>
+        <li>Les sauvegardes sont supprimées sur un cycle glissant, pas instantanément, et les utilisateurs en sont informés</li>
+      </ol>
+
+      <h2>2. Calendrier de conservation par catégorie de données</h2>
+      <table>
+        <thead>
+          <tr><th>Catégorie de données</th><th>Source</th><th>Conservation pendant le compte actif</th><th>Conservation après suppression du compte</th><th>Base juridique du délai de conservation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Adresse e-mail et mot de passe haché</td><td>Inscription de l'utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression logique immédiate. Suppression définitive sous 90 jours.</td><td>Exécution du contrat pendant la période active. Conservation limitée après suppression pour le cycle de sauvegarde.</td></tr>
+          <tr><td>Journaux de suppléments, peptides et dosages</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours depuis la base de données principale. Jusqu'à 6 mois en sauvegarde.</td><td>Exécution du contrat. La suppression des données de santé est obligatoire en vertu du droit d'effacement du RGPD.</td></tr>
+          <tr><td>Journaux de symptômes</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours. Jusqu'à 6 mois en sauvegarde.</td><td>Idem.</td></tr>
+          <tr><td>Données de composition corporelle</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Notes sur les sites d'injection</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Photos jointes aux journaux</td><td>Téléversement utilisateur</td><td>Jusqu'à la suppression du compte ou la suppression de la photo par l'utilisateur</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Notes de protocole / plans de cycle</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Niveau et statut d'abonnement</td><td>Stripe + notre base</td><td>Jusqu'à la suppression du compte</td><td>Anonymisation après suppression. Le niveau n'est plus lié.</td><td>Prestation du service.</td></tr>
+          <tr><td>Dossiers de facturation (factures, historique de paiement)</td><td>Stripe</td><td>7 ans à partir de l'émission</td><td>7 ans à partir de l'émission</td><td>Loi fiscale canadienne (Loi de l'impôt sur le revenu), loi québécoise sur la protection du consommateur, principes comptables.</td></tr>
+          <tr><td>Enregistrements client Stripe</td><td>Stripe</td><td>Jusqu'à la suppression du compte</td><td>Anonymisation dans Stripe (champs PII effacés) après 90 jours. Stripe conserve les enregistrements de transaction pour ses obligations de conformité (PCI-DSS, AML).</td><td>La DPA Stripe définit leur conservation.</td></tr>
+          <tr><td>Adresse IP (journaux serveur)</td><td>Serveur Web, Vercel</td><td>30 jours</td><td>30 jours</td><td>Fenêtre d'investigation de sécurité. Requise pour la prévention des abus.</td></tr>
+          <tr><td>Chaînes user-agent, type d'appareil</td><td>Serveur Web</td><td>30 jours</td><td>30 jours</td><td>Idem.</td></tr>
+          <tr><td>Événements analytiques PostHog / Plausible</td><td>Application</td><td>90 jours</td><td>n/a (anonymisés à la collecte)</td><td>Analyse des tendances. Au-delà de 90 jours, nous utilisons des agrégats.</td></tr>
+          <tr><td>Rapports de plantage Sentry (si opt-in)</td><td>Application</td><td>90 jours</td><td>90 jours</td><td>Investigation de bugs.</td></tr>
+          <tr><td>Correspondance e-mail (privacy@, support@)</td><td>Gmail/Workspace</td><td>3 ans</td><td>3 ans</td><td>Délai de prescription pour les réclamations des consommateurs. Nous pourrons réduire cela après avis juridique.</td></tr>
+          <tr><td>Dossiers de conformité (DPA, registre des violations, AIPD, journaux d'audit)</td><td>Interne</td><td>Indéfini pour les dossiers actifs, 7 ans après mise hors service</td><td>Idem</td><td>Requis pour inspection des régulateurs.</td></tr>
+          <tr><td>Registres d'acceptation des CGU et de la Politique de confidentialité</td><td>Base de données</td><td>Indéfini tant que le compte existe, 7 ans après suppression</td><td>7 ans</td><td>Requis pour prouver le consentement en cas de litige.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. Définitions</h2>
+      <ul>
+        <li><strong>Suppression logique :</strong> le compte est marqué comme supprimé, l'utilisateur ne peut plus se connecter, les données ne sont plus accessibles via l'application, mais la ligne existe pendant la période de grâce.</li>
+        <li><strong>Suppression définitive :</strong> la ligne est supprimée de la base de données principale.</li>
+        <li><strong>Suppression des sauvegardes :</strong> les données sont supprimées de la base de données principale mais peuvent persister dans des sauvegardes chiffrées pendant la durée du cycle de rotation. Après cette durée, les sauvegardes deviennent inutilisables et les données disparaissent.</li>
+        <li><strong>Anonymisation :</strong> les champs PII sont nuls ou remplacés par des valeurs non identifiantes. L'enregistrement existe toujours pour une finalité requise légalement (par exemple, facturation) mais ne peut plus être rattaché à l'utilisateur.</li>
+      </ul>
+
+      <h2>4. Période de grâce de suppression</h2>
+      <p>Lorsque un utilisateur supprime son compte, nous appliquons la période de grâce suivante afin d'éviter les accidents :</p>
+      <ul>
+        <li><strong>0 à 24 heures après la demande de suppression :</strong> le compte est supprimé logiquement. L'utilisateur peut se reconnecter et annuler la suppression en cliquant sur un lien de récupération dans l'e-mail de confirmation de suppression.</li>
+        <li><strong>24 heures à 7 jours après la suppression :</strong> le compte reste supprimé logiquement. La récupération nécessite d'écrire à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> avec une preuve d'identité.</li>
+        <li><strong>Après 7 jours :</strong> la suppression définitive est effectuée lors du prochain travail cron nocturne. La récupération n'est plus possible.</li>
+        <li><strong>7 à 90 jours :</strong> les données sont purgées de la base de données principale. Les sauvegardes sont supprimées selon leur cycle normal (nous utilisons la récupération point-in-time Supabase avec une conservation de 7 jours plus des instantanés hebdomadaires conservés 30 jours, soit au pire environ 6 mois pour les instantanés les plus anciens).</li>
+        <li><strong>Après 90 jours :</strong> toutes les données de santé identifiantes sont supprimées des systèmes principaux. Les sauvegardes peuvent encore contenir des instantanés vieux de 6 mois. Nous ne supprimons pas sélectivement des sauvegardes. Lorsque les sauvegardes arrivent en fin de cycle, les données disparaissent.</li>
+      </ul>
+      <p>Nous informons les utilisateurs de cela explicitement dans le flux de suppression et dans la Politique de confidentialité.</p>
+
+      <h2>5. Exigences de mise en œuvre</h2>
+      <h3>Schéma de base de données</h3>
+      <p>Ajouter les champs suivants à la table <code>users</code> (ou équivalent) :</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN deleted_at TIMESTAMPTZ NULL;
+ALTER TABLE users ADD COLUMN purge_after TIMESTAMPTZ NULL;
+ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
+      <p>Pour toutes les tables de données de santé, ajouter soit une clé étrangère <code>user_id</code> (ce qui permet à la suppression en cascade de traiter l'effacement), soit une colonne <code>deleted_at</code> (pour les modèles de suppression logique).</p>
+
+      <h3>Flux de suppression logique</h3>
+      <p>Lorsque l'utilisateur soumet une demande de suppression depuis le panneau intégré ou par e-mail :</p>
+      <ol>
+        <li>Définir <code>users.deleted_at = NOW()</code></li>
+        <li>Définir <code>users.purge_after = NOW() + INTERVAL '7 days'</code></li>
+        <li>Déconnecter l'utilisateur de toutes les sessions</li>
+        <li>Envoyer un e-mail de confirmation avec un lien de récupération (valide 7 jours)</li>
+        <li>Consigner la demande dans le journal d'audit de suppression</li>
+      </ol>
+
+      <h3>Tâche cron de suppression définitive</h3>
+      <p>Chaque jour, exécuter un travail qui :</p>
+      <ol>
+        <li>Identifie tous les utilisateurs avec <code>purge_after < NOW()</code> et <code>deleted_at IS NOT NULL</code></li>
+        <li>Pour chaque utilisateur, dans cet ordre :</li>
+      </ol>
+      <ul>
+        <li>Supprimer dans <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code> et toutes les autres tables de données de santé</li>
+        <li>Supprimer dans <code>marketing_preferences</code></li>
+        <li>Anonymiser la ligne <code>users</code> : effacer <code>email</code>, <code>display_name</code>, <code>password_hash</code>, remplacer <code>email</code> par <code>deleted-{user_id}@deleted.stacksense.ca</code>, conserver uniquement <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> pour preuve de conformité</li>
+        <li>Ne PAS supprimer la ligne complètement. Nous conservons l'enregistrement anonymisé pour prouver le consentement en cas de plainte future.</li>
+        <li>Anonymiser le client Stripe (API Stripe : mettre à jour le client avec des PII vides, puis archiver)</li>
+      </ul>
+      <p>Consigner chaque action dans le journal d'audit de suppression. Envoyer un e-mail de confirmation à l'utilisateur depuis <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> (envoyé à l'adresse originale avant anonymisation finale).</p>
+
+      <h2>Application de la conservation pour d'autres catégories</h2>
+      <ul>
+        <li><strong>Analyses :</strong> PostHog/Plausible expire automatiquement après 90 jours. Vérifier le paramètre de conservation dans le tableau de bord du fournisseur.</li>
+        <li><strong>Sentry :</strong> Configurer la conservation à 90 jours dans les paramètres du projet.</li>
+        <li><strong>Journaux serveur :</strong> Configurer la conservation à 30 jours sur Vercel.</li>
+        <li><strong>Backups :</strong> Supabase a une récupération point-in-time de 7 jours par défaut sur les offres payantes ; les sauvegardes quotidiennes sont conservées 30 jours sur Pro. Fixer une conservation explicite dans le tableau de bord du fournisseur.</li>
+      </ul>
+
+      <h2>Journal d'audit</h2>
+      <p>Maintenir une table <code>data_deletion_log</code> :</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">CREATE TABLE data_deletion_log (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL,
+  action TEXT NOT NULL,
+  initiated_by TEXT NOT NULL,
+  reason TEXT,
+  details JSONB,
+  occurred_at TIMESTAMPTZ DEFAULT NOW()
+);
+</pre>
+      <p>Conserver le journal d'audit indéfiniment tant que StackSense fonctionne. C'est la preuve que nous respectons les droits des utilisateurs.</p>
+
+      <h2>6. Exception : conservation juridique</h2>
+      <p>Si StackSense reçoit une mesure de conservation judiciaire ou une ordonnance de régulateur, la tâche de suppression doit ignorer les utilisateurs concernés. Implémenter un indicateur administratif :</p>
+      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN legal_hold BOOLEAN DEFAULT FALSE;</pre>
+      <p>Tâche cron : <code>WHERE deleted_at IS NOT NULL AND purge_after < NOW() AND legal_hold = FALSE</code>.</p>
+      <p>Lorsqu'une conservation est en place, l'utilisateur reste supprimé logiquement mais les données sont conservées. Informer l'utilisateur qu'une ordonnance légale a été reçue (sauf si la loi interdit de le faire).</p>
+
+      <h2>7. Exception : dossiers de facturation</h2>
+      <p>Les dossiers clients Stripe et nos propres dossiers de facturation locale (<code>subscription_history</code>, <code>invoices</code>, <code>payment_history</code>) sont conservés 7 ans à compter de la date de transaction. Cela permet de satisfaire :</p>
+      <ul>
+        <li>La Loi de l'impôt sur le revenu canadienne (6 ans)</li>
+        <li>La période de contestation de la Loi sur la protection du consommateur du Québec</li>
+        <li>Les principes comptables généralement reconnus</li>
+        <li>Les délais potentiels de rétrofacturation (varient mais sont longs)</li>
+      </ul>
+      <p>Informer les utilisateurs de cela dans le flux de suppression :</p>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">Lorsque vous supprimez votre compte, vos données de santé sont effacées de notre base de données active sous 90 jours. Vos dossiers de facturation sont conservés pendant 7 ans parce que la loi fiscale l'exige. Ces dossiers ne montrent que que vous avez payé pour le service, le montant et la date. Ils n'incluent pas de données de santé.</blockquote>
+      <p>Cela respecte le droit à l'effacement de l'utilisateur dans la mesure maximale permise par l'article 17(3)(b) du RGPD (obligation légale).</p>
+
+      <h2>8. Suppressions partielles déclenchées par l'utilisateur</h2>
+      <p>Les utilisateurs peuvent également supprimer des entrées individuelles (une saisie incorrecte, une note privée) sans supprimer l'ensemble du compte. Ces suppressions suivent la même règle de cycle de sauvegarde : elles disparaissent de la base principale immédiatement, et des sauvegardes lors de leur rotation.</p>
+      <p>Nous ne maintenons pas de « corbeille » par défaut. Si un utilisateur souhaite annuler une suppression, c'est une fonctionnalité produit, pas une exigence de conformité. Actuellement hors scope.</p>
+
+      <h2>9. Responsabilités des fournisseurs</h2>
+      <p>Chaque fournisseur traitant des données utilisateur doit également respecter une suppression dans un délai comparable. Vérifié via :</p>
+      <table>
+        <thead>
+          <tr><th>Fournisseur</th><th>Engagement de conservation</th><th>Où documenté</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supabase</td><td>Respecte la suppression dans le délai standard des sauvegardes</td><td>DPA</td></tr>
+          <tr><td>Vercel</td><td>Journaux auto-supprimés selon le calendrier, pas de PII utilisateur persistante</td><td>DPA</td></tr>
+          <tr><td>Stripe</td><td>Anonymise les PII client sur demande, conserve les données de transaction pour sa conformité</td><td>DPA</td></tr>
+          <tr><td>Anthropic</td><td>Pas de données personnelles envoyées via notre intégration. Requêtes génériques sur les composés uniquement.</td><td>DPA + revue d'architecture</td></tr>
+          <tr><td>PostHog / Plausible</td><td>Anonymisés à la collecte, conservation de 90 jours</td><td>Paramètres de confidentialité + DPA</td></tr>
+          <tr><td>Sentry</td><td>Conservation de 90 jours que nous contrôlons</td><td>Paramètres de projet</td></tr>
+        </tbody>
+      </table>
+      <p>Lorsque nous supprimons un utilisateur, nous déclenchons la suppression en aval chez chaque fournisseur concerné.</p>
+
+      <h2>10. Communication aux utilisateurs</h2>
+      <p>Résumez cela en termes simples dans la section 7 de la Politique de confidentialité et dans le panneau des droits des données de l'application. Ne forcez pas les utilisateurs à lire toute cette politique.</p>
+      <p>Résumé destiné aux utilisateurs :</p>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">Lorsque vous supprimez votre compte, vos données de santé sont supprimées de notre base de données active sous 90 jours. Les sauvegardes s'effilent au cours des 6 mois suivants. Vos dossiers de facturation sont conservés pendant 7 ans parce que la loi l'exige.</blockquote>
+
+      <h2>11. Révision</h2>
+      <p>Cette politique est révisée annuellement, ou chaque fois que :</p>
+      <ul>
+        <li>Une nouvelle catégorie de données est ajoutée</li>
+        <li>Un nouveau fournisseur est engagé</li>
+        <li>Des changements législatifs l'exigent</li>
+        <li>Un incident révèle une lacune</li>
+      </ul>
+      <p>Dernière révision : 05/20/26</p>
+      <p><strong>Fin de la politique de conservation des données. Version 1.0.</strong></p>
+    </div>
+
+    <div class="footer">
+      <p>Back to <a href="/">StackSense</a>.</p>
+    </div>
+  </div>
+
+  <script>
+    const enButton = document.getElementById('show-en');
+    const frButton = document.getElementById('show-fr');
+    const enContent = document.getElementById('content-en');
+    const frContent = document.getElementById('content-fr');
+
+    function setLanguage(lang) {
+      if (lang === 'fr') {
+        enContent.hidden = true;
+        frContent.hidden = false;
+        enButton.classList.remove('active');
+        frButton.classList.add('active');
+      } else {
+        enContent.hidden = false;
+        frContent.hidden = true;
+        frButton.classList.remove('active');
+        enButton.classList.add('active');
+      }
+    }
+
+    enButton.addEventListener('click', () => setLanguage('en'));
+    frButton.addEventListener('click', () => setLanguage('fr'));
+  </script>
+</body>
+</html>

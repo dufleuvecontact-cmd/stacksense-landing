@@ -123,7 +123,7 @@ export default function Waitlist() {
                       style={{ marginTop:2, accentColor:'var(--teal)', width:14, height:14, flexShrink:0 }}/>
                     <span className="small">
                       I agree to StackSense collecting my email for waitlist purposes. See our{' '}
-                      <a href="#privacy" style={{ color:'var(--teal)', textDecoration:'none' }}>Privacy Policy</a>.
+                      <a href="/privacy-policy.html" style={{ color:'var(--teal)', textDecoration:'none' }}>Privacy Policy</a>.
                     </span>
                   </label>
                   <button type="submit" className="btn btn-teal" disabled={!email||!consent||isSubmitting}
