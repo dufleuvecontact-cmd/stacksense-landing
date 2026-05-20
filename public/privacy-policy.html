@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StackSense Privacy Policy</title>
+  <style>
+    body { margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#0c1116; color:#e5e7eb; }
+    a { color:#22d3ee; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .page { max-width:900px; margin:0 auto; padding:2rem; }
+    header { margin-bottom:2rem; }
+    h1 { font-size:2rem; margin-bottom:.5rem; }
+    h2 { font-size:1.35rem; margin-top:2rem; margin-bottom:1rem; }
+    h3 { font-size:1.05rem; margin-top:1.5rem; margin-bottom:.7rem; }
+    p, li { line-height:1.75; }
+    ul, ol { margin:0 0 1rem 1.4rem; }
+    .lang-switch { display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0; }
+    .lang-switch button { background:#111827; border:1px solid #334155; color:#e2e8f0; padding:.7rem 1rem; border-radius:.75rem; cursor:pointer; }
+    .lang-switch button.active { border-color:#22d3ee; color:#22d3ee; }
+    .card { background:rgba(15,23,42,.95); border:1px solid rgba(148,163,184,.15); border-radius:1.25rem; padding:1.75rem; }
+    .note { color:#94a3b8; margin-top:.5rem; }
+    table { width:100%; border-collapse:collapse; margin-top:1rem; margin-bottom:1rem; }
+    th, td { padding:.85rem .75rem; border:1px solid rgba(148,163,184,.15); text-align:left; }
+    th { background:rgba(148,163,184,.08); font-weight:700; }
+    .footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid rgba(148,163,184,.15); color:#94a3b8; }
+    @media(max-width:640px){ .page { padding:1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p style="font-size:.9rem; color:#94a3b8; margin-bottom:.5rem;">Effective date: 05/20/26 · Last updated: 05/20/26 · Version: 1.0</p>
+      <h1>StackSense Privacy Policy</h1>
+      <div class="lang-switch">
+        <button id="show-en" class="active">English</button>
+        <button id="show-fr">Français</button>
+      </div>
+      <p class="note">This page explains what data we collect, why we collect it, who we share it with, how long we keep it, and what rights you have. If anything is unclear, email us at <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+    </header>
+
+    <div class="card" id="content-en">
+      <h2>1. Who we are</h2>
+      <p>StackSense is a personal health tracking application. You use it to log supplements, peptides, dose schedules, symptoms, and body composition for your own personal use.</p>
+      <p>StackSense is operated by Jad Gouiza, Quebec, Canada. We are the data controller for the purposes of GDPR, PIPEDA, and Quebec Law 25. The Privacy Officer for StackSense is Jad Gouiza, reachable at <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p>Once StackSense Inc. is registered, this section will be updated to name the corporation as the controller.</p>
+
+      <h2>2. What StackSense is not</h2>
+      <p>StackSense is not a medical device. It is not a clinical decision-support system. It is not a diagnostic tool. It does not provide medical advice. It does not recommend doses. It does not replace your doctor.</p>
+      <p>Everything StackSense shows you is for informational and educational purposes only. You are responsible for your own health decisions.</p>
+
+      <h2>3. What data we collect</h2>
+      <h3>Account data</h3>
+      <ul>
+        <li>Email address</li>
+        <li>Password (stored as a one-way hash, not in plain text)</li>
+        <li>Account creation date</li>
+      </ul>
+      <h3>Health and tracking data (special category data under GDPR Article 9)</h3>
+      <ul>
+        <li>Supplements and peptides you log</li>
+        <li>Dose amounts and schedules</li>
+        <li>Injection site logs (if you log them)</li>
+        <li>Symptom logs (mood, energy, sleep, stress, focus, anything you choose to enter)</li>
+        <li>Body composition data (weight, body fat, measurements if you enter them)</li>
+        <li>Protocol notes you write</li>
+        <li>Photos you attach to logs (if you choose to attach any)</li>
+      </ul>
+      <h3>Usage and technical data</h3>
+      <ul>
+        <li>Device type and operating system</li>
+        <li>IP address (for security and rate limiting, not stored long term)</li>
+        <li>Page views and feature usage events (anonymized, via PostHog or Plausible)</li>
+        <li>Crash reports (via Sentry, if you opt in)</li>
+      </ul>
+      <h3>Billing data</h3>
+      <ul>
+        <li>Subscription status and tier</li>
+        <li>Renewal dates</li>
+        <li>We do not store your credit card number. Stripe handles all payment data. Stripe is PCI-DSS Level 1 certified. We only see masked card identifiers (last 4 digits, expiry).</li>
+      </ul>
+      <p>We do not collect: your real name unless you provide it voluntarily, your phone number, your home address, your government ID, biometrics, your contacts, your location beyond IP-derived country.</p>
+
+      <h2>4. Why we collect this data (legal basis under GDPR Article 6 and Article 9)</h2>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Legal basis (Article 6)</th><th>Special category basis (Article 9, if applicable)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Account email and password</td><td>Performance of contract (Article 6(1)(b))</td><td>n/a</td></tr>
+          <tr><td>Health logs (supplements, symptoms, body comp)</td><td>Performance of contract (Article 6(1)(b))</td><td><strong>Explicit consent</strong> (Article 9(2)(a))</td></tr>
+          <tr><td>Usage analytics</td><td>Legitimate interest (Article 6(1)(f))</td><td>n/a</td></tr>
+          <tr><td>Marketing emails</td><td>Consent (Article 6(1)(a))</td><td>n/a</td></tr>
+          <tr><td>Crash and error logs</td><td>Legitimate interest (Article 6(1)(f))</td><td>n/a</td></tr>
+          <tr><td>Billing</td><td>Legal obligation and contract (Article 6(1)(b) and 6(1)(c))</td><td>n/a</td></tr>
+        </tbody>
+      </table>
+      <p>Health data processing happens only because you explicitly consent at signup with a separate checkbox. You can withdraw consent at any time by deleting your account. Withdrawing consent does not undo processing that already happened.</p>
+
+      <h2>5. Who we share data with</h2>
+      <p>We share data with the third parties below. Each has signed a Data Processing Agreement with us. Each is contractually required to protect your data and only use it to provide their service to us.</p>
+      <table>
+        <thead>
+          <tr><th>Vendor</th><th>What they do for us</th><th>Where they process data</th><th>DPA in place</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="https://supabase.com/privacy">Supabase</a></td><td>Database and authentication backend</td><td>United States</td><td>Yes</td></tr>
+          <tr><td><a href="https://vercel.com/legal/privacy-policy">Vercel</a></td><td>Web hosting and edge delivery</td><td>United States</td><td>Yes</td></tr>
+          <tr><td><a href="https://stripe.com/privacy">Stripe</a></td><td>Payment processing</td><td>United States and worldwide</td><td>Yes</td></tr>
+          <tr><td><a href="https://www.anthropic.com/legal/privacy">Anthropic</a></td><td>AI-powered research feature (only for non-personal, generic compound information)</td><td>United States</td><td>Yes</td></tr>
+          <tr><td><a href="https://posthog.com/privacy">PostHog</a> or <a href="https://plausible.io/privacy">Plausible</a></td><td>Anonymized product analytics</td><td>EU</td><td>Yes</td></tr>
+          <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Crash and error monitoring (optional, opt-in)</td><td>United States</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+      <p>We do not sell your data. We do not share your data with advertisers. We do not share your data with data brokers. We do not let third parties scrape it.</p>
+      <p>We will share data with law enforcement only if compelled by a valid legal order from a Canadian court or a foreign court whose order is recognized in Canada. If we receive such an order, we will notify you unless legally prohibited from doing so.</p>
+
+      <h2>6. International data transfers</h2>
+      <p>StackSense is operated from Quebec, Canada. Some vendors above process data in the United States. We rely on the following legal mechanisms for international transfers:</p>
+      <ul>
+        <li><strong>For EU and EEA users:</strong> Standard Contractual Clauses (SCCs) under Commission Implementing Decision 2021/914, plus Transfer Impact Assessments where required.</li>
+        <li><strong>For UK users:</strong> UK International Data Transfer Agreement (IDTA) or SCCs with UK addendum.</li>
+        <li><strong>For Canadian users:</strong> PIPEDA accountability principle. We remain accountable for data processed by US vendors on our behalf.</li>
+        <li><strong>For Quebec users:</strong> Article 17 of Quebec Law 25. We have conducted a Privacy Impact Assessment and confirmed that US transfers provide adequate protection under our contractual safeguards.</li>
+      </ul>
+      <p>If you want a copy of the SCCs or our Transfer Impact Assessment, email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <h2>7. How long we keep your data</h2>
+      <table>
+        <thead>
+          <tr><th>Data type</th><th>Retention period</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Account data while active</td><td>While your account exists</td></tr>
+          <tr><td>Health logs while active</td><td>While your account exists</td></tr>
+          <tr><td>Health data after account deletion</td><td>Permanently deleted within 90 days</td></tr>
+          <tr><td>Account data after deletion</td><td>Soft-deleted immediately, hard-deleted within 90 days</td></tr>
+          <tr><td>Billing and payment records</td><td>7 years (Canadian tax law and Quebec consumer protection law require this)</td></tr>
+          <tr><td>Analytics events</td><td>90 days</td></tr>
+          <tr><td>Crash logs</td><td>90 days</td></tr>
+          <tr><td>Server logs (IP, user agent)</td><td>30 days</td></tr>
+          <tr><td>Backups</td><td>Up to 6 months on a rolling basis. Backups are encrypted at rest and we cannot selectively delete from them without rebuilding the backup. Deletions from backups happen via the normal rotation cycle.</td></tr>
+        </tbody>
+      </table>
+      <p>After 90 days from account deletion, your health logs are gone forever. We cannot restore them. Export your data before deleting your account if you want to keep a copy.</p>
+
+      <h2>8. Your rights</h2>
+      <p>You have the following rights over your data. Exercise any of them by emailing <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> or using the in-app data rights panel at Profile → Your Data.</p>
+      <table>
+        <thead>
+          <tr><th>Right</th><th>What it means</th><th>Response time</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Access</td><td>Get a copy of what we hold about you</td><td>30 days</td></tr>
+          <tr><td>Correction</td><td>Fix anything that's inaccurate</td><td>30 days</td></tr>
+          <tr><td>Deletion</td><td>Wipe your account and all health data (subject to the retention exceptions above)</td><td>30 days</td></tr>
+          <tr><td>Portability</td><td>Download your data in a structured format (CSV)</td><td>30 days, on demand via Export button</td></tr>
+          <tr><td>Object</td><td>Stop processing for analytics or marketing</td><td>30 days</td></tr>
+          <tr><td>Restriction</td><td>Pause processing while we resolve a dispute</td><td>30 days</td></tr>
+          <tr><td>Withdraw consent</td><td>Pull back consent for health data processing or marketing</td><td>Immediately on receipt</td></tr>
+          <tr><td>Complain</td><td>File a complaint with your privacy regulator</td><td>See section 13</td></tr>
+        </tbody>
+      </table>
+      <p>We will not retaliate against you for exercising your rights. We will not charge you for the first request in a 12-month period. For repeated or excessive requests, we may charge a reasonable fee or refuse, but we will tell you why.</p>
+
+      <h2>9. Cookies and tracking</h2>
+      <p>We use only the cookies necessary to make StackSense work, plus optional analytics cookies you can decline.</p>
+      <table>
+        <thead>
+          <tr><th>Cookie type</th><th>Purpose</th><th>Required</th><th>How to disable</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Session cookie</td><td>Keep you logged in</td><td>Yes, app does not work without it</td><td>Log out</td></tr>
+          <tr><td>Auth refresh token</td><td>Keep your session alive</td><td>Yes</td><td>Log out</td></tr>
+          <tr><td>Analytics (PostHog/Plausible)</td><td>Anonymous product usage</td><td>No</td><td>Cookie banner toggle, or browser do-not-track</td></tr>
+        </tbody>
+      </table>
+      <p>We do not use advertising cookies. We do not use third-party tracking pixels (no Meta pixel, no Google Ads, no TikTok pixel, nothing). If we ever add any, we will update this policy and ask you for consent.</p>
+
+      <h2>10. Data security</h2>
+      <ul>
+        <li>All connections to StackSense use HTTPS with TLS 1.2 or higher</li>
+        <li>Passwords are hashed with bcrypt (one-way hash, not encryption)</li>
+        <li>Database access is restricted by Supabase Row-Level Security policies. Even our own server code cannot read another user's data outside the rules.</li>
+        <li>API endpoints are rate-limited</li>
+        <li>API endpoints require authentication except for clearly public ones</li>
+        <li>Secrets and API keys are stored in environment variables, never in code</li>
+        <li>Backups are encrypted at rest</li>
+        <li>We log access to production systems and review logs monthly</li>
+      </ul>
+      <p>We do not store your data on our personal devices. We never email health data over unencrypted email. We never share health data on Slack or other chat systems.</p>
+      <p>If there is a data breach, we will notify you within 72 hours under GDPR, within 5 business days under Quebec Law 25, and as required by PIPEDA, CCPA, and Washington MHMDA.</p>
+
+      <h2>11. Children</h2>
+      <p>StackSense is intended for adults 18 and older. We do not knowingly collect data from anyone under 18. If you are under 18, do not use StackSense.</p>
+      <p>If you are a parent or guardian and believe your child has signed up, email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> and we will delete the account and all associated data.</p>
+
+      <h2>12. Changes to this policy</h2>
+      <p>We may update this policy from time to time. When we make material changes, we will:</p>
+      <ul>
+        <li>Update the "Last updated" date at the top of this page</li>
+        <li>Notify you by email at least 30 days before changes take effect (for material changes)</li>
+        <li>Track which version you accepted at signup</li>
+        <li>Get a fresh consent for changes that affect special category data processing</li>
+      </ul>
+      <p>Non-material changes (clarifications, formatting fixes, vendor URL updates) take effect immediately and do not trigger email notice.</p>
+
+      <h2>13. How to contact us and complain</h2>
+      <p><strong>Routine privacy questions, rights requests, complaints:</strong> <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a></p>
+      <p><strong>Legal notices, regulator inquiries:</strong> <a href="mailto:legal@stacksense.ca">legal@stacksense.ca</a></p>
+      <p><strong>If we don't resolve your complaint, escalate to your regulator:</strong></p>
+      <table>
+        <thead>
+          <tr><th>Region</th><th>Regulator</th><th>Contact</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Canada (federal)</td><td>Office of the Privacy Commissioner of Canada</td><td><a href="https://www.priv.gc.ca">https://www.priv.gc.ca</a>, 1-800-282-1376</td></tr>
+          <tr><td>Quebec</td><td>Commission d'accès à l'information du Québec</td><td><a href="https://www.cai.gouv.qc.ca">https://www.cai.gouv.qc.ca</a></td></tr>
+          <tr><td>European Union</td><td>Your national supervisory authority</td><td><a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">https://edpb.europa.eu/about-edpb/about-edpb/members_en</a></td></tr>
+          <tr><td>United Kingdom</td><td>Information Commissioner's Office</td><td><a href="https://ico.org.uk">https://ico.org.uk</a></td></tr>
+          <tr><td>California</td><td>California Attorney General</td><td><a href="https://oag.ca.gov/privacy">https://oag.ca.gov/privacy</a></td></tr>
+          <tr><td>Washington State</td><td>Washington Attorney General</td><td><a href="https://www.atg.wa.gov">https://www.atg.wa.gov</a></td></tr>
+        </tbody>
+      </table>
+
+      <h2>Jurisdiction-specific sections</h2>
+      <p>The sections below apply to users in specific jurisdictions in addition to the general policy above.</p>
+
+      <h3>A. Quebec Law 25 (Loi sur la protection des renseignements personnels dans le secteur privé)</h3>
+      <p>This section applies to all users whose personal information is collected or used in Quebec.</p>
+      <p><strong>Designated Privacy Officer:</strong> Jad Gouiza, <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. The Privacy Officer is responsible for compliance with this law and for responding to your rights requests.</p>
+      <p><strong>Consent:</strong> We obtain your express, free, informed, and specific consent for processing your health data at signup. You can withdraw it at any time.</p>
+      <p><strong>Privacy Impact Assessment:</strong> A PIA covering this processing is on file. Available to regulators on request.</p>
+      <p><strong>Cross-border transfers:</strong> Some of your data is processed by service providers in the United States. We have assessed that the contractual, organizational, and technical measures in place provide protection equivalent to what Quebec law requires.</p>
+      <p><strong>Automated decision-making:</strong> StackSense does not make decisions about you based solely on automated processing. Our AI research features generate information, not decisions about you.</p>
+      <p><strong>Breach notification:</strong> If a confidentiality incident creates a real risk of serious harm to you, we will notify you and the Commission d'accès à l'information within 5 business days.</p>
+      <p><strong>Right to data portability:</strong> You can request a copy of your data in a structured, commonly used technological format.</p>
+
+      <h3>B. European Union and EEA - GDPR</h3>
+      <p>This section applies to users in the EU and EEA.</p>
+      <p>We are a non-EU controller offering services to EU residents. We process your data under the legal bases listed in section 4.</p>
+      <p><strong>Your rights under GDPR:</strong></p>
+      <ul>
+        <li>Right of access (Article 15)</li>
+        <li>Right to rectification (Article 16)</li>
+        <li>Right to erasure (Article 17)</li>
+        <li>Right to restriction (Article 18)</li>
+        <li>Right to data portability (Article 20)</li>
+        <li>Right to object (Article 21)</li>
+        <li>Right to withdraw consent (Article 7(3))</li>
+        <li>Right to lodge a complaint with a supervisory authority (Article 77)</li>
+      </ul>
+      <p><strong>EU representative:</strong> Once our EU user base reaches material scale, we will appoint a representative in the EU under Article 27. Until then, we rely on the de-minimis exception for occasional and small-scale processing. Contact us directly at <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p><strong>International transfers:</strong> Some data is transferred to the United States. We rely on Standard Contractual Clauses (Commission Implementing Decision 2021/914). Copies available on request.</p>
+      <p><strong>Data Protection Officer (DPO):</strong> We are not required to appoint a DPO under Article 37. Our Privacy Officer (Jad Gouiza) handles equivalent responsibilities.</p>
+
+      <h3>C. United Kingdom - UK GDPR and Data Protection Act 2018</h3>
+      <p>This section applies to UK users.</p>
+      <p>The rights and obligations under UK GDPR mirror those under EU GDPR. Substitute "Information Commissioner's Office (ICO)" for the EU supervisory authority. Substitute the UK International Data Transfer Agreement for the EU SCCs where transfers go to the US.</p>
+      <p><strong>UK representative:</strong> Same de-minimis approach as EU until material scale is reached.</p>
+
+      <h3>D. California - CCPA and CPRA</h3>
+      <p>This section applies to California residents.</p>
+      <p><strong>Categories of personal information collected:</strong> Identifiers (email), commercial information (subscription history), internet activity (usage data), sensory data (none), geolocation (only IP-derived country), professional information (none), inferences (none), sensitive personal information (health data, with your consent).</p>
+      <p><strong>Categories of sources:</strong> You, your device, our payment processor (Stripe).</p>
+      <p><strong>Business purposes for collection:</strong> Providing the StackSense service, billing, security, analytics, customer support.</p>
+      <p><strong>Categories of third parties data is disclosed to:</strong> Service providers listed in section 5.</p>
+      <p><strong>Do we sell or share personal information?</strong> No. We do not sell your personal information. We do not share it for cross-context behavioral advertising. We have never done so.</p>
+      <p><strong>Sensitive personal information:</strong> We collect health data only with your consent and only for providing the StackSense service. We do not use it for inferring characteristics about you. You have the right under CPRA to limit our use of sensitive personal information. To exercise this right, email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p><strong>Your CCPA rights:</strong></p>
+      <ul>
+        <li>Right to know what we collect</li>
+        <li>Right to delete</li>
+        <li>Right to correct</li>
+        <li>Right to opt out of sale and sharing (n/a since we do not sell or share)</li>
+        <li>Right to limit use of sensitive personal information</li>
+        <li>Right to non-discrimination for exercising your rights</li>
+      </ul>
+      <p><strong>How to exercise:</strong> Email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. We will verify your identity by sending a confirmation email to the address on your account.</p>
+      <p><strong>Authorized agents:</strong> You may designate an agent in writing.</p>
+      <p><strong>Response time:</strong> 45 days, extendable by 45 more days with notice to you.</p>
+
+      <h3>E. Washington State - My Health My Data Act (MHMDA)</h3>
+      <p>This section applies to consumers in Washington State and to data collected from Washington consumers.</p>
+      <p><strong>Consumer health data we collect:</strong> The supplement, peptide, symptom, body composition, and protocol data you choose to enter in StackSense.</p>
+      <p><strong>Categories of sources:</strong> You.</p>
+      <p><strong>Purposes of processing:</strong> To provide the StackSense tracking service to you.</p>
+      <p><strong>Categories of third parties with whom we share consumer health data:</strong> The service providers listed in section 5 (Supabase, Vercel, Stripe, Anthropic, PostHog/Plausible, Sentry). These are processors acting on our instructions.</p>
+      <p><strong>We do not:</strong></p>
+      <ul>
+        <li>Sell consumer health data</li>
+        <li>Use consumer health data for advertising</li>
+        <li>Use consumer health data for inferring eligibility for insurance, credit, or employment</li>
+        <li>Use consumer health data for targeting based on health conditions</li>
+      </ul>
+      <p><strong>Your MHMDA rights:</strong></p>
+      <ul>
+        <li>Right to confirm whether we collect, share, or sell your consumer health data</li>
+        <li>Right to access your consumer health data</li>
+        <li>Right to withdraw consent</li>
+        <li>Right to deletion (we will notify our processors and require them to delete too)</li>
+        <li>Right to a list of all third parties we share with</li>
+      </ul>
+      <p><strong>To exercise:</strong> Email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. Response within 45 days.</p>
+      <p><strong>Geofencing:</strong> We do not use geofencing around healthcare facilities.</p>
+
+      <h3>F. Other US states (Connecticut, Nevada, Colorado, Virginia, Texas)</h3>
+      <p>If you are a resident of a US state with a comprehensive privacy law, the rights in section 8 apply to you. The Washington MHMDA section above covers the strictest US health data treatment. The CCPA section above covers the strictest US comprehensive privacy treatment. You get the benefit of both.</p>
+      <p>If you want jurisdiction-specific clarity, email <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <h3>G. Canada (PIPEDA)</h3>
+      <p>This section applies to Canadian users outside Quebec.</p>
+      <p>We comply with PIPEDA's 10 fair information principles:</p>
+      <ol>
+        <li>Accountability (Privacy Officer Jad Gouiza)</li>
+        <li>Identifying purposes (this policy)</li>
+        <li>Consent (signup checkboxes and granular toggles)</li>
+        <li>Limiting collection (only what we need)</li>
+        <li>Limiting use, disclosure, retention (section 7)</li>
+        <li>Accuracy (you can correct via your account)</li>
+        <li>Safeguards (section 10)</li>
+        <li>Openness (this policy is public)</li>
+        <li>Individual access (section 8)</li>
+        <li>Challenging compliance (complaint procedure in section 13)</li>
+      </ol>
+      <p><strong>Breach reporting:</strong> Where a breach creates a real risk of significant harm, we will notify affected individuals and the Office of the Privacy Commissioner of Canada as soon as feasible.</p>
+
+      <h3>H. Quebec, in French</h3>
+      <p>Cette politique de confidentialité est rédigée en anglais. Une version française sera disponible à l'adresse stacksense.ca/politique-confidentialite. En cas de divergence entre les versions, la version française prévaudra pour les utilisateurs résidant au Québec. Pour toute question, écrire à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <p><strong>End of Privacy Policy. Version 1.0. Last updated 05/20/26</strong></p>
+    </div>
+
+    <div class="card" id="content-fr" hidden>
+      <h2>Politique de confidentialité StackSense</h2>
+      <p>Cette page explique quelles données nous collectons, pourquoi nous les collectons, avec qui nous les partageons, combien de temps nous les conservons et quels droits vous avez. Si quelque chose n'est pas clair, écrivez-nous à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <h2>1. Qui nous sommes</h2>
+      <p>StackSense est une application de suivi de la santé personnelle. Vous l'utilisez pour enregistrer des suppléments, des peptides, des programmes de dosage, des symptômes et la composition corporelle pour votre usage personnel.</p>
+      <p>StackSense est exploité par Jad Gouiza, Québec, Canada. Nous sommes le responsable du traitement aux fins du RGPD, de la LPRPDE et de la Loi 25 du Québec. Le responsable de la confidentialité de StackSense est Jad Gouiza, joignable à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p>Lorsque StackSense Inc. sera enregistrée, cette section sera mise à jour pour nommer la société comme responsable.</p>
+
+      <h2>2. Ce que StackSense n'est pas</h2>
+      <p>StackSense n'est pas un dispositif médical. Ce n'est pas un système d'aide à la décision clinique. Ce n'est pas un outil de diagnostic. Il ne fournit pas de conseils médicaux. Il ne recommande pas de doses. Il ne remplace pas votre médecin.</p>
+      <p>Toutes les informations affichées par StackSense sont à caractère informatif et éducatif uniquement. Vous êtes responsable de vos propres décisions de santé.</p>
+
+      <h2>3. Quelles données nous collectons</h2>
+      <h3>Données de compte</h3>
+      <ul>
+        <li>Adresse e-mail</li>
+        <li>Mot de passe (stocké sous forme de hachage irréversible, pas en texte clair)</li>
+        <li>Date de création du compte</li>
+      </ul>
+      <h3>Données de santé et de suivi (catégorie spéciale selon l'article 9 du RGPD)</h3>
+      <ul>
+        <li>Compléments et peptides que vous enregistrez</li>
+        <li>Quantités et horaires de dosage</li>
+        <li>Journaux des sites d'injection (si vous les enregistrez)</li>
+        <li>Journaux de symptômes (humeur, énergie, sommeil, stress, concentration, tout ce que vous choisissez d'entrer)</li>
+        <li>Données de composition corporelle (poids, masse grasse, mesures si vous les saisissez)</li>
+        <li>Notes de protocole que vous rédigez</li>
+        <li>Photos jointes à des journaux (si vous choisissez d'en ajouter)</li>
+      </ul>
+      <h3>Données d'utilisation et techniques</h3>
+      <ul>
+        <li>Type d'appareil et système d'exploitation</li>
+        <li>Adresse IP (pour la sécurité et la limitation de débit, pas stockée à long terme)</li>
+        <li>Vues de pages et événements d'utilisation des fonctionnalités (anonymisés, via PostHog ou Plausible)</li>
+        <li>Rapports de crash (via Sentry, si vous optez pour cette option)</li>
+      </ul>
+      <h3>Données de facturation</h3>
+      <ul>
+        <li>Statut et niveau d'abonnement</li>
+        <li>Dates de renouvellement</li>
+        <li>Nous ne stockons pas votre numéro de carte de crédit. Stripe gère toutes les données de paiement. Stripe est certifié PCI-DSS Niveau 1. Nous ne voyons que des identifiants de carte masqués (4 derniers chiffres, date d'expiration).</li>
+      </ul>
+      <p>Nous ne collectons pas : votre vrai nom sauf si vous le fournissez volontairement, votre numéro de téléphone, votre adresse personnelle, votre pièce d'identité, vos données biométriques, vos contacts, ni votre position précise au-delà du pays estimé par l'IP.</p>
+
+      <h2>4. Pourquoi nous collectons ces données (base juridique au sens du RGPD article 6 et article 9)</h2>
+      <table>
+        <thead>
+          <tr><th>Donnée</th><th>Base juridique (article 6)</th><th>Base pour catégorie spéciale (article 9, le cas échéant)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E-mail et mot de passe de compte</td><td>Exécution du contrat (article 6(1)(b))</td><td>n/a</td></tr>
+          <tr><td>Journaux de santé (suppléments, symptômes, composition corporelle)</td><td>Exécution du contrat (article 6(1)(b))</td><td><strong>Consentement explicite</strong> (article 9(2)(a))</td></tr>
+          <tr><td>Analyses d'utilisation</td><td>Intérêt légitime (article 6(1)(f))</td><td>n/a</td></tr>
+          <tr><td>E-mails marketing</td><td>Consentement (article 6(1)(a))</td><td>n/a</td></tr>
+          <tr><td>Journaux de plantage et d'erreur</td><td>Intérêt légitime (article 6(1)(f))</td><td>n/a</td></tr>
+          <tr><td>Facturation</td><td>Obligation légale et contrat (article 6(1)(b) et 6(1)(c))</td><td>n/a</td></tr>
+        </tbody>
+      </table>
+      <p>Le traitement des données de santé a lieu uniquement parce que vous avez donné votre consentement explicite à l'inscription avec une case séparée. Vous pouvez retirer votre consentement à tout moment en supprimant votre compte. Le retrait de consentement n'annule pas le traitement déjà effectué.</p>
+
+      <h2>5. Avec qui nous partageons les données</h2>
+      <p>Nous partageons les données avec les tiers ci-dessous. Chacun a signé un accord de traitement des données avec nous. Chacun est contractuellement tenu de protéger vos données et de les utiliser uniquement pour fournir son service.</p>
+      <table>
+        <thead>
+          <tr><th>Fournisseur</th><th>Rôle</th><th>Lieu de traitement</th><th>DPA en place</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="https://supabase.com/privacy">Supabase</a></td><td>Base de données et authentification</td><td>États-Unis</td><td>Oui</td></tr>
+          <tr><td><a href="https://vercel.com/legal/privacy-policy">Vercel</a></td><td>Hébergement web et distribution edge</td><td>États-Unis</td><td>Oui</td></tr>
+          <tr><td><a href="https://stripe.com/privacy">Stripe</a></td><td>Traitement des paiements</td><td>États-Unis et dans le monde</td><td>Oui</td></tr>
+          <tr><td><a href="https://www.anthropic.com/legal/privacy">Anthropic</a></td><td>Fonctionnalité de recherche par IA (uniquement pour des informations génériques sur les composés, non personnelles)</td><td>États-Unis</td><td>Oui</td></tr>
+          <tr><td><a href="https://posthog.com/privacy">PostHog</a> ou <a href="https://plausible.io/privacy">Plausible</a></td><td>Analyses produit anonymisées</td><td>UE</td><td>Oui</td></tr>
+          <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Surveillance des plantages et erreurs (optionnelle, sur opt-in)</td><td>États-Unis</td><td>Oui</td></tr>
+        </tbody>
+      </table>
+      <p>Nous ne vendons pas vos données. Nous ne partageons pas vos données avec des annonceurs. Nous ne partageons pas vos données avec des courtiers en données. Nous ne permettons pas à des tiers de les scraper.</p>
+      <p>Nous partagerons des données avec les forces de l'ordre uniquement si nous sommes contraints par une décision judiciaire valide d'un tribunal canadien ou d'un tribunal étranger reconnu au Canada. Si nous recevons une telle décision, nous vous en informerons sauf si la loi nous en empêche.</p>
+
+      <h2>6. Transferts internationaux de données</h2>
+      <p>StackSense est exploité depuis le Québec, Canada. Certains fournisseurs ci-dessus traitent des données aux États-Unis. Nous nous appuyons sur les mécanismes juridiques suivants pour les transferts internationaux :</p>
+      <ul>
+        <li><strong>Pour les utilisateurs de l'UE et de l'EEE :</strong> Clauses contractuelles types (CCT) en vertu de la décision d'exécution 2021/914 de la Commission, plus des analyses d'impact sur le transfert lorsque nécessaire.</li>
+        <li><strong>Pour les utilisateurs du Royaume-Uni :</strong> Accord de transfert international britannique (IDTA) ou CCT avec addenda UK.</li>
+        <li><strong>Pour les utilisateurs canadiens :</strong> Principe de responsabilité de la LPRPDE. Nous restons responsables des données traitées par des prestataires américains en notre nom.</li>
+        <li><strong>Pour les utilisateurs québécois :</strong> Article 17 de la Loi 25 du Québec. Nous avons mené une analyse d'impact sur la vie privée et confirmé que les transferts vers les États-Unis offrent une protection adéquate grâce à nos mesures contractuelles.</li>
+      </ul>
+      <p>Si vous souhaitez une copie des CCT ou de notre analyse d'impact, écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <h2>7. Combien de temps nous conservons vos données</h2>
+      <table>
+        <thead>
+          <tr><th>Type de données</th><th>Période de conservation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Données de compte pendant la durée active</td><td>Tant que votre compte existe</td></tr>
+          <tr><td>Journaux de santé pendant la durée active</td><td>Tant que votre compte existe</td></tr>
+          <tr><td>Données de santé après suppression du compte</td><td>Supprimées définitivement sous 90 jours</td></tr>
+          <tr><td>Données de compte après suppression</td><td>Suppression logique immédiate, suppression définitive sous 90 jours</td></tr>
+          <tr><td>Historique de facturation et de paiement</td><td>7 ans (exigence de la loi fiscale canadienne et de la loi québécoise sur la protection du consommateur)</td></tr>
+          <tr><td>Événements d'analyse</td><td>90 jours</td></tr>
+          <tr><td>Journaux de plantage</td><td>90 jours</td></tr>
+          <tr><td>Journaux serveur (IP, user agent)</td><td>30 jours</td></tr>
+          <tr><td>Sauvegardes</td><td>Jusqu'à 6 mois sur une base glissante. Les sauvegardes sont chiffrées au repos et nous ne pouvons pas les supprimer sélectivement sans reconstruire la sauvegarde. Les suppressions dans les sauvegardes se font selon le cycle de rotation habituel.</td></tr>
+        </tbody>
+      </table>
+      <p>Après 90 jours à compter de la suppression du compte, vos journaux de santé sont définitivement perdus. Nous ne pouvons pas les restaurer. Exportez vos données avant de supprimer votre compte si vous souhaitez en conserver une copie.</p>
+
+      <h2>8. Vos droits</h2>
+      <p>Vous disposez des droits suivants sur vos données. Exercez-les en envoyant un courriel à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> ou via le panneau de droits des données dans l'application Profil → Vos données.</p>
+      <table>
+        <thead>
+          <tr><th>Droit</th><th>Ce que cela signifie</th><th>Délai de réponse</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Accès</td><td>Obtenir une copie de ce que nous détenons sur vous</td><td>30 jours</td></tr>
+          <tr><td>Rectification</td><td>Corriger ce qui est inexact</td><td>30 jours</td></tr>
+          <tr><td>Suppression</td><td>Effacer votre compte et toutes les données de santé (sous réserve des exceptions de conservation ci-dessus)</td><td>30 jours</td></tr>
+          <tr><td>Portabilité</td><td>Télécharger vos données dans un format structuré (CSV)</td><td>30 jours, sur demande via le bouton d'export</td></tr>
+          <tr><td>Opposition</td><td>Arrêter le traitement pour l'analyse ou le marketing</td><td>30 jours</td></tr>
+          <tr><td>Restriction</td><td>Mettre le traitement en pause pendant la résolution d'un différend</td><td>30 jours</td></tr>
+          <tr><td>Retrait du consentement</td><td>Retirer le consentement pour le traitement des données de santé ou du marketing</td><td>Immédiatement après réception</td></tr>
+          <tr><td>Réclamation</td><td>Déposer une plainte auprès de votre autorité de protection des données</td><td>Voir section 13</td></tr>
+        </tbody>
+      </table>
+      <p>Nous ne vous pénaliserons pas pour l'exercice de vos droits. Nous ne facturerons pas la première demande dans une période de 12 mois. En cas de demandes répétées ou excessives, nous pouvons facturer des frais raisonnables ou refuser la demande, mais nous vous en informerons.</p>
+
+      <h2>9. Cookies et suivi</h2>
+      <p>Nous n'utilisons que les cookies nécessaires au fonctionnement de StackSense, plus des cookies d'analyse facultatifs que vous pouvez refuser.</p>
+      <table>
+        <thead>
+          <tr><th>Type de cookie</th><th>Objectif</th><th>Requis</th><th>Comment désactiver</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cookie de session</td><td>Vous garder connecté</td><td>Oui, l'application ne fonctionne pas sans</td><td>Se déconnecter</td></tr>
+          <tr><td>Jeton de rafraîchissement d'authentification</td><td>Maintenir votre session active</td><td>Oui</td><td>Se déconnecter</td></tr>
+          <tr><td>Analyse (PostHog/Plausible)</td><td>Usage anonyme du produit</td><td>Non</td><td>Basculer dans la bannière de cookies ou activer la protection contre le pistage du navigateur</td></tr>
+        </tbody>
+      </table>
+      <p>Nous n'utilisons pas de cookies publicitaires. Nous n'utilisons pas de pixels de suivi tiers (pas de pixel Meta, pas de Google Ads, pas de pixel TikTok, rien). Si nous en ajoutons un jour, nous mettrons à jour cette politique et demanderons votre consentement.</p>
+
+      <h2>10. Sécurité des données</h2>
+      <ul>
+        <li>Toutes les connexions à StackSense utilisent HTTPS avec TLS 1.2 ou supérieur</li>
+        <li>Les mots de passe sont hachés avec bcrypt (hachage unidirectionnel, pas chiffrement)</li>
+        <li>L'accès à la base de données est restreint par les politiques de sécurité au niveau des lignes Supabase. Même notre code serveur ne peut pas lire les données d'un autre utilisateur en dehors des règles.</li>
+        <li>Les API sont soumises à une limitation de débit</li>
+        <li>Les API requièrent une authentification sauf pour les points d'accès clairement publics</li>
+        <li>Les secrets et clés API sont stockés dans des variables d'environnement, jamais dans le code</li>
+        <li>Les sauvegardes sont chiffrées au repos</li>
+        <li>Nous consignons l'accès aux systèmes de production et examinons les journaux mensuellement</li>
+      </ul>
+      <p>Nous ne stockons pas vos données sur nos appareils personnels. Nous n'envoyons jamais de données de santé par e-mail non chiffré. Nous ne partageons jamais de données de santé sur Slack ou d'autres systèmes de messagerie.</p>
+      <p>En cas de violation de données, nous vous en informerons dans les 72 heures selon le RGPD, dans les 5 jours ouvrables selon la Loi 25 du Québec, et selon les exigences de la LPRPDE, du CCPA et du MHMDA de Washington.</p>
+
+      <h2>11. Enfants</h2>
+      <p>StackSense est destiné aux adultes de 18 ans et plus. Nous ne collectons pas sciemment de données de personnes de moins de 18 ans. Si vous avez moins de 18 ans, n'utilisez pas StackSense.</p>
+      <p>Si vous êtes parent ou tuteur et que vous pensez que votre enfant s'est inscrit, écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> et nous supprimerons le compte et toutes les données associées.</p>
+
+      <h2>12. Modifications de cette politique</h2>
+      <p>Nous pouvons mettre à jour cette politique de temps en temps. Lorsque nous apportons des modifications importantes, nous :</p>
+      <ul>
+        <li>Mettons à jour la date « Dernière mise à jour » en haut de cette page</li>
+        <li>Vous avisons par e-mail au moins 30 jours avant l'entrée en vigueur des changements importants</li>
+        <li>Suivons la version acceptée lors de l'inscription</li>
+        <li>Obtenons un nouveau consentement pour les changements affectant le traitement de données de catégorie spéciale</li>
+      </ul>
+      <p>Les modifications non importantes (clarifications, corrections de format, mises à jour d'URL de fournisseurs) prennent effet immédiatement et ne déclenchent pas de notification par courriel.</p>
+
+      <h2>13. Comment nous contacter et déposer une plainte</h2>
+      <p><strong>Questions de confidentialité courantes, demandes de droits, plaintes :</strong> <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a></p>
+      <p><strong>Avis juridiques, demandes des régulateurs :</strong> <a href="mailto:legal@stacksense.ca">legal@stacksense.ca</a></p>
+      <p><strong>Si nous ne résolvons pas votre plainte, saisissez votre régulateur :</strong></p>
+      <table>
+        <thead>
+          <tr><th>Région</th><th>Régulateur</th><th>Contact</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Canada (fédéral)</td><td>Commission d'accès à l'information du Canada</td><td><a href="https://www.priv.gc.ca">https://www.priv.gc.ca</a>, 1-800-282-1376</td></tr>
+          <tr><td>Québec</td><td>Commission d'accès à l'information du Québec</td><td><a href="https://www.cai.gouv.qc.ca">https://www.cai.gouv.qc.ca</a></td></tr>
+          <tr><td>Union européenne</td><td>Autorité nationale de contrôle</td><td><a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">https://edpb.europa.eu/about-edpb/about-edpb/members_en</a></td></tr>
+          <tr><td>Royaume-Uni</td><td>Information Commissioner's Office</td><td><a href="https://ico.org.uk">https://ico.org.uk</a></td></tr>
+          <tr><td>Californie</td><td>Procureur général de Californie</td><td><a href="https://oag.ca.gov/privacy">https://oag.ca.gov/privacy</a></td></tr>
+          <tr><td>Washington</td><td>Procureur général de l'État de Washington</td><td><a href="https://www.atg.wa.gov">https://www.atg.wa.gov</a></td></tr>
+        </tbody>
+      </table>
+
+      <h2>Sections spécifiques à une juridiction</h2>
+      <p>Les sections ci-dessous s'appliquent aux utilisateurs de juridictions spécifiques en plus de la politique générale ci-dessus.</p>
+
+      <h3>A. Loi 25 du Québec</h3>
+      <p>Cette section s'applique à tous les utilisateurs dont les renseignements personnels sont collectés ou utilisés au Québec.</p>
+      <p><strong>Responsable de la protection des renseignements personnels :</strong> Jad Gouiza, <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. Le responsable de la confidentialité est chargé de la conformité à cette loi et de répondre à vos demandes de droits.</p>
+      <p><strong>Consentement :</strong> Nous obtenons votre consentement exprès, libre, éclairé et spécifique pour le traitement de vos données de santé à l'inscription. Vous pouvez le retirer à tout moment.</p>
+      <p><strong>Analyse d'impact sur la vie privée :</strong> Une AIPD couvrant ce traitement est disponible sur demande auprès des régulateurs.</p>
+      <p><strong>Transferts transfrontaliers :</strong> Certaines de vos données sont traitées par des prestataires de services aux États-Unis. Nous avons évalué que les mesures contractuelles, organisationnelles et techniques en place offrent une protection équivalente à celle exigée par la loi québécoise.</p>
+      <p><strong>Décision automatisée :</strong> StackSense ne prend pas de décisions vous concernant uniquement sur la base d'un traitement automatisé. Nos fonctionnalités de recherche IA génèrent des informations, pas des décisions à votre sujet.</p>
+      <p><strong>Notification de violation :</strong> Si un incident de confidentialité crée un risque réel de préjudice grave, nous vous notifierons ainsi que la Commission d'accès à l'information dans les 5 jours ouvrables.</p>
+      <p><strong>Droit à la portabilité :</strong> Vous pouvez demander une copie de vos données dans un format structuré et couramment utilisé.</p>
+
+      <h3>B. Union européenne et EEE - RGPD</h3>
+      <p>Cette section s'applique aux utilisateurs de l'UE et de l'EEE.</p>
+      <p>Nous sommes un responsable non-UE offrant des services aux résidents de l'UE. Nous traitons vos données selon les bases juridiques listées à la section 4.</p>
+      <p><strong>Vos droits au titre du RGPD :</strong></p>
+      <ul>
+        <li>Droit d'accès (article 15)</li>
+        <li>Droit de rectification (article 16)</li>
+        <li>Droit à l'effacement (article 17)</li>
+        <li>Droit à la limitation (article 18)</li>
+        <li>Droit à la portabilité des données (article 20)</li>
+        <li>Droit d'opposition (article 21)</li>
+        <li>Droit de retirer votre consentement (article 7(3))</li>
+        <li>Droit d'introduire une réclamation auprès d'une autorité de contrôle (article 77)</li>
+      </ul>
+      <p><strong>Représentant UE :</strong> Dès que notre base d'utilisateurs UE atteint une échelle significative, nous nommerons un représentant dans l'UE en vertu de l'article 27. Jusqu'à cette échéance, nous nous appuyons sur l'exception de minimis pour un traitement occasionnel et à petite échelle. Contactez-nous directement à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p><strong>Transferts internationaux :</strong> Certaines données sont transférées aux États-Unis. Nous nous appuyons sur des clauses contractuelles types (décision d'exécution 2021/914). Des copies sont disponibles sur demande.</p>
+      <p><strong>Délégué à la protection des données (DPD) :</strong> Nous ne sommes pas tenus de nommer un DPD en vertu de l'article 37. Notre responsable de la confidentialité (Jad Gouiza) assume des responsabilités équivalentes.</p>
+
+      <h3>C. Royaume-Uni - UK GDPR et Data Protection Act 2018</h3>
+      <p>Cette section s'applique aux utilisateurs du Royaume-Uni.</p>
+      <p>Les droits et obligations au titre du UK GDPR sont similaires à ceux du RGPD. Remplacez « Information Commissioner's Office (ICO) » par l'autorité de contrôle britannique. Remplacez l'Accord de transfert international du Royaume-Uni par les CCT de l'UE lorsqu'il s'agit de transferts vers les États-Unis.</p>
+      <p><strong>Représentant UK :</strong> Même approche de minimis que pour l'UE jusqu'à atteinte d'une échelle significative.</p>
+
+      <h3>D. Californie - CCPA et CPRA</h3>
+      <p>Cette section s'applique aux résidents californiens.</p>
+      <p><strong>Catégories d'informations personnelles collectées :</strong> Identifiants (e-mail), informations commerciales (historique d'abonnement), activité Internet (données d'utilisation), données sensorielles (aucune), géolocalisation (seulement pays dérivé de l'IP), informations professionnelles (aucune), inférences (aucune), informations personnelles sensibles (données de santé, avec votre consentement).</p>
+      <p><strong>Catégories de sources :</strong> Vous, votre appareil, notre processeur de paiement (Stripe).</p>
+      <p><strong>Finalités commerciales de la collecte :</strong> Fourniture du service StackSense, facturation, sécurité, analytics, support client.</p>
+      <p><strong>Catégories de tiers auxquels des données sont divulguées :</strong> Les prestataires listés à la section 5.</p>
+      <p><strong>Vendons-nous ou partageons-nous des informations personnelles ?</strong> Non. Nous ne vendons pas vos informations personnelles. Nous ne les partageons pas pour de la publicité comportementale inter-contexte. Nous ne l'avons jamais fait.</p>
+      <p><strong>Informations personnelles sensibles :</strong> Nous collectons des données de santé uniquement avec votre consentement et uniquement pour fournir le service StackSense. Nous ne les utilisons pas pour inférer des caractéristiques vous concernant. Vous avez le droit en vertu du CPRA de limiter notre utilisation des informations personnelles sensibles. Pour exercer ce droit, écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+      <p><strong>Vos droits CCPA :</strong></p>
+      <ul>
+        <li>Droit de savoir ce que nous collectons</li>
+        <li>Droit de supprimer</li>
+        <li>Droit de corriger</li>
+        <li>Droit d'opter pour l'exclusion de la vente et du partage (n/a car nous ne vendons ni ne partageons)</li>
+        <li>Droit de limiter l'utilisation d'informations personnelles sensibles</li>
+        <li>Droit à la non-discrimination pour l'exercice de vos droits</li>
+      </ul>
+      <p><strong>Comment exercer :</strong> Écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. Nous vérifierons votre identité en envoyant un e-mail de confirmation à l'adresse associée à votre compte.</p>
+      <p><strong>Mandataires autorisés :</strong> Vous pouvez désigner un mandataire par écrit.</p>
+      <p><strong>Délai de réponse :</strong> 45 jours, prolongeable de 45 jours supplémentaires avec notification.</p>
+
+      <h3>E. Washington State - My Health My Data Act (MHMDA)</h3>
+      <p>Cette section s'applique aux consommateurs de l'État de Washington et aux données collectées auprès des consommateurs de Washington.</p>
+      <p><strong>Données de santé des consommateurs que nous collectons :</strong> Les données de supplément, de peptide, de symptôme, de composition corporelle et de protocole que vous choisissez d'entrer dans StackSense.</p>
+      <p><strong>Catégories de sources :</strong> Vous.</p>
+      <p><strong>Finalités du traitement :</strong> Fournir le service de suivi StackSense.</p>
+      <p><strong>Catégories de tiers avec qui nous partageons des données de santé des consommateurs :</strong> Les prestataires de services listés à la section 5 (Supabase, Vercel, Stripe, Anthropic, PostHog/Plausible, Sentry). Ce sont des processeurs agissant sur nos instructions.</p>
+      <p><strong>Nous ne :</strong></p>
+      <ul>
+        <li>Vendons pas de données de santé des consommateurs</li>
+        <li>N'utilisons pas les données de santé des consommateurs pour la publicité</li>
+        <li>N'utilisons pas les données de santé des consommateurs pour inférer l'admissibilité à une assurance, un crédit ou un emploi</li>
+        <li>N'utilisons pas les données de santé des consommateurs pour le ciblage basé sur des conditions de santé</li>
+      </ul>
+      <p><strong>Vos droits MHMDA :</strong></p>
+      <ul>
+        <li>Droit de confirmer si nous collectons, partageons ou vendons vos données de santé</li>
+        <li>Droit d'accès à vos données de santé</li>
+        <li>Droit de retirer votre consentement</li>
+        <li>Droit de suppression (nous informerons nos processeurs et exigerons leur suppression également)</li>
+        <li>Droit à la liste de tous les tiers avec lesquels nous partageons des données</li>
+      </ul>
+      <p><strong>Pour exercer :</strong> Écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>. Réponse sous 45 jours.</p>
+      <p><strong>Géorepérage :</strong> Nous n'utilisons pas de géorepérage autour des établissements de santé.</p>
+
+      <h3>F. Autres États américains (Connecticut, Nevada, Colorado, Virginie, Texas)</h3>
+      <p>Si vous résidez dans un État américain doté d'une loi de confidentialité complète, les droits de la section 8 s'appliquent à vous. La section Washington MHMDA ci-dessus couvre le traitement des données de santé le plus strict. La section CCPA couvre le traitement de confidentialité le plus strict pour les États américains. Vous bénéficiez des deux.</p>
+      <p>Si vous souhaitez des précisions spécifiques à votre juridiction, écrivez à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <h3>G. Canada (LPRPDE)</h3>
+      <p>Cette section s'applique aux utilisateurs canadiens hors Québec.</p>
+      <p>Nous respectons les 10 principes de l'information équitable de la LPRPDE :</p>
+      <ol>
+        <li>Responsabilité (responsable de la confidentialité : Jad Gouiza)</li>
+        <li>Identification des fins (cette politique)</li>
+        <li>Consentement (cases à cocher à l'inscription et bascules granulaires)</li>
+        <li>Limitation de la collecte (uniquement ce qui est nécessaire)</li>
+        <li>Limitation de l'utilisation, de la divulgation et de la conservation (section 7)</li>
+        <li>Exactitude (vous pouvez corriger via votre compte)</li>
+        <li>Sauvegardes (section 10)</li>
+        <li>Ouverture (cette politique est publique)</li>
+        <li>Accès individuel (section 8)</li>
+        <li>Recours en cas de non-conformité (procédure de plainte section 13)</li>
+      </ol>
+      <p><strong>Notification des violations :</strong> Lorsqu'une violation crée un risque réel de préjudice important, nous notifierons les personnes concernées et le Commissariat à la protection de la vie privée du Canada dans les meilleurs délais.</p>
+
+      <h3>H. Québec, en français</h3>
+      <p>Cette politique de confidentialité est rédigée en anglais. Une version française est disponible à l'adresse stacksense.ca/politique-confidentialite. En cas de divergence entre les versions, la version française prévaudra pour les utilisateurs résidant au Québec. Pour toute question, écrire à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a>.</p>
+
+      <p><strong>Fin de la politique de confidentialité. Version 1.0. Dernière mise à jour 05/20/26</strong></p>
+    </div>
+
+    <div class="footer">
+      <p>Back to <a href="/">StackSense</a>.</p>
+    </div>
+  </div>
+
+  <script>
+    const enButton = document.getElementById('show-en');
+    const frButton = document.getElementById('show-fr');
+    const enContent = document.getElementById('content-en');
+    const frContent = document.getElementById('content-fr');
+
+    function setLanguage(lang) {
+      if (lang === 'fr') {
+        enContent.hidden = true;
+        frContent.hidden = false;
+        enButton.classList.remove('active');
+        frButton.classList.add('active');
+      } else {
+        enContent.hidden = false;
+        frContent.hidden = true;
+        frButton.classList.remove('active');
+        enButton.classList.add('active');
+      }
+    }
+
+    enButton.addEventListener('click', () => setLanguage('en'));
+    frButton.addEventListener('click', () => setLanguage('fr'));
+  </script>
+</body>
+</html>

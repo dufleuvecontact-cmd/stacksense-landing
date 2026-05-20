@@ -14,7 +14,7 @@ const LinkedinIcon = ({ size }) => (
 const navCols = {
   Product:  [['Features','#features'],['Product Preview','#product'],['Roadmap','#roadmap'],['Join Waitlist','#waitlist']],
   Company:  [['Our Journey','#timeline'],['Investors','#funding'],['FAQ','#faq'],['Contact','mailto:hello@stacksense.io']],
-  Legal:    [['Privacy Policy','#privacy'],['Terms of Use','#terms'],['Cookie Policy','#privacy'],['Data Requests','mailto:privacy@stacksense.io']],
+  Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests','mailto:privacy@stacksense.io']],
 }
 
 const socials = [
@@ -106,7 +106,7 @@ export default function Footer() {
         <div style={{ borderTop:'1px solid rgba(255,255,255,.07)',padding:'1.5rem 0',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'.75rem' }}>
           <p style={{ fontSize:'.76rem',color:'rgba(255,255,255,.3)',fontFamily:'var(--font-sans)' }}>© 2026 StackSense Inc. All rights reserved.</p>
           <div style={{ display:'flex',gap:'1.25rem',flexWrap:'wrap' }}>
-            {[['Privacy Policy','#privacy'],['Terms of Use','#terms'],['Contact','mailto:hello@stacksense.io']].map(([l,h]) => (
+            {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Contact','mailto:hello@stacksense.io']].map(([l,h]) => (
               <a key={l} href={h} style={{ color:'rgba(255,255,255,.3)',textDecoration:'none',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
                 onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</a>
