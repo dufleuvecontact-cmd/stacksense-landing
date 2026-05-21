@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { TrendingUp, Target, Users, FileText, ArrowRight, Mail, CheckCircle2 } from 'lucide-react'
+import { EMAILS } from '../lib/emails'
 
 const highlights = [
   { icon: TrendingUp, label: 'Stage',    val: 'Seed',        sub: 'Active fundraising', color: '#25b5af' },
@@ -98,10 +99,10 @@ export default function Funding() {
               </ul>
             </div>
             <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
-              <a href="mailto:invest@stacksense.io" className="btn btn-teal" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
+              <a href={`mailto:${EMAILS.legal}`} className="btn btn-teal" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
                 <Mail size={14}/> Contact Us
               </a>
-              <a href="mailto:invest@stacksense.io?subject=Investor Deck" className="btn btn-outline-dark" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
+              <a href={`mailto:${EMAILS.legal}?subject=Investor Deck`} className="btn btn-outline-dark" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
                 Request Deck <ArrowRight size={13}/>
               </a>
             </div>

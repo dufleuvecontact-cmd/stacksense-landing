@@ -1,4 +1,5 @@
 import { Mail, X } from 'lucide-react'
+import { EMAILS } from '../lib/emails'
 
 const GitHubIcon = ({ size }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -13,15 +14,15 @@ const LinkedinIcon = ({ size }) => (
 
 const navCols = {
   Product:  [['Features','#features'],['Product Preview','#product'],['Roadmap','#roadmap'],['Join Waitlist','#waitlist']],
-  Company:  [['Our Journey','#timeline'],['Investors','#funding'],['FAQ','#faq'],['Contact','mailto:hello@stacksense.io']],
-  Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests','mailto:privacy@stacksense.io']],
+  Company:  [['Our Journey','#timeline'],['Investors','#funding'],['FAQ','#faq'],['Contact',`mailto:${EMAILS.contact}`]],
+  Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests',`mailto:${EMAILS.privacy}`]],
 }
 
 const socials = [
   { Icon: X,          href:'#' },
   { Icon: GitHubIcon, href:'#' },
   { Icon: LinkedinIcon,href:'#' },
-  { Icon: Mail,       href:'mailto:hello@stacksense.io' },
+  { Icon: Mail,       href:`mailto:${EMAILS.contact}` },
 ]
 
 export default function Footer() {
@@ -37,7 +38,7 @@ export default function Footer() {
               ['How we use it','Your email is used solely to communicate about StackSense — launch updates, early access invitations, and product news. We do not sell or share your personal data with third parties. Referral data is used only to manage waitlist queue position.'],
               ['Cookies & tracking','We use standard cookies for session management and analytics to measure site usage. You can opt out or disable cookies in your browser settings at any time.'],
               ['Data storage & security','All data is stored securely using industry-standard encryption at rest and in transit. We retain waitlist data until launch or until you request deletion.'],
-              ['Your rights','You can request access to, correction of, or deletion of your data at any time. Contact us at privacy@stacksense.io and we will respond within 5 business days.'],
+              ['Your rights',`You can request access to, correction of, or deletion of your data at any time. Contact us at ${EMAILS.privacy} and we will respond within 5 business days.`],
               ['Consent','By submitting the waitlist form, you explicitly consent to us storing your email for waitlist communications. You can withdraw consent at any time by emailing us.'],
             ].map(([title, body]) => (
               <div key={title}>
@@ -47,7 +48,7 @@ export default function Footer() {
             ))}
           </div>
           <p style={{ marginTop:'1.25rem',fontSize:'.73rem',color:'rgba(255,255,255,.3)',borderTop:'1px solid rgba(255,255,255,.07)',paddingTop:'.75rem' }}>
-            Last updated: April 2026. Questions? <a href="mailto:privacy@stacksense.io" style={{ color:'var(--teal-light)',textDecoration:'none' }}>privacy@stacksense.io</a>
+            Last updated: April 2026. Questions? <a href={`mailto:${EMAILS.privacy}`} style={{ color:'var(--teal-light)',textDecoration:'none' }}>{EMAILS.privacy}</a>
           </p>
         </div>
       </section>
@@ -106,7 +107,7 @@ export default function Footer() {
         <div style={{ borderTop:'1px solid rgba(255,255,255,.07)',padding:'1.5rem 0',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'.75rem' }}>
           <p style={{ fontSize:'.76rem',color:'rgba(255,255,255,.3)',fontFamily:'var(--font-sans)' }}>© 2026 StackSense Inc. All rights reserved.</p>
           <div style={{ display:'flex',gap:'1.25rem',flexWrap:'wrap' }}>
-            {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Contact','mailto:hello@stacksense.io']].map(([l,h]) => (
+            {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Security',`mailto:${EMAILS.security}`],['Contact',`mailto:${EMAILS.contact}`]].map(([l,h]) => (
               <a key={l} href={h} style={{ color:'rgba(255,255,255,.3)',textDecoration:'none',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
                 onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</a>
