@@ -3,6 +3,12 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vite",
+  "redirects": [
+    { "source": "/privacy",       "destination": "/privacy-policy.html",   "permanent": true },
+    { "source": "/terms",         "destination": "/terms-of-service.html", "permanent": true },
+    { "source": "/legal/privacy", "destination": "/privacy-policy.html",   "permanent": true },
+    { "source": "/legal/terms",   "destination": "/terms-of-service.html", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

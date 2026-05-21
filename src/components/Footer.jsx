@@ -1,5 +1,8 @@
+import { useCallback, useState } from 'react'
 import { Mail, X } from 'lucide-react'
 import { EMAILS } from '../lib/emails'
+
+const STORAGE_KEY = 'stacksense_cookie_consent'
 
 const GitHubIcon = ({ size }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -26,6 +29,16 @@ const socials = [
 ]
 
 export default function Footer() {
+  const [resetKey, setResetKey] = useState(0)
+
+  const openCookieSettings = useCallback(() => {
+    try { localStorage.removeItem(STORAGE_KEY) } catch { /* noop */ }
+    // Force CookieBanner to re-render by triggering a storage event
+    window.dispatchEvent(new StorageEvent('storage', { key: STORAGE_KEY, newValue: null }))
+    // Fallback: reload so banner re-appears
+    window.location.reload()
+  }, [])
+
   return (
     <footer style={{ background:'var(--bg-dark)', color:'var(--text-inv)' }}>
       {/* Privacy Policy */}
@@ -112,6 +125,12 @@ export default function Footer() {
                 onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</a>
             ))}
+            <button
+              onClick={openCookieSettings}
+              style={{ background:'none',border:'none',padding:0,cursor:'pointer',color:'rgba(255,255,255,.3)',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
+              onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
+              onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}
+            >Cookie Settings</button>
           </div>
         </div>
       </div>
