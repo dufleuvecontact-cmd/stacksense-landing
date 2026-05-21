@@ -73,11 +73,7 @@ body {
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0% 0 0); }
 }
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+
 
 /* ── SCROLL-REVEAL CLASSES ───────────────────────────────── */
 .sr {
@@ -148,12 +144,7 @@ body {
 
 /* ── TEAL TEXT ───────────────────────────────────────────── */
 .teal-text {
-  background: linear-gradient(135deg, #0ea5e9, var(--teal-deep), var(--teal-light), #10b981);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease infinite;
+  color: var(--teal);
 }
 .italic-serif { font-family: var(--font-serif); font-style: italic; }
 

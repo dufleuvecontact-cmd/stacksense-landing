@@ -88,16 +88,20 @@ export default function ProductPreview() {
   }, [])
 
   return (
-    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)' }}>
+    <section id="product" ref={ref} className="section" style={{ background: '#fff' }}>
       <div className="wrap">
-        <div className="sr" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Product Preview</p>
-          <h2 className="display-md" style={{ marginBottom: '1rem' }}>
-            Built for<span className="italic-serif teal-text"> serious users</span>
-          </h2>
-          <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Clean UI, dense information, zero noise. Designed to surface what matters.
-          </p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'center', marginBottom: '3rem' }} id="product-header">
+          <div className="sr">
+            <h2 className="display-md">
+              Built for
+              <em className="teal-text" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}> serious users</em>
+            </h2>
+          </div>
+          <div className="sr d2">
+            <p className="lead">
+              Clean UI, dense information, zero noise. Designed to surface what matters.
+            </p>
+          </div>
         </div>
 
         <div className="sr d2" style={{
@@ -157,7 +161,10 @@ export default function ProductPreview() {
           Live interface preview · UI subject to change during development
         </p>
       </div>
-      <style>{`@media(max-width:600px){#preview-sidebar{display:none!important}}`}</style>
+      <style>{`
+        @media(max-width:600px){#preview-sidebar{display:none!important}}
+        @media(max-width:700px){#product-header{grid-template-columns:1fr!important}}
+      `}</style>
     </section>
   )
 }

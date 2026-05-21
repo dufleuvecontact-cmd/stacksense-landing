@@ -2,17 +2,17 @@ import { useEffect, useRef } from 'react'
 import { TrendingUp, Target, Users, FileText, ArrowRight, Mail, CheckCircle2 } from 'lucide-react'
 
 const highlights = [
-  { icon:TrendingUp, label:'Stage',   val:'Seed',        sub:'Active fundraising', color:'#1a8c87' },
-  { icon:Target,     label:'Focus',   val:'Health-tech', sub:'Workflow & data',    color:'#0d6b67' },
-  { icon:Users,      label:'Traction',val:'Growing',     sub:'Waitlist + beta',    color:'#25b5af' },
-  { icon:FileText,   label:'Product', val:'Live MVP',    sub:'Core features done', color:'#1a8c87' },
+  { icon: TrendingUp, label: 'Stage',    val: 'Seed',        sub: 'Active fundraising', color: '#25b5af' },
+  { icon: Target,     label: 'Focus',    val: 'Health-tech', sub: 'Workflow & data',    color: '#25b5af' },
+  { icon: Users,      label: 'Traction', val: 'Growing',     sub: 'Waitlist + beta',    color: '#25b5af' },
+  { icon: FileText,   label: 'Product',  val: 'Live MVP',    sub: 'Core features done', color: '#25b5af' },
 ]
 
 const reasons = [
-  { title:'Underserved market',   desc:'The peptide space has grown substantially yet lacks serious purpose-built tracking infrastructure. We are building that foundation.' },
-  { title:'Working product',      desc:'This is not a pitch deck — StackSense is a functional product in active development with real user feedback informing every iteration.' },
-  { title:'Defensible data moat', desc:'As users log more data over time the platform becomes more valuable and harder to replicate. Structured longitudinal data is a significant advantage.' },
-  { title:'Clear growth path',    desc:'From individual users to practitioners to enterprise — the platform scales across segments with minimal product variation.' },
+  { title: 'Underserved market',   desc: 'The peptide space has grown substantially yet lacks serious purpose-built tracking infrastructure. We are building that foundation.' },
+  { title: 'Working product',      desc: 'This is not a pitch deck — StackSense is a functional product in active development with real user feedback informing every iteration.' },
+  { title: 'Defensible data moat', desc: 'As users log more data over time the platform becomes more valuable and harder to replicate. Structured longitudinal data is a significant advantage.' },
+  { title: 'Clear growth path',    desc: 'From individual users to practitioners to enterprise — the platform scales across segments with minimal product variation.' },
 ]
 
 export default function Funding() {
@@ -21,79 +21,87 @@ export default function Funding() {
     if (!ref.current) return
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } })
-    }, { threshold: 0.08 })
+    }, { threshold: 0.06 })
     ref.current.querySelectorAll('.sr,.sr-fade,.sr-left,.sr-right').forEach(el => obs.observe(el))
     return () => obs.disconnect()
   }, [])
 
   return (
-    <section id="funding" ref={ref} className="section" style={{ background:'#fff' }}>
+    <section id="funding" ref={ref} className="section" style={{ background: 'var(--bg-dark)' }}>
       <div className="wrap">
-        <div className="sr" style={{ textAlign:'center', marginBottom:'3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom:'.75rem' }}>For Investors</p>
-          <h2 className="display-md" style={{ marginBottom:'1rem' }}>
-            Seeking<span className="italic-serif teal-text"> seed-round funding</span>
-          </h2>
-          <p className="lead" style={{ maxWidth:500, margin:'0 auto' }}>
-            Working product, validated market interest, and a clear path to scale. We're looking for aligned investors who understand the opportunity.
-          </p>
+        {/* Header */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'end', marginBottom: '3.5rem', paddingBottom: '3rem', borderBottom: '1px solid rgba(255,255,255,.07)' }} id="funding-header">
+          <div className="sr-left">
+            <p style={{ fontSize: '.72rem', fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.35)', fontFamily: 'var(--font-sans)', marginBottom: '1rem' }}>For Investors</p>
+            <h2 style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2rem, 4.5vw, 4rem)',
+              lineHeight: .96, letterSpacing: '-.025em', color: '#fff',
+            }}>
+              Seeking{' '}
+              <em style={{ fontStyle: 'italic', color: 'var(--teal-light)' }}>seed-round funding</em>
+            </h2>
+          </div>
+          <div className="sr-right">
+            <p style={{ fontSize: '1.1rem', lineHeight: 1.72, color: 'rgba(255,255,255,.5)', fontFamily: 'var(--font-sans)' }}>
+              Working product, validated market interest, and a clear path to scale. We're looking for aligned investors who understand the opportunity.
+            </p>
+          </div>
         </div>
 
-        {/* Stat cards */}
-        <div className="sr" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))', gap:'1rem', marginBottom:'2.5rem' }}>
-          {highlights.map(h=>(
-            <div key={h.label} className="card-flat" style={{ padding:'1.25rem', textAlign:'center' }}>
-              <div style={{ width:40,height:40,background:`${h.color}12`,border:`1px solid ${h.color}22`,borderRadius:11,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto .75rem' }}>
-                <h.icon size={17} color={h.color} strokeWidth={1.8}/>
-              </div>
-              <div style={{ fontSize:'.65rem',color:'var(--text-3)',textTransform:'uppercase',letterSpacing:'.06em',fontFamily:'var(--font-sans)',marginBottom:'.2rem' }}>{h.label}</div>
-              <div style={{ fontSize:'1.05rem',fontWeight:800,letterSpacing:'-.02em',fontFamily:'var(--font-sans)',color:'var(--text)',marginBottom:'.12rem' }}>{h.val}</div>
-              <div className="small">{h.sub}</div>
+        {/* Stats row */}
+        <div className="sr" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', background: 'rgba(255,255,255,.06)', borderRadius: 16, overflow: 'hidden', marginBottom: '3rem' }}>
+          {highlights.map(h => (
+            <div key={h.label} style={{ background: 'var(--bg-dark)', padding: '1.5rem 1.25rem' }}>
+              <h.icon size={16} color="rgba(255,255,255,.3)" strokeWidth={1.8} style={{ marginBottom: '.75rem' }}/>
+              <div style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.3)', textTransform: 'uppercase', letterSpacing: '.08em', fontFamily: 'var(--font-sans)', marginBottom: '.3rem' }}>{h.label}</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, letterSpacing: '-.02em', fontFamily: 'var(--font-sans)', color: '#fff', marginBottom: '.15rem' }}>{h.val}</div>
+              <div style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.38)', fontFamily: 'var(--font-sans)' }}>{h.sub}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', marginBottom:'2rem' }} id="funding-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }} id="funding-grid">
           {/* Why invest */}
-          <div className="card-flat sr-left" style={{ padding:'1.75rem' }}>
-            <h3 style={{ fontFamily:'var(--font-sans)',fontSize:'1rem',fontWeight:700,marginBottom:'1.2rem',color:'var(--text)' }}>Why invest in StackSense</h3>
-            <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
-              {reasons.map(r=>(
-                <div key={r.title} style={{ display:'flex',gap:'.7rem',alignItems:'flex-start' }}>
-                  <CheckCircle2 size={14} color="var(--teal)" style={{ marginTop:2,flexShrink:0 }}/>
+          <div className="sr-left" style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 18, padding: '1.75rem' }}>
+            <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem', color: '#fff' }}>Why invest in StackSense</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {reasons.map(r => (
+                <div key={r.title} style={{ display: 'flex', gap: '.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={13} color="var(--teal-light)" style={{ marginTop: 2, flexShrink: 0 }}/>
                   <div>
-                    <div style={{ fontSize:'.85rem',fontWeight:700,marginBottom:'.18rem',fontFamily:'var(--font-sans)',color:'var(--text)' }}>{r.title}</div>
-                    <p className="small" style={{ lineHeight:1.65 }}>{r.desc}</p>
+                    <div style={{ fontSize: '.85rem', fontWeight: 700, marginBottom: '.2rem', fontFamily: 'var(--font-sans)', color: '#fff' }}>{r.title}</div>
+                    <p style={{ fontSize: '.85rem', lineHeight: 1.68, color: 'rgba(255,255,255,.42)', fontFamily: 'var(--font-sans)' }}>{r.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA card */}
-          <div className="sr-right" style={{ background:'linear-gradient(135deg,rgba(26,140,135,.07) 0%,rgba(13,107,103,.04) 100%)',border:'1px solid rgba(26,140,135,.18)',borderRadius:18,padding:'1.75rem',display:'flex',flexDirection:'column',justifyContent:'space-between' }}>
+          {/* CTA */}
+          <div className="sr-right" style={{ background: 'rgba(26,140,135,.12)', border: '1px solid rgba(26,140,135,.25)', borderRadius: 18, padding: '1.75rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <span className="pill pill-teal" style={{ marginBottom:'1rem',display:'inline-flex' }}>Open to Investment</span>
-              <h3 style={{ fontFamily:'var(--font-serif)',fontSize:'1.5rem',letterSpacing:'-.025em',marginBottom:'.75rem',lineHeight:1.15,color:'var(--text)' }}>
+              <span className="pill pill-white" style={{ marginBottom: '1.25rem', display: 'inline-flex' }}>Open to Investment</span>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', letterSpacing: '-.025em', marginBottom: '.75rem', lineHeight: 1.2, color: '#fff' }}>
                 Ready to discuss the opportunity?
               </h3>
-              <p className="body" style={{ marginBottom:'1.5rem' }}>
+              <p style={{ fontSize: '1rem', lineHeight: 1.72, color: 'rgba(255,255,255,.5)', fontFamily: 'var(--font-sans)', marginBottom: '1.5rem' }}>
                 Transparent, focused, and moving fast. If you're an investor with conviction in health-tech infrastructure, we'd love to connect.
               </p>
-              <ul style={{ listStyle:'none',display:'flex',flexDirection:'column',gap:'.4rem',marginBottom:'1.75rem' }}>
-                {['Investor deck available on request','Financials accessible under NDA','Founder call within 48 hours'].map(i=>(
-                  <li key={i} style={{ display:'flex',alignItems:'center',gap:'.45rem' }}>
-                    <div style={{ width:4,height:4,borderRadius:'50%',background:'var(--teal)',flexShrink:0 }}/>
-                    <span className="small">{i}</span>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '2rem' }}>
+                {['Investor deck available on request', 'Financials accessible under NDA', 'Founder call within 48 hours'].map(item => (
+                  <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                    <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--teal-light)', flexShrink: 0 }}/>
+                    <span style={{ fontSize: '.85rem', color: 'rgba(255,255,255,.5)', fontFamily: 'var(--font-sans)' }}>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div style={{ display:'flex',gap:'.75rem',flexWrap:'wrap' }}>
-              <a href="mailto:invest@stacksense.io" className="btn btn-teal" style={{ flex:'1 1 auto',justifyContent:'center',minWidth:140 }}>
+            <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
+              <a href="mailto:invest@stacksense.io" className="btn btn-teal" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
                 <Mail size={14}/> Contact Us
               </a>
-              <a href="mailto:invest@stacksense.io?subject=Investor Deck" className="btn btn-outline" style={{ flex:'1 1 auto',justifyContent:'center',minWidth:140 }}>
+              <a href="mailto:invest@stacksense.io?subject=Investor Deck" className="btn btn-outline-dark" style={{ flex: '1 1 auto', justifyContent: 'center', minWidth: 140 }}>
                 Request Deck <ArrowRight size={13}/>
               </a>
             </div>
@@ -101,19 +109,20 @@ export default function Funding() {
         </div>
 
         {/* Founder note */}
-        <div className="sr" style={{ background:'var(--bg)',border:'1px solid var(--border)',borderRadius:16,padding:'1.75rem 2rem',display:'flex',gap:'1.25rem',alignItems:'flex-start' }} id="founder-note">
-          <div style={{ width:42,height:42,borderRadius:'50%',background:'linear-gradient(135deg,#1a8c87,#25b5af)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'.85rem',fontWeight:800,color:'#fff',flexShrink:0 }}>SS</div>
+        <div className="sr" style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 16, padding: '1.75rem 2rem', display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }} id="founder-note">
+          <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'rgba(26,140,135,.2)', border: '1px solid rgba(26,140,135,.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.8rem', fontWeight: 800, color: 'var(--teal-light)', flexShrink: 0 }}>SS</div>
           <div>
-            <p style={{ fontFamily:'var(--font-serif)',fontStyle:'italic',fontSize:'.95rem',color:'var(--text-2)',lineHeight:1.78,marginBottom:'.7rem' }}>
+            <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '.95rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, marginBottom: '.7rem' }}>
               "We're building StackSense because we were the users who couldn't find a tool that actually worked for this. The market is real, the pain is real, and the timing is right. We're disciplined builders doing this properly — not rushing it."
             </p>
-            <div style={{ fontFamily:'var(--font-sans)',fontSize:'.82rem',fontWeight:700,color:'var(--text)' }}>The StackSense Team</div>
-            <div className="small">Founders, StackSense</div>
+            <div style={{ fontFamily: 'var(--font-sans)', fontSize: '.82rem', fontWeight: 700, color: 'rgba(255,255,255,.7)' }}>The StackSense Team</div>
+            <div style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.3)', fontFamily: 'var(--font-sans)' }}>Founders, StackSense</div>
           </div>
         </div>
       </div>
       <style>{`
-        @media(max-width:700px){#funding-grid{grid-template-columns:1fr!important}#founder-note{flex-direction:column!important}}
+        @media(max-width:700px){#funding-grid{grid-template-columns:1fr!important}#founder-note{flex-direction:column!important}#funding-header{grid-template-columns:1fr!important}}
+        @media(max-width:600px){.sr[style*="repeat(4"]{grid-template-columns:repeat(2,1fr)!important}}
       `}</style>
     </section>
   )

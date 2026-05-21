@@ -58,16 +58,20 @@ export default function Waitlist() {
   ]
 
   return (
-    <section id="waitlist" ref={ref} className="section" style={{ background: '#fff' }}>
+    <section id="waitlist" ref={ref} className="section" style={{ background: 'rgba(26,140,135,.05)', borderTop: '1px solid rgba(26,140,135,.12)', borderBottom: '1px solid rgba(26,140,135,.12)' }}>
       <div className="wrap">
-        <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Early Access</p>
-          <h2 className="display-md" style={{ marginBottom: '1rem' }}>
-            Be first.<span className="italic-serif teal-text"> Shape the product.</span>
-          </h2>
-          <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Early access members help shape StackSense — and get rewarded for it.
-          </p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'end', marginBottom: '3rem' }} id="waitlist-header">
+          <div className="sr">
+            <h2 className="display-md">
+              Be first.
+              <em className="teal-text" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}> Shape the product.</em>
+            </h2>
+          </div>
+          <div className="sr d2">
+            <p className="lead">
+              Early access members help shape StackSense — and get rewarded for it.
+            </p>
+          </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }} id="waitlist-grid">
@@ -198,7 +202,9 @@ export default function Waitlist() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:760px){#waitlist-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:760px){#waitlist-grid{grid-template-columns:1fr!important}#waitlist-header{grid-template-columns:1fr!important}}
+      `}</style>
     </section>
   )
 }
