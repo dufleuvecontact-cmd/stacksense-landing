@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useLanguage } from '../i18n/index.jsx'
+import LanguageSwitcher from './LanguageSwitcher.jsx'
 
-const links = [
-  { label: 'Features', href: '#features' },
-  { label: 'Product', href: '#product' },
-  { label: 'Timeline', href: '#timeline' },
-  { label: 'Waitlist', href: '#waitlist' },
-  { label: 'Investors', href: '#funding' },
+const linkKeys = [
+  { key: 'nav.features', href: '#features' },
+  { key: 'nav.product',  href: '#product' },
+  { key: 'nav.timeline', href: '#timeline' },
+  { key: 'nav.waitlist', href: '#waitlist' },
+  { key: 'nav.investors',href: '#funding' },
 ]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24)
@@ -42,7 +45,7 @@ export default function Nav() {
           </a>
 
           <ul id="nav-links" style={{ display: 'flex', gap: '.15rem', listStyle: 'none', alignItems: 'center' }}>
-            {links.map(({ label, href }) => (
+            {linkKeys.map(({ key, href }) => (
               <li key={href}>
                 <a href={href} style={{
                   fontFamily: 'var(--font-sans)', fontSize: '.875rem', fontWeight: 500,
@@ -50,14 +53,15 @@ export default function Nav() {
                   borderRadius: 8, transition: 'color .15s', display: 'block',
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--teal)'}
-                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}>{label}</a>
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}>{t(key)}</a>
               </li>
             ))}
           </ul>
 
-          <div id="nav-cta">
+          <div id="nav-cta" style={{ display: 'flex', alignItems: 'center', gap: '.65rem' }}>
+            <LanguageSwitcher />
             <a href="#waitlist" className="btn btn-teal" style={{ fontSize: '.82rem', padding: '.55rem 1.3rem' }}>
-              Join Waitlist
+              {t('nav.joinWaitlist')}
             </a>
           </div>
 
@@ -76,17 +80,20 @@ export default function Nav() {
             padding: '1rem 1.5rem 1.5rem',
           }}>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '.1rem', marginBottom: '1rem' }}>
-              {links.map(({ label, href }) => (
+              {linkKeys.map(({ key, href }) => (
                 <li key={href}>
                   <a href={href} onClick={() => setOpen(false)} style={{
                     display: 'block', padding: '.65rem .5rem', fontSize: '.9rem',
                     color: 'var(--text-2)', textDecoration: 'none', fontWeight: 500,
-                  }}>{label}</a>
+                  }}>{t(key)}</a>
                 </li>
               ))}
             </ul>
-            <a href="#waitlist" className="btn btn-teal" onClick={() => setOpen(false)}
-              style={{ width: '100%', justifyContent: 'center' }}>Join Waitlist</a>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.75rem' }}>
+              <a href="#waitlist" className="btn btn-teal" onClick={() => setOpen(false)}
+                style={{ flex: 1, justifyContent: 'center' }}>{t('nav.joinWaitlist')}</a>
+              <LanguageSwitcher />
+            </div>
           </div>
         )}
       </header>

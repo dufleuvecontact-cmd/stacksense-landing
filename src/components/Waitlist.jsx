@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Mail, User, ArrowRight, Copy, Check, Share2, Trophy, ChevronRight, Hash } from 'lucide-react'
 import { supabase } from '../supabaseClient'
+import { useLanguage } from '../i18n/index.jsx'
 
 function gen() {
   const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
@@ -8,6 +9,7 @@ function gen() {
 }
 
 export default function Waitlist() {
+  const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [consent, setConsent] = useState(false)
@@ -126,8 +128,8 @@ export default function Waitlist() {
                     <input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} required
                       style={{ marginTop:2, accentColor:'var(--teal)', width:14, height:14, flexShrink:0 }}/>
                     <span className="small">
-                      I agree to StackSense collecting my email for waitlist purposes. See our{' '}
-                      <a href="/privacy-policy.html" style={{ color:'var(--teal)', textDecoration:'none' }}>Privacy Policy</a>.
+                      {t('waitlist.consent')}{' '}
+                      <a href={t('footer.privacyUrl')} style={{ color:'var(--teal)', textDecoration:'none' }}>{t('waitlist.consentLinkText')}</a>.
                     </span>
                   </label>
                   <button type="submit" className="btn btn-teal" disabled={!email||!consent||isSubmitting}
