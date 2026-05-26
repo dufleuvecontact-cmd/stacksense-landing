@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
-import { Mail, X } from 'lucide-react'
+import { Mail, X, Check } from 'lucide-react'
 import { EMAILS } from '../lib/emails'
+import { supabase } from '../supabaseClient'
 
 const STORAGE_KEY = 'stacksense_cookie_consent'
 
@@ -28,8 +29,72 @@ const socials = [
   { Icon: Mail,       href:`mailto:${EMAILS.contact}` },
 ]
 
+function UnsubscribeModal({ onClose }) {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle') // idle | loading | done | notfound | error
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('loading')
+    const { data, error } = await supabase
+      .from('waitlist')
+      .delete()
+      .eq('email', email.trim().toLowerCase())
+      .select('id')
+    if (error) { setStatus('error'); return }
+    setStatus(data && data.length > 0 ? 'done' : 'notfound')
+  }
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,.55)', backdropFilter: 'blur(4px)' }} />
+      <div style={{ position: 'relative', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 400, boxShadow: '0 24px 60px rgba(0,0,0,.18)' }}>
+        <button onClick={onClose} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-3)', display: 'flex', padding: 4 }}>
+          <X size={16} />
+        </button>
+
+        {status === 'done' ? (
+          <div style={{ textAlign: 'center', paddingTop: '.5rem' }}>
+            <div style={{ width: 48, height: 48, background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+              <Check size={18} color="var(--teal)" />
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.4rem' }}>You've been removed</h3>
+            <p className="small" style={{ marginBottom: '1.25rem' }}>Your email has been deleted from the StackSense waitlist.</p>
+            <button onClick={onClose} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', fontSize: '.88rem' }}>Close</button>
+          </div>
+        ) : (
+          <>
+            <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.3rem' }}>Unsubscribe from waitlist</h3>
+            <p className="small" style={{ marginBottom: '1.5rem' }}>Enter your email to remove yourself from the StackSense waitlist. This cannot be undone.</p>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
+              <div style={{ position: 'relative' }}>
+                <Mail size={13} color="var(--text-3)" style={{ position: 'absolute', left: '.8rem', top: '50%', transform: 'translateY(-50%)' }} />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
+                  placeholder="you@example.com" className="input" style={{ paddingLeft: '2.1rem' }} />
+              </div>
+              {status === 'notfound' && (
+                <p style={{ fontSize: '.78rem', color: '#e53e3e', margin: 0 }}>No waitlist entry found for that email.</p>
+              )}
+              {status === 'error' && (
+                <p style={{ fontSize: '.78rem', color: '#e53e3e', margin: 0 }}>Something went wrong. Please try again.</p>
+              )}
+              <button type="submit" className="btn btn-teal" disabled={!email || status === 'loading'}
+                style={{ width: '100%', justifyContent: 'center', opacity: (!email || status === 'loading') ? .6 : 1 }}>
+                {status === 'loading' ? 'Removing…' : 'Remove me from waitlist'}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Footer() {
   const [resetKey, setResetKey] = useState(0)
+  const [showUnsub, setShowUnsub] = useState(false)
 
   const openCookieSettings = useCallback(() => {
     try { localStorage.removeItem(STORAGE_KEY) } catch { /* noop */ }
@@ -41,6 +106,7 @@ export default function Footer() {
 
   return (
     <footer style={{ background:'var(--bg-dark)', color:'var(--text-inv)' }}>
+      {showUnsub && <UnsubscribeModal onClose={() => setShowUnsub(false)} />}
       {/* Privacy Policy */}
       <section id="privacy" style={{ maxWidth:940,margin:'0 auto',padding:'4.5rem 1.5rem 0' }}>
         <div style={{ background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:18,padding:'2rem',marginBottom:'3.5rem' }}>
@@ -131,6 +197,12 @@ export default function Footer() {
               onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
               onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}
             >Cookie Settings</button>
+            <button
+              onClick={() => setShowUnsub(true)}
+              style={{ background:'none',border:'none',padding:0,cursor:'pointer',color:'rgba(255,255,255,.3)',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
+              onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
+              onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}
+            >Unsubscribe</button>
           </div>
         </div>
       </div>
