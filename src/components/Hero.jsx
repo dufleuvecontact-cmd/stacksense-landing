@@ -198,7 +198,7 @@ export default function Hero() {
               Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
             </p>
 
-            <div className="sr d4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2.5rem' }}>
+            <div className="sr d4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                 <a href="#waitlist" className="btn btn-teal">
                   Join the Waitlist <ArrowRight size={15}/>
@@ -206,9 +206,6 @@ export default function Hero() {
                 <a href="#features" className="btn btn-outline">
                   See Features
                 </a>
-              </div>
-              <div className="small" style={{ marginTop: '.85rem', fontWeight: 600, color: 'var(--teal-deep)', background: 'var(--teal-muted)', padding: '.25rem .85rem', borderRadius: 100 }}>
-                Join the waitlist for $1 to lock in Founding Member pricing: $9.99/mo + 6 months free
               </div>
             </div>
 

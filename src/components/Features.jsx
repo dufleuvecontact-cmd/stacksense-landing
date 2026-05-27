@@ -1,17 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { Key, LayoutGrid, Clock, Activity, Search, Users, CreditCard, Bell, Map, LayoutDashboard } from 'lucide-react'
+import { LayoutGrid, Clock, Activity, Search, Bell, LayoutDashboard } from 'lucide-react'
 
 const features = [
-  { icon: Key,              title: 'Authentication',             desc: 'Email and password access via Supabase Auth with server-validated JWT sessions.', color: '#1a8c87' },
-  { icon: LayoutGrid,       title: 'Protocol / Cycle Builder',   desc: 'Full CRUD for supplement and peptide protocols, handling multiple substances and schedule rules.', color: '#0d6b67' },
-  { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log doses as taken, skipped, or snoozed. Tracks adherence from historical data.', color: '#25b5af' },
-  { icon: Activity,         title: 'Bloodwork Analysis (AI)',    desc: 'Structured markers or raw text upload summarized by AI into key findings and doctor questions.', color: '#1a8c87' },
-  { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any supplement for mechanism of action, dosing guidance, and safety profile.', color: '#0d6b67' },
-  { icon: Users,            title: 'Referral System',            desc: 'Invite friends using random codes to earn premium days after they show consistent activity.', color: '#25b5af' },
-  { icon: CreditCard,       title: 'Subscription & Premium',     desc: 'Free limits on substances and AI analyses. Premium unlocks unlimited tracking and smarter AI models.', color: '#1a8c87' },
-  { icon: Bell,             title: 'Reminder System',            desc: 'Customizable time windows for daily dose reminders via Web Push notifications.', color: '#0d6b67' },
-  { icon: Map,              title: 'Onboarding Wizard',          desc: 'Multi-step setup capturing experience level, interests, and basic health metrics.', color: '#25b5af' },
-  { icon: LayoutDashboard,  title: 'Dashboard & Tab UI',         desc: 'Overview stats, adherence scores, active protocols, and recent dose activity in one place.', color: '#1a8c87' },
+  { icon: LayoutGrid,       title: 'Protocol & Cycle Builder',   desc: 'Create and manage supplement and peptide protocols with multiple substances, dosing schedules, and cycle phases.', color: '#1a8c87' },
+  { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log every dose as taken, skipped, or snoozed. Track your adherence over time with clear visual feedback.', color: '#0d6b67' },
+  { icon: Activity,         title: 'Bloodwork Analysis',         desc: 'Upload bloodwork markers and get AI-powered summaries with key findings and questions for your doctor.', color: '#25b5af' },
+  { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile.', color: '#1a8c87' },
+  { icon: Bell,             title: 'Smart Reminders',            desc: 'Configurable daily dose reminders across morning, midday, evening, and bedtime windows.', color: '#0d6b67' },
+  { icon: LayoutDashboard,  title: 'Dashboard & Insights',       desc: 'Overview stats, adherence scores, active protocols, and recent activity — all in one place.', color: '#25b5af' },
 ]
 
 export default function Features() {

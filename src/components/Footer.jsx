@@ -1,4 +1,4 @@
-import { Mail, X } from 'lucide-react'
+
 
 const GitHubIcon = ({ size }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -18,41 +18,14 @@ const navCols = {
 }
 
 const socials = [
-  { Icon: X,          href:'#' },
   { Icon: GitHubIcon, href:'#' },
   { Icon: LinkedinIcon,href:'https://linkedin.com/company/stacksense-health' },
   { Icon: LinkedinIcon,href:'https://linkedin.com/in/jadgouiza' },
-  { Icon: Mail,       href:'mailto:contact@stacksense.ca' },
 ]
 
 export default function Footer() {
   return (
     <footer style={{ background:'var(--bg-dark)', color:'var(--text-inv)' }}>
-      {/* Privacy Policy */}
-      <section id="privacy" style={{ maxWidth:940,margin:'0 auto',padding:'4.5rem 1.5rem 0' }}>
-        <div style={{ background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:18,padding:'2rem',marginBottom:'3.5rem' }}>
-          <h3 style={{ fontFamily:'var(--font-sans)',fontSize:'1rem',fontWeight:700,marginBottom:'1.25rem',color:'var(--text-inv)' }}>Privacy Policy</h3>
-          <div style={{ display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(270px,1fr))',gap:'1.25rem',fontSize:'.82rem',color:'rgba(255,255,255,.5)',lineHeight:1.72 }}>
-            {[
-              ['What we collect','When you join the waitlist, we collect your email address and optionally your name. If you use the referral system, we also collect referral activity data. We use standard analytics tools to understand how visitors use the site.'],
-              ['How we use it','Your email is used solely to communicate about StackSense — launch updates, early access invitations, and product news. We do not sell or share your personal data with third parties. Referral data is used only to manage waitlist queue position.'],
-              ['Cookies & tracking','We use standard cookies for session management and analytics to measure site usage. You can opt out or disable cookies in your browser settings at any time.'],
-              ['Data storage & security','All data is stored securely using industry-standard encryption at rest and in transit. We retain waitlist data until launch or until you request deletion.'],
-              ['Your rights','You can request access to, correction of, or deletion of your data at any time. Contact us at privacy@stacksense.io and we will respond within 5 business days.'],
-              ['Consent','By submitting the waitlist form, you explicitly consent to us storing your email for waitlist communications. You can withdraw consent at any time by emailing us.'],
-            ].map(([title, body]) => (
-              <div key={title}>
-                <p style={{ fontWeight:600,color:'rgba(255,255,255,.78)',marginBottom:'.3rem' }}>{title}</p>
-                <p>{body}</p>
-              </div>
-            ))}
-          </div>
-          <p style={{ marginTop:'1.25rem',fontSize:'.73rem',color:'rgba(255,255,255,.3)',borderTop:'1px solid rgba(255,255,255,.07)',paddingTop:'.75rem' }}>
-            Last updated: April 2026. Questions? <a href="mailto:legal@stacksense.ca" style={{ color:'var(--teal-light)',textDecoration:'none' }}>legal@stacksense.ca</a>
-          </p>
-        </div>
-      </section>
-
       {/* Main footer */}
       <div style={{ maxWidth:1160,margin:'0 auto',padding:'3rem 1.5rem 0' }}>
         {/* Regulatory disclaimer */}
@@ -75,7 +48,7 @@ export default function Footer() {
             </p>
             <div style={{ display:'flex',gap:'.45rem' }}>
               {socials.map(({ Icon, href }, i) => (
-                <a key={i} href={href} style={{ width:32,height:32,background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.08)',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,.45)',transition:'all .2s',textDecoration:'none' }}
+                <a key={i} href={href} target={href.startsWith('http')?'_blank':undefined} rel={href.startsWith('http')?'noreferrer':undefined} style={{ width:32,height:32,background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.08)',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,.45)',transition:'all .2s',textDecoration:'none' }}
                   onMouseEnter={e=>{ e.currentTarget.style.borderColor='rgba(26,140,135,.5)'; e.currentTarget.style.color='#25b5af'; e.currentTarget.style.background='rgba(26,140,135,.1)' }}
                   onMouseLeave={e=>{ e.currentTarget.style.borderColor='rgba(255,255,255,.08)'; e.currentTarget.style.color='rgba(255,255,255,.45)'; e.currentTarget.style.background='rgba(255,255,255,.06)' }}>
                   <Icon size={14}/>
@@ -107,7 +80,7 @@ export default function Footer() {
         <div style={{ borderTop:'1px solid rgba(255,255,255,.07)',padding:'1.5rem 0',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'.75rem' }}>
           <p style={{ fontSize:'.76rem',color:'rgba(255,255,255,.3)',fontFamily:'var(--font-sans)' }}>© 2026 StackSense Inc. All rights reserved.</p>
           <div style={{ display:'flex',gap:'1.25rem',flexWrap:'wrap' }}>
-            {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Contact','mailto:contact@stacksense.ca']].map(([l,h]) => (
+            {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Contact','#contact']].map(([l,h]) => (
               <a key={l} href={h} style={{ color:'rgba(255,255,255,.3)',textDecoration:'none',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
                 onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</a>
@@ -123,3 +96,4 @@ export default function Footer() {
     </footer>
   )
 }
+

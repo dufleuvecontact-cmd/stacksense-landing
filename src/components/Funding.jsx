@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { TrendingUp, Target, Users, FileText, ArrowRight, Mail, CheckCircle2 } from 'lucide-react'
+import { TrendingUp, Target, Users, FileText, CheckCircle2 } from 'lucide-react'
 
 const highlights = [
   { icon:TrendingUp, label:'Stage',   val:'Seed',        sub:'Active fundraising', color:'#1a8c87' },
@@ -40,7 +40,7 @@ export default function Funding() {
         </div>
 
         {/* Stat cards */}
-        <div className="sr" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))', gap:'1rem', marginBottom:'2.5rem' }}>
+        <div className="sr" style={{ display:'flex', justifyContent:'center', gap:'1rem', flexWrap:'wrap', marginBottom:'2.5rem' }}>
           {highlights.map(h=>(
             <div key={h.label} className="card-flat" style={{ padding:'1.25rem', textAlign:'center' }}>
               <div style={{ width:40,height:40,background:`${h.color}12`,border:`1px solid ${h.color}22`,borderRadius:11,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto .75rem' }}>
@@ -89,14 +89,9 @@ export default function Funding() {
                 ))}
               </ul>
             </div>
-            <div style={{ display:'flex',gap:'.75rem',flexWrap:'wrap' }}>
-              <a href="mailto:invest@stacksense.io" className="btn btn-teal" style={{ flex:'1 1 auto',justifyContent:'center',minWidth:140 }}>
-                <Mail size={14}/> Contact Us
-              </a>
-              <a href="mailto:invest@stacksense.io?subject=Investor Deck" className="btn btn-outline" style={{ flex:'1 1 auto',justifyContent:'center',minWidth:140 }}>
-                Request Deck <ArrowRight size={13}/>
-              </a>
-            </div>
+            <p style={{ fontSize:'.88rem',fontFamily:'var(--font-sans)',fontWeight:600,color:'var(--text)' }}>
+              Contact us at <a href="mailto:contact@stacksense.ca" style={{ color:'var(--teal)',textDecoration:'none' }}>contact@stacksense.ca</a>
+            </p>
           </div>
         </div>
 
