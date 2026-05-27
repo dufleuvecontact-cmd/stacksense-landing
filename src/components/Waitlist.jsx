@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
-import { Mail, User, ArrowRight, Check, Shield, Zap, Clock } from 'lucide-react'
+import { Mail, User, ArrowRight, Check, Shield, Zap, Clock, Users, Copy } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 
 export default function Waitlist() {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [refCode, setRefCode] = useState('')
   const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [code, setCode] = useState('')
+  const [copied, setCopied] = useState(false)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -19,20 +22,36 @@ export default function Waitlist() {
     return () => obs.disconnect()
   }, [])
 
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search)
+    if(p.has('ref')) setRefCode(p.get('ref'))
+  }, [])
+
+  function gen() { return Math.random().toString(36).substring(2,8).toUpperCase() }
+
   async function submit(e) {
     e.preventDefault()
     if (!email || !consent) return
     setIsSubmitting(true)
+    const newCode = gen()
     try {
       await supabase.from('waitlist').insert([{ 
         email, 
-        name: name || null
+        name: name || null,
+        referred_by: refCode || null,
+        referral_code: newCode
       }])
     } catch (err) {
       console.error(err)
     }
     setIsSubmitting(false)
+    setCode(newCode)
     setSubmitted(true)
+  }
+
+  function copy() {
+    navigator.clipboard.writeText(`https://stacksense.ca/?ref=${code}`).catch(()=>{})
+    setCopied(true); setTimeout(()=>setCopied(false),2500)
   }
 
   return (
@@ -66,14 +85,26 @@ export default function Waitlist() {
                   ))}
                 </ul>
                 <form onSubmit={submit} style={{ display:'flex', flexDirection:'column', gap:'.7rem' }}>
-                  <div>
-                    <label htmlFor="wl-name" style={{ display:'block', fontSize:'.76rem', fontWeight:600, color:'var(--text-2)', marginBottom:'.3rem' }}>
-                      Name <span style={{ color:'var(--text-3)', fontWeight:400 }}>(optional)</span>
-                    </label>
-                    <div style={{ position:'relative' }}>
-                      <User size={13} color="var(--text-3)" style={{ position:'absolute', left:'.8rem', top:'50%', transform:'translateY(-50%)' }}/>
-                      <input id="wl-name" type="text" value={name} onChange={e=>setName(e.target.value)}
-                        placeholder="Your name" className="input" style={{ paddingLeft:'2.1rem' }}/>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
+                    <div>
+                      <label htmlFor="wl-name" style={{ display:'block', fontSize:'.76rem', fontWeight:600, color:'var(--text-2)', marginBottom:'.3rem' }}>
+                        Name <span style={{ color:'var(--text-3)', fontWeight:400 }}>(optional)</span>
+                      </label>
+                      <div style={{ position:'relative' }}>
+                        <User size={13} color="var(--text-3)" style={{ position:'absolute', left:'.8rem', top:'50%', transform:'translateY(-50%)' }}/>
+                        <input id="wl-name" type="text" value={name} onChange={e=>setName(e.target.value)}
+                          placeholder="Your name" className="input" style={{ paddingLeft:'2.1rem' }}/>
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="wl-ref" style={{ display:'block', fontSize:'.76rem', fontWeight:600, color:'var(--text-2)', marginBottom:'.3rem' }}>
+                        Referral Code <span style={{ color:'var(--text-3)', fontWeight:400 }}>(optional)</span>
+                      </label>
+                      <div style={{ position:'relative' }}>
+                        <Users size={13} color="var(--text-3)" style={{ position:'absolute', left:'.8rem', top:'50%', transform:'translateY(-50%)' }}/>
+                        <input id="wl-ref" type="text" value={refCode} onChange={e=>setRefCode(e.target.value)}
+                          placeholder="Code" className="input" style={{ paddingLeft:'2.1rem', textTransform:'uppercase' }}/>
+                      </div>
                     </div>
                   </div>
                   <div>
@@ -101,12 +132,26 @@ export default function Waitlist() {
                 </form>
               </>
             ) : (
-              <div style={{ textAlign:'center' }}>
-                <div style={{ width:52,height:52,background:'rgba(26,140,135,.1)',border:'1px solid rgba(26,140,135,.2)',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 1.2rem' }}>
-                  <Check size={20} color="var(--teal)"/>
+              <div style={{ textAlign:'center', paddingTop: '1rem' }}>
+                <div style={{ width:52,height:52,background:'rgba(26,140,135,.1)',border:'1px solid rgba(26,140,135,.2)',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 1.25rem' }}>
+                  <Check size={20} color="var(--teal)" strokeWidth={3}/>
                 </div>
                 <h3 className="h3" style={{ marginBottom:'.5rem' }}>You're on the list</h3>
-                <p className="body-text">We'll be in touch as we approach launch with details on your $1 waitlist fee and next steps.</p>
+                <p className="body-text" style={{ marginBottom:'1.5rem', color: 'var(--text-2)' }}>
+                  We'll be in touch as we approach launch with details on your $1 waitlist fee and next steps.
+                </p>
+                <div style={{ background:'var(--bg)', border:'1px solid var(--border)', borderRadius:10, padding:'1.25rem' }}>
+                  <p style={{ fontSize:'.8rem', fontWeight:700, color:'var(--text)', marginBottom:'.4rem', fontFamily:'var(--font-sans)' }}>Invite your friends</p>
+                  <p style={{ fontSize:'.75rem', color:'var(--text-3)', marginBottom:'1rem' }}>Share your unique link to help others discover StackSense.</p>
+                  <div style={{ display:'flex', gap:'.5rem' }}>
+                    <div style={{ flex:1, background:'#fff', border:'1px solid var(--border)', borderRadius:6, padding:'.5rem .75rem', fontSize:'.75rem', color:'var(--text-2)', fontFamily:'monospace', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', userSelect:'all' }}>
+                      https://stacksense.ca/?ref={code}
+                    </div>
+                    <button onClick={copy} className="btn btn-teal" style={{ padding:'.5rem .75rem', minWidth:85, justifyContent:'center' }}>
+                      {copied ? <Check size={14}/> : <><Copy size={13}/> Copy</>}
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
