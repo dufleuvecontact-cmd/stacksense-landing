@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Mail, User, ArrowRight, Copy, Check, Share2, Trophy, ChevronRight, Hash, Lock, ShieldCheck } from 'lucide-react'
+import { Mail, User, ArrowRight, Copy, Check, Share2, Trophy, Hash, Lock, ShieldCheck } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 
 const FOUNDING_SPOTS = 600
@@ -19,7 +19,7 @@ export default function Waitlist() {
   const [code, setCode] = useState('')
   const [spotsLeft, setSpotsLeft] = useState(null)
   const [copied, setCopied] = useState(false)
-  const [refs, setRefs] = useState(1)
+  const [refs, setRefs] = useState(0)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -28,6 +28,16 @@ export default function Waitlist() {
       .select('id', { count: 'exact', head: true })
       .then(({ count }) => setSpotsLeft(Math.max(FOUNDING_SPOTS - (count || 0), 0)))
   }, [])
+
+  // Fetch actual referral count when we have a code
+  useEffect(() => {
+    if (!code) return
+    supabase
+      .from('waitlist')
+      .select('id', { count: 'exact', head: true })
+      .eq('referred_by', code)
+      .then(({ count }) => setRefs(count || 0))
+  }, [code])
 
   // Handle return from Stripe checkout
   useEffect(() => {
@@ -353,21 +363,18 @@ export default function Waitlist() {
               </div>
             </div>
 
-            <div className="card-flat sr-right d2" style={{ padding: '1.25rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.6rem' }}>
-                <span style={{ fontSize: '.8rem', fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Your progress</span>
-                <span className="small">{refs} / 3 to Power User</span>
-              </div>
-              <div style={{ height: 6, background: 'var(--bg)', borderRadius: 3, overflow: 'hidden', marginBottom: '.7rem' }}>
-                <div style={{ height: '100%', width: `${Math.min(refs / 3 * 100, 100)}%`, background: 'linear-gradient(90deg,#1a8c87,#25b5af)', borderRadius: 3, transition: 'width .4s ease' }} />
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            {step === 'success' && (
+              <div className="card-flat sr-right d2" style={{ padding: '1.25rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.6rem' }}>
+                  <span style={{ fontSize: '.8rem', fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Your referrals</span>
+                  <span className="small">{refs} / 3 to Power User</span>
+                </div>
+                <div style={{ height: 6, background: 'var(--bg)', borderRadius: 3, overflow: 'hidden', marginBottom: '.7rem' }}>
+                  <div style={{ height: '100%', width: `${Math.min(refs / 3 * 100, 100)}%`, background: 'linear-gradient(90deg,#1a8c87,#25b5af)', borderRadius: 3, transition: 'width .4s ease' }} />
+                </div>
                 <span className="small">{Math.max(3 - refs, 0)} more to next reward</span>
-                <button className="btn btn-outline" onClick={() => setRefs(r => Math.min(r + 1, 5))} style={{ fontSize: '.7rem', padding: '.22rem .7rem' }}>
-                  Demo +1 <ChevronRight size={10} />
-                </button>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

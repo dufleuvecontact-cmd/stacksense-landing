@@ -62,7 +62,7 @@ export default function Timeline() {
         <div style={{ position: 'relative', paddingLeft: '3rem' }}>
           {/* Connecting line */}
           <div style={{
-            position: 'absolute', left: 11, top: 12, bottom: 12,
+            position: 'absolute', left: 23, top: 12, bottom: 12,
             width: 2, background: 'linear-gradient(180deg, var(--teal) 0%, var(--teal) 40%, var(--border) 40%, var(--border) 100%)',
             borderRadius: 2,
           }}/>
@@ -74,7 +74,7 @@ export default function Timeline() {
             }}>
               {/* Marker */}
               <div style={{
-                position: 'absolute', left: -40, top: 4,
+                position: 'absolute', left: -36, top: 4,
                 width: 24, height: 24, borderRadius: '50%',
                 background: s.status === 'upcoming' ? 'var(--bg)' : 'var(--teal)',
                 border: `2px solid ${statusColor[s.status]}`,
