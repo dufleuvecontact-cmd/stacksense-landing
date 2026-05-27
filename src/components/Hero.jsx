@@ -6,7 +6,7 @@ function PhoneMockup() {
     <div style={{ position: 'relative', width: 260, margin: '0 auto' }}>
       <div style={{
         background: '#152a26', borderRadius: 40, padding: '10px',
-        boxShadow: '0 0 0 2px rgba(26,140,135,.5), 0 40px 80px rgba(0,0,0,.6)',
+        boxShadow: '0 0 0 2px rgba(26,140,135,.4), 0 40px 80px rgba(0,0,0,.5)',
       }}>
         <div style={{
           background: '#f5f7f6', borderRadius: 32, overflow: 'hidden',
@@ -69,7 +69,8 @@ function PhoneMockup() {
           </div>
         </div>
       </div>
-      <div style={{ position: 'absolute', top: 60, right: -70, background: '#fff', border: '1px solid #dce8e5', borderRadius: 14, padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.15)', display: 'flex', alignItems: 'center', gap: 8, width: 175 }}>
+      {/* Notification callout */}
+      <div style={{ position: 'absolute', top: 60, right: -68, background: '#fff', border: '1px solid #dce8e5', borderRadius: 12, padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.12)', display: 'flex', alignItems: 'center', gap: 8, width: 168 }}>
         <div style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Bell size={12} color="#1a8c87"/>
         </div>
@@ -78,10 +79,11 @@ function PhoneMockup() {
           <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)' }}>BPC-157 · 8:00 AM</div>
         </div>
       </div>
-      <div style={{ position: 'absolute', bottom: 80, left: -65, background: '#fff', border: '1px solid #dce8e5', borderRadius: 14, padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.15)', width: 148 }}>
+      {/* Streak callout */}
+      <div style={{ position: 'absolute', bottom: 80, left: -60, background: '#fff', border: '1px solid #dce8e5', borderRadius: 12, padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.12)', width: 138 }}>
         <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginBottom: 3 }}>Current Streak</div>
         <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#1a8c87', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>21d</div>
-        <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginTop: 2 }}>Personal best 🎯</div>
+        <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginTop: 2 }}>Personal best</div>
       </div>
     </div>
   )
@@ -108,46 +110,47 @@ export default function Hero() {
       display: 'flex',
       alignItems: 'center',
     }}>
-      {/* Teal glows */}
-      <div style={{ position: 'absolute', top: -180, right: -60, width: 720, height: 720, background: 'radial-gradient(circle, rgba(26,140,135,.16) 0%, transparent 65%)', pointerEvents: 'none' }}/>
-      <div style={{ position: 'absolute', bottom: -120, left: -80, width: 500, height: 500, background: 'radial-gradient(circle, rgba(26,140,135,.07) 0%, transparent 65%)', pointerEvents: 'none' }}/>
+      {/* Subtle teal ambient light */}
+      <div style={{ position: 'absolute', top: -200, right: -100, width: 700, height: 700, background: 'radial-gradient(circle, rgba(26,140,135,.14) 0%, transparent 60%)', pointerEvents: 'none' }}/>
+      <div style={{ position: 'absolute', bottom: -100, left: -60, width: 480, height: 480, background: 'radial-gradient(circle, rgba(26,140,135,.06) 0%, transparent 60%)', pointerEvents: 'none' }}/>
 
-      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', padding: '3rem 1.5rem 4rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '5rem', alignItems: 'center' }} id="hero-grid">
+      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', padding: '4rem 1.5rem 5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '5rem', alignItems: 'center' }} id="hero-grid">
 
           {/* Left */}
           <div>
-            <div className="sr d1" style={{ display: 'flex', alignItems: 'center', gap: '.65rem', marginBottom: '1.5rem' }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--teal)' }} className="pulse-dot"/>
-              <span style={{ fontSize: '.72rem', fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)', fontFamily: 'var(--font-sans)' }}>
+            <div className="sr d1" style={{ display: 'flex', alignItems: 'center', gap: '.6rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--teal)', flexShrink: 0 }}/>
+              <span style={{ fontSize: '.72rem', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.35)', fontFamily: 'var(--font-sans)' }}>
                 Seed Stage · Open Waitlist
               </span>
             </div>
 
             <h1 className="sr d2" style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(3rem, 6.5vw, 6.2rem)',
-              lineHeight: .92,
+              fontSize: 'clamp(2.8rem, 6vw, 5.8rem)',
+              lineHeight: .94,
               letterSpacing: '-.025em',
               color: '#fff',
-              marginBottom: '1.6rem',
+              marginBottom: '1.5rem',
+              textWrap: 'balance',
             }}>
-              Tired of tracking<br/>peptides in{' '}
+              Tired of tracking peptides in{' '}
               <em style={{ fontStyle: 'italic', color: 'var(--teal-light)' }}>spreadsheets?</em>
             </h1>
 
             <p className="sr d3" style={{
-              fontSize: '1.12rem',
+              fontSize: '1.1rem',
               lineHeight: 1.72,
-              color: 'rgba(255,255,255,.5)',
+              color: 'rgba(255,255,255,.48)',
               marginBottom: '2.5rem',
-              maxWidth: 500,
+              maxWidth: 480,
               fontFamily: 'var(--font-sans)',
             }}>
-              Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
+              420+ compounds. Clinical dosing data. One structured app — built by someone who actually uses these protocols.
             </p>
 
-            <div className="sr d4" style={{ display: 'flex', gap: '.75rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+            <div className="sr d4" style={{ display: 'flex', gap: '.75rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
               <a href="#waitlist" className="btn btn-teal">
                 Join the Waitlist <ArrowRight size={15}/>
               </a>
@@ -156,43 +159,43 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="sr d5" style={{ display: 'flex', flexDirection: 'column', gap: '.6rem' }}>
+            {/* Trust strip */}
+            <div className="sr d5" style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
               {[
-                '420+ compounds in our protocol library',
-                'Built on clinical dosing data from peer-reviewed sources',
-                'Designed by someone who actually uses these protocols daily',
-                'Currently onboarding beta testers',
+                '420+ compounds',
+                'Peer-reviewed dosing data',
+                'Beta testing open',
               ].map(t => (
-                <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: '.5rem' }}>
-                  <CheckCircle2 size={13} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0, marginTop: 2 }}/>
-                  <span style={{ fontSize: '.85rem', color: 'rgba(255,255,255,.4)', fontFamily: 'var(--font-sans)' }}>{t}</span>
+                <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                  <CheckCircle2 size={13} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }}/>
+                  <span style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.38)', fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap' }}>{t}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right — phone */}
-          <div className="sr-right d2 float" style={{ display: 'flex', justifyContent: 'center' }}>
+          {/* Right */}
+          <div className="sr-right d2" style={{ display: 'flex', justifyContent: 'center' }}>
             <PhoneMockup/>
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom strip */}
         <div className="sr-fade d6" style={{
-          marginTop: '3.5rem',
+          marginTop: '4rem',
           paddingTop: '2rem',
           borderTop: '1px solid rgba(255,255,255,.07)',
           display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap',
         }}>
-          <span style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.28)', fontFamily: 'var(--font-sans)', letterSpacing: '.06em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.28)', fontFamily: 'var(--font-sans)', letterSpacing: '.06em', textTransform: 'uppercase' }}>
             Founding member pricing
           </span>
           <span style={{ fontSize: '.82rem', fontWeight: 600, color: 'var(--teal-light)', fontFamily: 'var(--font-sans)' }}>
-            $9.99/mo forever + 6 months free
+            $9.99/mo forever · 6 months free
           </span>
-          <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.07)' }}/>
-          <span style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.28)', fontFamily: 'var(--font-sans)' }}>
-            Currently reaching out for funding
+          <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.07)', minWidth: 24 }}/>
+          <span style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.28)', fontFamily: 'var(--font-sans)' }}>
+            Active seed round
           </span>
         </div>
       </div>
@@ -201,10 +204,6 @@ export default function Hero() {
         @media (max-width: 860px) {
           #hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           #hero-grid > div:last-child { display: none !important; }
-        }
-        @keyframes floatY {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
         }
       `}</style>
     </section>

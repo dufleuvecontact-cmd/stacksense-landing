@@ -9,7 +9,7 @@ const items = [
   { icon: UserCircle,   title: 'User Profiles',                desc: 'Personalised profiles with notification prefs, unit settings, and saved protocols.',                              badge: 'Soon',           bc: 'pill-amber',  color: '#d97706' },
   { icon: FolderKanban, title: 'Enhanced Organisation',        desc: 'Tag-based organisation, nested folders for compounds, and a visual cycle planner.',                              badge: 'Planned',        bc: 'pill-gray',   color: '#1a8c87' },
   { icon: SearchCode,   title: 'Faster Search',                desc: 'Full-text semantic search across your entire history — any entry in milliseconds.',                               badge: 'In Development', bc: 'pill-teal',   color: '#0d6b67' },
-  { icon: Users,        title: 'Team & Shared Access',         desc: 'Controlled access for practitioners, coaches, or collaborators. Safety and privacy by default.',                  badge: 'Future',         bc: 'pill-purple', color: '#7c3aed' },
+  { icon: Users,        title: 'Team & Shared Access',         desc: 'Controlled access for practitioners, coaches, or collaborators. Safety and privacy by default.',                  badge: 'Future',         bc: 'pill-gray',   color: '#1a8c87' },
 ]
 
 export default function UpcomingFeatures() {

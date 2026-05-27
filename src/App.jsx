@@ -22,7 +22,6 @@ export default function App() {
         <Features />
         <Comparison />
         <ProductPreview />
-        <MarqueeStrip />
         <Waitlist />
         <Timeline />
         <Funding />

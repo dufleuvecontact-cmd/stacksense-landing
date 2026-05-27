@@ -114,7 +114,7 @@ export default function ProductPreview() {
               {['#ff5f57','#febc2e','#28c840'].map(c => <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c }}/>)}
             </div>
             <div style={{ flex: 1, background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '.18rem .8rem', fontSize: '.7rem', color: 'var(--text-3)', maxWidth: 260, margin: '0 auto', display: 'flex', alignItems: 'center', gap: '.35rem' }}>
-              <Search size={9}/> app.stacksense.io
+              <Search size={9}/> app.stacksense.ca
             </div>
           </div>
 
