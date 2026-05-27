@@ -26,9 +26,17 @@ export default function Waitlist() {
     const p = new URLSearchParams(window.location.search)
     if(p.has('ref')) setRefCode(p.get('ref'))
     if(p.get('payment') === 'success' && p.has('code')) {
-      setCode(p.get('code'))
+      const codeParam = p.get('code');
+      setCode(codeParam)
       setSubmitted(true)
+      // Update payment status
+      supabase.from('waitlist').update({ payment_status: 'paid' }).eq('referral_code', codeParam).then(() => {
+        window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+      }).catch(err => console.error(err));
+    }
+    if(p.get('payment') === 'cancel') {
       window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+      // Optional: could show an alert that payment was cancelled
     }
   }, [])
 
@@ -44,7 +52,8 @@ export default function Waitlist() {
         email, 
         name: name || null,
         referred_by: refCode || null,
-        referral_code: newCode
+        referral_code: newCode,
+        payment_status: 'pending'
       }])
 
       const res = await fetch('/api/create-checkout-session', {
