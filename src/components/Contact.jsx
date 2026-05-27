@@ -1,4 +1,5 @@
 import { Mail } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 
 const LinkedinIcon = ({ size = 24, color = '#0077B5' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -7,8 +8,18 @@ const LinkedinIcon = ({ size = 24, color = '#0077B5' }) => (
 )
 
 export default function Contact() {
+  const ref = useRef(null)
+  useEffect(() => {
+    if (!ref.current) return
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } })
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
+    ref.current.querySelectorAll('.sr,.sr-fade').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section id="contact" style={{ padding: '4rem 0 0', background: '#fff' }}>
+    <section id="contact" ref={ref} style={{ padding: '4rem 0 0', background: '#fff' }}>
       <div className="wrap" style={{ textAlign: 'center' }}>
         <div className="sr">
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Contact Us</p>
