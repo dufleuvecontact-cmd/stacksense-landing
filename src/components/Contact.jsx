@@ -8,7 +8,7 @@ const LinkedinIcon = ({ size = 24, color = '#0077B5' }) => (
 
 export default function Contact() {
   return (
-    <section id="contact" className="section" style={{ background: '#fff' }}>
+    <section id="contact" className="section-band" style={{ background: '#fff' }}>
       <div className="wrap" style={{ textAlign: 'center' }}>
         <div className="sr">
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Contact Us</p>

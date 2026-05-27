@@ -27,8 +27,8 @@ export default function App() {
         <Funding />
         <UpcomingFeatures />
         <FAQ />
+        <Contact />
       </main>
-      <Contact />
       <Footer />
     </>
   )
