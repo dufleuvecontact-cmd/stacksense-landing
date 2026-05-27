@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react'
-import { LayoutGrid, Clock, Bell, BarChart2, ShieldCheck, Search, Download, Smartphone } from 'lucide-react'
+import { Key, LayoutGrid, Clock, Activity, Search, Users, CreditCard, Bell, Map, LayoutDashboard } from 'lucide-react'
 
 const features = [
-  { icon: LayoutGrid,   title: 'Organised Tracking',      desc: 'Every compound, dose, and cycle in one clean workspace. No spreadsheets. No guesswork.', color: '#1a8c87' },
-  { icon: Clock,        title: 'Full Activity History',   desc: 'A tamper-proof log you can revisit any time — with dates, notes, and dosage details intact.', color: '#0d6b67' },
-  { icon: Bell,         title: 'Smart Reminders',          desc: 'Customisable alerts that fit your schedule. Never miss a window, never double-dose.', color: '#25b5af' },
-  { icon: BarChart2,    title: 'Clean Data Views',         desc: 'Charts and summaries that turn raw entries into insight. Understand your data at a glance.', color: '#1a8c87' },
-  { icon: ShieldCheck,  title: 'Safety-First Workflows',   desc: 'Built-in safeguards, cycle limits, and flagging help you stay within safe parameters.', color: '#0d6b67' },
-  { icon: Search,       title: 'Fast Search & Filter',     desc: 'Full-text search across your entire log history. Find any entry in seconds.', color: '#25b5af' },
-  { icon: Download,     title: 'Export & Records Access',  desc: 'Generate clean exports in PDF or CSV for personal records or professional review.', color: '#1a8c87' },
-  { icon: Smartphone,   title: 'Mobile-Ready',              desc: 'Log on your phone, review on your desktop. Everything synced, everything in reach.', color: '#0d6b67' },
+  { icon: Key,              title: 'Authentication',             desc: 'Email and password access via Supabase Auth with server-validated JWT sessions.', color: '#1a8c87' },
+  { icon: LayoutGrid,       title: 'Protocol / Cycle Builder',   desc: 'Full CRUD for supplement and peptide protocols, handling multiple substances and schedule rules.', color: '#0d6b67' },
+  { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log doses as taken, skipped, or snoozed. Tracks adherence from historical data.', color: '#25b5af' },
+  { icon: Activity,         title: 'Bloodwork Analysis (AI)',    desc: 'Structured markers or raw text upload summarized by AI into key findings and doctor questions.', color: '#1a8c87' },
+  { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any supplement for mechanism of action, dosing guidance, and safety profile.', color: '#0d6b67' },
+  { icon: Users,            title: 'Referral System',            desc: 'Invite friends using random codes to earn premium days after they show consistent activity.', color: '#25b5af' },
+  { icon: CreditCard,       title: 'Subscription & Premium',     desc: 'Free limits on substances and AI analyses. Premium unlocks unlimited tracking and smarter AI models.', color: '#1a8c87' },
+  { icon: Bell,             title: 'Reminder System',            desc: 'Customizable time windows for daily dose reminders via Web Push notifications.', color: '#0d6b67' },
+  { icon: Map,              title: 'Onboarding Wizard',          desc: 'Multi-step setup capturing experience level, interests, and basic health metrics.', color: '#25b5af' },
+  { icon: LayoutDashboard,  title: 'Dashboard & Tab UI',         desc: 'Overview stats, adherence scores, active protocols, and recent dose activity in one place.', color: '#1a8c87' },
 ]
 
 export default function Features() {
@@ -37,7 +39,7 @@ export default function Features() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px,1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))', gap: '1rem' }}>
           {features.map((f, i) => (
             <div key={f.title} className={`card sr d${(i % 8) + 1}`} style={{ padding: '1.5rem', cursor: 'default' }}>
               <div style={{
@@ -58,3 +60,4 @@ export default function Features() {
     </section>
   )
 }
+

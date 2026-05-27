@@ -9,6 +9,7 @@ import Timeline from './components/Timeline'
 import Funding from './components/Funding'
 import UpcomingFeatures from './components/UpcomingFeatures'
 import FAQ from './components/FAQ'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <UpcomingFeatures />
         <FAQ />
       </main>
+      <Contact />
       <Footer />
     </>
   )
