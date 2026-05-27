@@ -168,7 +168,7 @@ export default function Hero() {
     <section ref={ref} style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center',
       position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(135deg, #f0f5f4 0%, #e0eceb 40%, #f5f7f6 100%)',
+      background: 'var(--bg)',
       paddingTop: 80,
     }}>
       {/* Dot grid bg */}
@@ -176,12 +176,7 @@ export default function Hero() {
         position: 'absolute', inset: 0, opacity: .5, pointerEvents: 'none',
       }}/>
 
-      {/* Teal glow top-right */}
-      <div style={{
-        position: 'absolute', top: -120, right: -80, width: 600, height: 600,
-        background: 'radial-gradient(circle, rgba(26,140,135,.12) 0%, transparent 65%)',
-        pointerEvents: 'none',
-      }}/>
+
 
       <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: '2rem', paddingBottom: '3rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', alignItems: 'center', textAlign: 'center' }} id="hero-grid">
@@ -190,31 +185,16 @@ export default function Hero() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: 800 }}>
             <div className="sr d1" style={{ marginBottom: '1.4rem' }}>
               <span className="pill pill-teal">
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--teal)', display: 'inline-block' }} className="pulse-dot"/>
                 Seed Stage · Open Waitlist
               </span>
             </div>
 
-            <h1 className="sr d2" style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(3.2rem, 7.5vw, 7.5rem)',
-              lineHeight: .93, letterSpacing: '-.025em', color: 'var(--text)',
-              marginBottom: '1.5rem',
-            }}>
+            <h1 className="sr d2 h1" style={{ marginBottom: '1.5rem' }}>
               Tired of tracking peptides in<br/>
-              <span className="italic-serif teal-text">spreadsheets?</span>
+              <span className="teal-text">spreadsheets?</span>
             </h1>
 
-            <p className="sr d3" style={{ 
-              maxWidth: 680, 
-              marginBottom: '2.2rem',
-              fontFamily: '"Helvetica Neue", Helvetica, system-ui, -apple-system, Arial, sans-serif',
-              fontSize: '1.2rem',
-              fontWeight: 500,
-              lineHeight: 1.6,
-              color: 'var(--text-2)',
-              letterSpacing: '0.015em'
-            }}>
+            <p className="sr d3 lead" style={{ maxWidth: 680, marginBottom: '2.2rem' }}>
               Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
             </p>
 
@@ -248,14 +228,14 @@ export default function Hero() {
           </div>
 
           {/* Right — phone */}
-          <div className="sr-right d2 float" style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem' }}>
+          <div className="sr-right d2" style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem' }}>
             <PhoneMockup/>
           </div>
         </div>
 
         {/* Scroll cue */}
         <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '4rem', opacity: 0 }}>
-          <ChevronDown size={18} color="var(--text-3)" style={{ animation: 'floatY 2s ease-in-out infinite' }}/>
+          <ChevronDown size={18} color="var(--text-3)" />
         </div>
       </div>
 
@@ -275,10 +255,6 @@ export default function Hero() {
       <style>{`
         @media (max-width: 860px) {
           #hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-        }
-        @keyframes floatY {
-          0%,100% { transform: translateY(0); }
-          50%      { transform: translateY(-8px); }
         }
       `}</style>
     </section>

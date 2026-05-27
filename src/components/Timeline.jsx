@@ -46,8 +46,8 @@ export default function Timeline() {
       <div className="wrap">
         <div className="sr" style={{ textAlign:'center', marginBottom:'3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom:'.75rem' }}>Company Journey</p>
-          <h2 className="display-md" style={{ marginBottom:'1rem' }}>
-            Where we are &amp;<span className="italic-serif teal-text"> where we're going</span>
+          <h2 className="h2" style={{ marginBottom:'1rem' }}>
+            Where we are &amp;<span className="teal-text"> where we're going</span>
           </h2>
           <p className="lead" style={{ maxWidth:500, margin:'0 auto' }}>
             A transparent view of StackSense's fundraising journey and milestones at each stage.
@@ -73,7 +73,7 @@ export default function Timeline() {
                 </div>
                 <span className={`pill ${s.status==='done'?'pill-green':s.status==='active'?'pill-teal':'pill-gray'}`}>{s.tag}</span>
               </div>
-              <h3 style={{ fontFamily:'var(--font-serif)',fontSize:'1.2rem',letterSpacing:'-.02em',marginBottom:'.18rem',color:'var(--text)' }}>{s.stage}</h3>
+              <h3 className="h3" style={{ marginBottom:'.18rem' }}>{s.stage}</h3>
               <p style={{ fontSize:'.7rem',color:statusColor[s.status],fontWeight:600,fontFamily:'var(--font-sans)',marginBottom:'.35rem' }}>{s.period}</p>
               <p style={{ fontSize:'.78rem',color:'var(--text-2)',fontStyle:'italic',fontFamily:'var(--font-sans)',marginBottom:'.75rem' }}>"{s.tagline}"</p>
               <p className="small" style={{ marginBottom:'.85rem', lineHeight:1.65 }}>{s.desc}</p>
@@ -93,7 +93,7 @@ export default function Timeline() {
         <div className="sr" style={{ marginTop:'2rem', background:'rgba(26,140,135,.05)', border:'1px solid rgba(26,140,135,.18)', borderRadius:16, padding:'1.5rem 2rem' }}>
           <div style={{ display:'flex',alignItems:'center',gap:'.65rem',marginBottom:'.7rem' }}>
             <Zap size={15} color="var(--teal)"/>
-            <h3 style={{ fontFamily:'var(--font-sans)',fontSize:'.95rem',fontWeight:700,color:'var(--text)' }}>What's next</h3>
+            <h3 className="h3">What's next</h3>
           </div>
           <p className="body" style={{ maxWidth:700 }}>
             Right now we're focused on closing the seed round, finalising the product for public launch, and growing our early adopter community. If you're an investor, operator, or early builder —{' '}

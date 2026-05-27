@@ -92,8 +92,8 @@ export default function ProductPreview() {
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Product Preview</p>
-          <h2 className="display-md" style={{ marginBottom: '1rem' }}>
-            Built for<span className="italic-serif teal-text"> serious users</span>
+          <h2 className="h2" style={{ marginBottom: '1rem' }}>
+            Built for<span className="teal-text"> serious users</span>
           </h2>
           <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
             Clean UI, dense information, zero noise. Designed to surface what matters.
@@ -153,7 +153,7 @@ export default function ProductPreview() {
             <div style={{ flex: 1, overflow: 'auto' }}><Dashboard/></div>
           </div>
         </div>
-        <p className="small sr-fade" style={{ textAlign: 'center', marginTop: '1.25rem' }}>
+        <p className="small-text sr-fade" style={{ textAlign: 'center', marginTop: '1.25rem' }}>
           Live interface preview · UI subject to change during development
         </p>
       </div>

@@ -27,12 +27,12 @@ export default function Funding() {
   }, [])
 
   return (
-    <section id="funding" ref={ref} className="section" style={{ background:'#fff' }}>
+    <section id="funding" ref={ref} className="section-band">
       <div className="wrap">
         <div className="sr" style={{ textAlign:'center', marginBottom:'3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom:'.75rem' }}>For Investors</p>
-          <h2 className="display-md" style={{ marginBottom:'1rem' }}>
-            Seeking<span className="italic-serif teal-text"> seed-round funding</span>
+          <h2 className="h2" style={{ marginBottom:'1rem' }}>
+            Seeking<span className="teal-text"> seed-round funding</span>
           </h2>
           <p className="lead" style={{ maxWidth:500, margin:'0 auto' }}>
             Working product, validated market interest, and a clear path to scale. We're looking for aligned investors who understand the opportunity.
@@ -56,7 +56,7 @@ export default function Funding() {
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', marginBottom:'2rem' }} id="funding-grid">
           {/* Why invest */}
           <div className="card-flat sr-left" style={{ padding:'1.75rem' }}>
-            <h3 style={{ fontFamily:'var(--font-sans)',fontSize:'1rem',fontWeight:700,marginBottom:'1.2rem',color:'var(--text)' }}>Why invest in StackSense</h3>
+            <h3 className="h3" style={{ marginBottom:'1.2rem' }}>Why invest in StackSense</h3>
             <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
               {reasons.map(r=>(
                 <div key={r.title} style={{ display:'flex',gap:'.7rem',alignItems:'flex-start' }}>
@@ -74,7 +74,7 @@ export default function Funding() {
           <div className="sr-right" style={{ background:'linear-gradient(135deg,rgba(26,140,135,.07) 0%,rgba(13,107,103,.04) 100%)',border:'1px solid rgba(26,140,135,.18)',borderRadius:18,padding:'1.75rem',display:'flex',flexDirection:'column',justifyContent:'space-between' }}>
             <div>
               <span className="pill pill-teal" style={{ marginBottom:'1rem',display:'inline-flex' }}>Open to Investment</span>
-              <h3 style={{ fontFamily:'var(--font-serif)',fontSize:'1.5rem',letterSpacing:'-.025em',marginBottom:'.75rem',lineHeight:1.15,color:'var(--text)' }}>
+              <h3 className="h3" style={{ marginBottom:'.75rem' }}>
                 Ready to discuss the opportunity?
               </h3>
               <p className="body" style={{ marginBottom:'1.5rem' }}>

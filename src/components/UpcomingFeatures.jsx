@@ -28,8 +28,8 @@ export default function UpcomingFeatures() {
       <div className="wrap">
         <div className="sr" style={{ textAlign:'center', marginBottom:'3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom:'.75rem' }}>Roadmap</p>
-          <h2 className="display-md" style={{ marginBottom:'1rem' }}>
-            What's<span className="italic-serif teal-text"> coming next</span>
+          <h2 className="h2" style={{ marginBottom:'1rem' }}>
+            What's<span className="teal-text"> coming next</span>
           </h2>
           <p className="lead" style={{ maxWidth:480, margin:'0 auto 1.25rem' }}>
             We ship with intention. Here's what's actively in development and what we're planning next.
@@ -50,7 +50,7 @@ export default function UpcomingFeatures() {
                 </div>
                 <span className={`pill ${f.bc}`}>{f.badge}</span>
               </div>
-              <h3 style={{ fontFamily:'var(--font-sans)',fontWeight:700,fontSize:'.9rem',marginBottom:'.42rem',letterSpacing:'-.01em',color:'var(--text)' }}>{f.title}</h3>
+              <h3 className="h3" style={{ marginBottom:'.42rem', fontSize:'.95rem' }}>{f.title}</h3>
               <p className="small" style={{ lineHeight:1.65 }}>{f.desc}</p>
             </div>
           ))}

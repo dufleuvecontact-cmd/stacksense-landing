@@ -42,7 +42,7 @@ export default function FAQ() {
       <div className="wrap-sm">
         <div className="sr" style={{ textAlign:'center', marginBottom:'2.5rem' }} ref={ref}>
           <p className="eyebrow" style={{ marginBottom:'.75rem' }}>FAQ</p>
-          <h2 className="display-sm">Common questions</h2>
+          <h2 className="h2">Common questions</h2>
         </div>
         <div style={{ display:'flex',flexDirection:'column',gap:'.55rem' }}>
           {faqs.map((f,i) => <Item key={i} q={f.q} a={f.a} open={open===i} onClick={()=>setOpen(open===i?null:i)}/>)}

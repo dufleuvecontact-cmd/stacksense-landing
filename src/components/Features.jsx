@@ -28,9 +28,9 @@ export default function Features() {
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core Features</p>
-          <h2 className="display-md" style={{ marginBottom: '1rem' }}>
+          <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Everything you need to<br/>
-            <span className="italic-serif teal-text"> stay in control</span>
+            <span className="teal-text"> stay in control</span>
           </h2>
           <p className="lead" style={{ maxWidth: 500, margin: '0 auto' }}>
             A focused toolkit built around clarity, safety, and consistency.
@@ -47,10 +47,10 @@ export default function Features() {
               }}>
                 <f.icon size={18} color={f.color} strokeWidth={1.8}/>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '.95rem', marginBottom: '.45rem', letterSpacing: '-.01em', color: 'var(--text)' }}>
+              <h3 className="h3" style={{ marginBottom: '.5rem', fontSize: '1.1rem' }}>
                 {f.title}
               </h3>
-              <p className="body">{f.desc}</p>
+              <p className="body-text">{f.desc}</p>
             </div>
           ))}
         </div>

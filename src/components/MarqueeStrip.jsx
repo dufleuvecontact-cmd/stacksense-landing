@@ -1,27 +1,28 @@
-const words = ['Peptide Tracking','Dose Adherence','Cycle Management','Smart Reminders','Progress Insights','Safety-First','Bioavailability','Clinical Clarity','Data Ownership','Full History Log']
+const words = ['Peptide Tracking','Dose Adherence','Cycle Management','Smart Reminders','Progress Insights','Bioavailability']
 
 export default function MarqueeStrip({ dark = false }) {
-  const items = [...words, ...words]
   return (
     <div style={{
-      overflow: 'hidden',
       borderTop: `1px solid ${dark ? 'rgba(255,255,255,.07)' : 'var(--border)'}`,
       borderBottom: `1px solid ${dark ? 'rgba(255,255,255,.07)' : 'var(--border)'}`,
-      padding: '.75rem 0',
-      background: dark ? 'rgba(255,255,255,.02)' : 'rgba(26,140,135,.03)',
+      padding: '1.5rem 0',
+      background: dark ? 'rgba(255,255,255,.02)' : 'var(--bg)',
     }}>
-      <div className="marquee-inner">
-        {items.map((w, i) => (
+      <div className="wrap" style={{
+        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1.5rem 2rem'
+      }}>
+        {words.map((w, i) => (
           <span key={i} style={{
-            display: 'inline-flex', alignItems: 'center', gap: '1rem',
-            padding: '0 1.5rem',
-            fontSize: '.72rem', fontWeight: 600, letterSpacing: '.08em',
+            display: 'inline-flex', alignItems: 'center', gap: '1.5rem',
+            fontSize: '.85rem', fontWeight: 600, letterSpacing: '.04em',
             textTransform: 'uppercase',
-            color: dark ? 'rgba(255,255,255,.35)' : 'var(--text-3)',
+            color: dark ? 'rgba(255,255,255,.45)' : 'var(--text-3)',
             fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap',
           }}>
             {w}
-            <span style={{ width: 4, height: 4, borderRadius: '50%', background: dark ? 'rgba(26,140,135,.5)' : 'var(--teal)', opacity: .6, display: 'inline-block' }}/>
+            {i !== words.length - 1 && (
+              <span style={{ width: 4, height: 4, borderRadius: '50%', background: dark ? 'rgba(26,140,135,.5)' : 'var(--border)', display: 'inline-block' }}/>
+            )}
           </span>
         ))}
       </div>

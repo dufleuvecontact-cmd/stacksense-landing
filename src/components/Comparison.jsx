@@ -25,8 +25,8 @@ export default function Comparison() {
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>The 10X Difference</p>
-          <h2 className="display-md" style={{ marginBottom: '1rem' }}>
-            Why spreadsheets <span className="italic-serif teal-text">fail you.</span>
+          <h2 className="h2" style={{ marginBottom: '1rem' }}>
+            Why spreadsheets <span className="teal-text">fail you.</span>
           </h2>
           <p className="lead" style={{ maxWidth: 620, margin: '0 auto' }}>
             Generic calorie trackers don't understand peptide half-lives. Spreadsheets require endless manual maintenance. Here is how StackSense stacks up.
