@@ -15,12 +15,23 @@ export default function Waitlist() {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [consent, setConsent] = useState(false)
-  const [refCode, setRefCode] = useState('')
+  const [refCode, setRefCode] = useState(() => new URLSearchParams(window.location.search).get('ref') || '')
   const [code, setCode] = useState('')
   const [spotsLeft, setSpotsLeft] = useState(null)
   const [copied, setCopied] = useState(false)
   const [refs, setRefs] = useState(0)
   const ref = useRef(null)
+
+  // Auto-scroll to waitlist when ?ref= present, then clean URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('ref')) {
+      setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 300)
+      params.delete('ref')
+      const newUrl = params.toString() ? `?${params}` : window.location.pathname
+      window.history.replaceState({}, '', newUrl)
+    }
+  }, [])
 
   useEffect(() => {
     supabase
@@ -98,7 +109,7 @@ export default function Waitlist() {
   }
 
   function copy() {
-    navigator.clipboard.writeText(`https://stacksense.io/join?ref=${code}`).catch(() => {})
+    navigator.clipboard.writeText(`https://stacksense.ca/?ref=${code}`).catch(() => {})
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
   }
@@ -322,7 +333,7 @@ export default function Waitlist() {
                 </p>
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 9, padding: '.7rem 1rem', display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.75rem' }}>
                   <span className="small" style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    stacksense.io/join?ref={code}
+                    stacksense.ca/?ref={code}
                   </span>
                   <button onClick={copy} style={{ background: copied ? 'rgba(26,140,135,.1)' : 'rgba(26,140,135,.08)', border: `1px solid ${copied ? 'rgba(26,140,135,.25)' : 'rgba(26,140,135,.18)'}`, color: 'var(--teal)', borderRadius: 7, padding: '.28rem .65rem', cursor: 'pointer', fontSize: '.7rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3, fontFamily: 'var(--font-sans)', transition: 'all .2s' }}>
                     {copied ? <Check size={11} /> : <Copy size={11} />} {copied ? 'Copied!' : 'Copy'}
