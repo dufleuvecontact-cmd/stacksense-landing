@@ -25,6 +25,11 @@ export default function Waitlist() {
   useEffect(() => {
     const p = new URLSearchParams(window.location.search)
     if(p.has('ref')) setRefCode(p.get('ref'))
+    if(p.get('payment') === 'success' && p.has('code')) {
+      setCode(p.get('code'))
+      setSubmitted(true)
+      window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+    }
   }, [])
 
   function gen() { return Math.random().toString(36).substring(2,8).toUpperCase() }
@@ -41,12 +46,25 @@ export default function Waitlist() {
         referred_by: refCode || null,
         referral_code: newCode
       }])
+
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email, 
+          priceId: import.meta.env.VITE_STRIPE_PRICE_ID,
+          code: newCode 
+        })
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+        return; // Don't set state yet, redirecting
+      }
     } catch (err) {
       console.error(err)
     }
     setIsSubmitting(false)
-    setCode(newCode)
-    setSubmitted(true)
   }
 
   function copy() {
