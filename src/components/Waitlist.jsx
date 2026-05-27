@@ -45,7 +45,29 @@ export default function Waitlist() {
   async function submit(e) {
     e.preventDefault()
     if (!email || !consent) return
+
+    // Anti-spam validation
+    if (name && !/^[A-Za-z\s-]{2,50}$/.test(name)) {
+      alert("Please enter a valid name (letters, spaces, hyphens only).")
+      return
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Please enter a valid email address.")
+      return
+    }
+
     setIsSubmitting(true)
+
+    // Verify referral code if provided
+    if (refCode) {
+      const { data, error } = await supabase.from('waitlist').select('referral_code').eq('referral_code', refCode).maybeSingle()
+      if (error || !data) {
+        alert("The referral code you entered is invalid. Please check it and try again, or leave it blank.")
+        setIsSubmitting(false)
+        return
+      }
+    }
+
     const newCode = gen()
     try {
       await supabase.from('waitlist').insert([{ 
@@ -69,9 +91,13 @@ export default function Waitlist() {
       if (data.url) {
         window.location.href = data.url;
         return; // Don't set state yet, redirecting
+      } else {
+        console.error('Stripe error:', data);
+        alert('Failed to initiate payment. Please make sure your Stripe keys are set in Vercel Environment Variables.');
       }
     } catch (err) {
       console.error(err)
+      alert('An error occurred. Check the console for details.');
     }
     setIsSubmitting(false)
   }
