@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Mail, User, ArrowRight, Copy, Check, Share2, Trophy, Hash, Lock, ShieldCheck } from 'lucide-react'
+import { Mail, User, ArrowRight, Copy, Check, Share2, Hash, Lock, ShieldCheck } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 
 const FOUNDING_SPOTS = 600
@@ -19,7 +19,6 @@ export default function Waitlist() {
   const [code, setCode] = useState('')
   const [spotsLeft, setSpotsLeft] = useState(null)
   const [copied, setCopied] = useState(false)
-  const [refs, setRefs] = useState(0)
   const ref = useRef(null)
 
   // Auto-scroll to waitlist when ?ref= present, then clean URL
@@ -39,16 +38,6 @@ export default function Waitlist() {
       .select('id', { count: 'exact', head: true })
       .then(({ count }) => setSpotsLeft(Math.max(FOUNDING_SPOTS - (count || 0), 0)))
   }, [])
-
-  // Fetch actual referral count when we have a code
-  useEffect(() => {
-    if (!code) return
-    supabase
-      .from('waitlist')
-      .select('id', { count: 'exact', head: true })
-      .eq('referred_by', code)
-      .then(({ count }) => setRefs(count || 0))
-  }, [code])
 
   // Handle return from Stripe checkout
   useEffect(() => {
@@ -95,7 +84,6 @@ export default function Waitlist() {
       url.searchParams.set('prefilled_email', email)
       window.location.href = url.toString()
     } else {
-      // Dev fallback: skip Stripe and go straight to success
       setCode(newCode)
       supabase
         .from('waitlist')
@@ -113,12 +101,6 @@ export default function Waitlist() {
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
   }
-
-  const tiers = [
-    { n: 1, label: 'Early Access',    reward: 'Priority queue position',              done: refs >= 1, color: '#1a8c87' },
-    { n: 3, label: 'Power User',      reward: 'Free first month + priority requests', done: refs >= 3, color: '#0d6b67' },
-    { n: 5, label: 'Founding Member', reward: 'Lifetime discount + beta status',      done: refs >= 5, color: '#25b5af' },
-  ]
 
   const spotsFull = spotsLeft === 0
   const claimedPct = spotsLeft === null ? 0 : ((FOUNDING_SPOTS - spotsLeft) / FOUNDING_SPOTS) * 100
@@ -138,7 +120,7 @@ export default function Waitlist() {
             </h2>
           </div>
           <div className="sr d2">
-            <p className="lead">Early access members help shape StackSense — and get rewarded for it.</p>
+            <p className="lead">Early access members help shape StackSense — your feedback goes directly into the product.</p>
           </div>
         </div>
 
@@ -179,10 +161,9 @@ export default function Waitlist() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }} id="waitlist-grid">
-
-          {/* ── Form card ── */}
-          <div className="card-flat sr-left" style={{ padding: '2rem' }}>
+        {/* Form card — centered, max width */}
+        <div style={{ maxWidth: 560, margin: '0 auto' }}>
+          <div className="card-flat sr" style={{ padding: '2rem' }}>
 
             {/* ── Step 1: Info ── */}
             {step === 'form' && (
@@ -279,7 +260,6 @@ export default function Waitlist() {
                   Securing spot for <strong style={{ color: 'var(--text)' }}>{email}</strong>
                 </p>
 
-                {/* Order summary */}
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '1.2rem', marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.75rem', paddingBottom: '.75rem', borderBottom: '1px solid var(--border)' }}>
                     <span style={{ fontSize: '.88rem', fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Founding Spot Reservation</span>
@@ -287,19 +267,18 @@ export default function Waitlist() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '.42rem' }}>
                     {[
-                      ['6 months free access at launch', true],
-                      ['$9.99/mo founding rate locked forever', true],
-                      ['Priority onboarding + roadmap influence', true],
-                    ].map(([label, green]) => (
+                      '6 months free access at launch',
+                      '$9.99/mo founding rate locked forever',
+                      'Priority onboarding + roadmap influence',
+                    ].map(label => (
                       <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '.45rem' }}>
-                        <Check size={12} color={green ? 'var(--teal)' : 'var(--text-3)'} />
+                        <Check size={12} color="var(--teal)" />
                         <span className="small" style={{ color: 'var(--text-2)' }}>{label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Credit note */}
                 <div style={{ background: 'rgba(26,140,135,.07)', border: '1px solid rgba(26,140,135,.16)', borderRadius: 10, padding: '.8rem 1rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'flex-start', gap: '.55rem' }}>
                   <ShieldCheck size={14} color="var(--teal)" style={{ flexShrink: 0, marginTop: 2 }} />
                   <p className="small" style={{ color: 'var(--text-2)', lineHeight: 1.55 }}>
@@ -345,53 +324,10 @@ export default function Waitlist() {
               </div>
             )}
           </div>
-
-          {/* ── Right: Referral rewards ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div className="card-flat sr-right d1" style={{ padding: '1.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem', marginBottom: '1rem' }}>
-                <div style={{ width: 36, height: 36, background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.18)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Trophy size={15} color="var(--teal)" />
-                </div>
-                <div>
-                  <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '.93rem', fontWeight: 700, color: 'var(--text)' }}>Referral Rewards</h4>
-                  <p className="small">Refer friends, move up the list</p>
-                </div>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem' }}>
-                {tiers.map(t => (
-                  <div key={t.n} style={{ background: t.done ? `${t.color}0d` : 'var(--bg)', border: `1px solid ${t.done ? `${t.color}28` : 'var(--border)'}`, borderRadius: 10, padding: '.7rem .9rem', display: 'flex', alignItems: 'center', gap: '.7rem', transition: 'all .2s' }}>
-                    <div style={{ width: 26, height: 26, borderRadius: '50%', background: t.done ? `${t.color}18` : 'var(--bg-card)', border: `1.5px solid ${t.done ? t.color : 'var(--border)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.68rem', fontWeight: 700, color: t.done ? t.color : 'var(--text-3)', flexShrink: 0 }}>
-                      {t.done ? <Check size={11} /> : t.n}
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: '.8rem', fontWeight: 600, color: t.done ? 'var(--text)' : 'var(--text-2)', fontFamily: 'var(--font-sans)' }}>{t.label}</div>
-                      <div className="small">{t.reward}</div>
-                    </div>
-                    <span className={`pill ${t.done ? 'pill-teal' : 'pill-gray'}`}>{t.done ? 'Unlocked' : `${t.n} refs`}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {step === 'success' && (
-              <div className="card-flat sr-right d2" style={{ padding: '1.25rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.6rem' }}>
-                  <span style={{ fontSize: '.8rem', fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Your referrals</span>
-                  <span className="small">{refs} / 3 to Power User</span>
-                </div>
-                <div style={{ height: 6, background: 'var(--bg)', borderRadius: 3, overflow: 'hidden', marginBottom: '.7rem' }}>
-                  <div style={{ height: '100%', width: `${Math.min(refs / 3 * 100, 100)}%`, background: 'linear-gradient(90deg,#1a8c87,#25b5af)', borderRadius: 3, transition: 'width .4s ease' }} />
-                </div>
-                <span className="small">{Math.max(3 - refs, 0)} more to next reward</span>
-              </div>
-            )}
-          </div>
         </div>
       </div>
       <style>{`
         @media(max-width:760px){
-          #waitlist-grid{grid-template-columns:1fr!important}
           #waitlist-header{grid-template-columns:1fr!important}
         }
       `}</style>
