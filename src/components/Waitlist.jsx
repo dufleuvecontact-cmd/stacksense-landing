@@ -219,7 +219,10 @@ export default function Waitlist() {
                 <span style={{ fontSize:'2rem',fontWeight:800,fontFamily:'var(--font-sans)',color:'var(--text)',letterSpacing:'-.03em' }}>$9.99</span>
                 <span style={{ fontSize:'.82rem',color:'var(--text-3)',fontFamily:'var(--font-sans)' }}>/month forever</span>
               </div>
-              <p className="small" style={{ color:'var(--teal-deep)',fontWeight:600,marginBottom:'1.25rem' }}>+ 6 months free when we launch</p>
+              <p className="small" style={{ color:'var(--teal-deep)',fontWeight:600,marginBottom:'.25rem' }}>+ 6 months free when we launch</p>
+              <p className="small" style={{ color:'var(--text-3)',marginBottom:'1.25rem',fontSize:'.75rem' }}>
+                Note: Release price will be between $13.99 - $19.99/mo (TBD).
+              </p>
               <div style={{ borderTop:'1px solid var(--border)',paddingTop:'1rem',display:'flex',flexDirection:'column',gap:'.6rem' }}>
                 {[
                   { icon: Shield, text: 'Unlimited protocols & substances' },

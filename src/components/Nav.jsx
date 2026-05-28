@@ -34,12 +34,7 @@ export default function Nav() {
           maxWidth: 1160, margin: '0 auto', padding: '0 1.5rem',
           height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '.55rem', textDecoration: 'none' }}>
-            <img src="/logo.png" width="28" height="28" alt="StackSense Logo" style={{ borderRadius: 6, objectFit: 'contain' }} />
-            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '1rem', letterSpacing: '-.02em', color: 'var(--text)' }}>
-              StackSense
-            </span>
-          </a>
+          <div style={{ width: 100 }}></div>
 
           <ul id="nav-links" style={{ display: 'flex', gap: '.15rem', listStyle: 'none', alignItems: 'center' }}>
             {links.map(({ label, href }) => (
