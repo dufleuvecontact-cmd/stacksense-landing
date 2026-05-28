@@ -22,6 +22,11 @@ export default async function handler(req, res) {
       ],
       mode: 'payment',
       customer_email: email, // Prefill user email
+      payment_intent_data: {
+        description: `StackSense Early Access. Your referral code is: ${code}`,
+        metadata: { referral_code: code },
+      },
+      metadata: { referral_code: code },
       success_url: `${req.headers.origin}/?payment=success${code ? `&code=${code}` : ''}#waitlist`,
       cancel_url: `${req.headers.origin}/?payment=cancel#waitlist`,
     });

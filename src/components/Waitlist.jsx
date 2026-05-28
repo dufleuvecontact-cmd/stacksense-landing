@@ -32,10 +32,12 @@ export default function Waitlist() {
       // Update payment status
       supabase.from('waitlist').update({ payment_status: 'paid' }).eq('referral_code', codeParam).then(() => {
         window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+        setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 100);
       }).catch(err => console.error(err));
     }
     if(p.get('payment') === 'cancel') {
       window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+      setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 100);
       // Optional: could show an alert that payment was cancelled
     }
   }, [])
@@ -191,7 +193,7 @@ export default function Waitlist() {
                 </div>
                 <h3 className="h3" style={{ marginBottom:'.5rem' }}>You're on the list</h3>
                 <p className="body-text" style={{ marginBottom:'1.5rem', color: 'var(--text-2)' }}>
-                  We'll be in touch as we approach launch with details on your $1 waitlist fee and next steps.
+                  Save your referral code. It's what you're going to use to get 6 months of unlimited in the app. If lost, contact support with your order number to get it sorted out at <a href="mailto:support@stacksense.ca" style={{color: 'var(--teal)', textDecoration: 'none'}}>support@stacksense.ca</a>.
                 </p>
                 <div style={{ background:'var(--bg)', border:'1px solid var(--border)', borderRadius:10, padding:'1.25rem' }}>
                   <p style={{ fontSize:'.8rem', fontWeight:700, color:'var(--text)', marginBottom:'.4rem', fontFamily:'var(--font-sans)' }}>Invite your friends</p>
