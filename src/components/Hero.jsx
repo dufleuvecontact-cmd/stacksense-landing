@@ -192,7 +192,7 @@ export default function Hero() {
               <span className="teal-text">spreadsheets?</span>
             </h1>
 
-            <p className="sr d3 lead" style={{ maxWidth: 620, marginBottom: '1.8rem' }}>
+            <p className="sr d3 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>
               Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
             </p>
 
@@ -261,14 +261,14 @@ export default function Hero() {
         .hero-content {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          text-align: left;
+          align-items: center;
+          text-align: center;
           max-width: 100%;
         }
         .hero-buttons-container {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center;
           margin-bottom: 1.5rem;
           width: 100%;
         }
@@ -276,12 +276,12 @@ export default function Hero() {
           display: flex;
           gap: .75rem;
           flex-wrap: wrap;
-          justify-content: flex-start;
+          justify-content: center;
         }
         .hero-features {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center;
           gap: 0.8rem;
         }
         .hero-phone-container {
