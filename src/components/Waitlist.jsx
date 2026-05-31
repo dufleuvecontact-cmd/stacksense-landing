@@ -85,14 +85,16 @@ export default function Waitlist() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           email, 
-          priceId: import.meta.env.VITE_STRIPE_PRICE_ID,
           code: newCode 
         })
       });
       const data = await res.json();
-      if (data.url) {
+      if (data.url && data.url.startsWith('https://checkout.stripe.com/')) {
         window.location.href = data.url;
         return; // Don't set state yet, redirecting
+      } else if (data.url) {
+        console.error('Invalid redirect URL:', data.url);
+        alert('Security error: Received an invalid redirect URL from the server.');
       } else {
         console.error('Stripe error:', data);
         alert('Failed to initiate payment. Please make sure your Stripe keys are set in Vercel Environment Variables.');

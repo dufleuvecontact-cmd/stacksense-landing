@@ -9,7 +9,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { email, priceId, code } = req.body;
+  const { email, code } = req.body;
+  const priceId = process.env.STRIPE_PRICE_ID;
+
+  if (!priceId) {
+    return res.status(500).json({ message: 'STRIPE_PRICE_ID is not configured on the server.' });
+  }
 
   try {
     const session = await stripe.checkout.sessions.create({

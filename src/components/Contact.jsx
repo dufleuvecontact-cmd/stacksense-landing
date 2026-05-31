@@ -44,7 +44,7 @@ export default function Contact() {
             <div style={{ marginTop: '1rem' }} />
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Company LinkedIn</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>Follow StackSense on LinkedIn.</p>
-            <a href="https://linkedin.com/company/stacksense-health" target="_blank" rel="noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>StackSense.health</a>
+            <a href="https://linkedin.com/company/stacksense-health" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>StackSense.health</a>
           </div>
 
           <div className="card-flat" style={{ padding: '2rem' }}>
@@ -52,7 +52,7 @@ export default function Contact() {
             <div style={{ marginTop: '1rem' }} />
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Founder LinkedIn</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>Connect directly with Jad Gouiza.</p>
-            <a href="https://www.linkedin.com/in/jad-gouiza" target="_blank" rel="noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>Jad Gouiza</a>
+            <a href="https://www.linkedin.com/in/jad-gouiza" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>Jad Gouiza</a>
           </div>
         </div>
       </div>
