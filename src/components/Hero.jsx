@@ -253,7 +253,7 @@ export default function Hero() {
       <style>{`
         #hero-grid {
           display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
+          grid-template-columns: 1fr;
           gap: 3rem;
           align-items: center;
           width: 100%;
