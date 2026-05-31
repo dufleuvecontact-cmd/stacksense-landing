@@ -176,32 +176,33 @@ export default function Hero() {
         position: 'absolute', inset: 0, opacity: .5, pointerEvents: 'none',
       }}/>
 
+      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: '1.5rem', paddingBottom: '2.5rem' }}>
+        <div id="hero-grid">
 
-
-      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: '2rem', paddingBottom: '3rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', alignItems: 'center', textAlign: 'center' }} id="hero-grid">
-
-          {/* Top / Center */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: 800 }}>
-            <div className="sr d1" style={{ marginBottom: '1.4rem' }}>
+          {/* Left / Content */}
+          <div className="hero-content">
+            <div className="sr d1" style={{ marginBottom: '1.2rem' }}>
               <span className="pill pill-teal">
                 Seed Stage · Open Waitlist
               </span>
             </div>
 
-            <h1 className="sr d2 h1" style={{ marginBottom: '1.5rem' }}>
+            <h1 className="sr d2 h1" style={{ marginBottom: '1.2rem' }}>
               Tired of tracking peptides in<br/>
               <span className="teal-text">spreadsheets?</span>
             </h1>
 
-            <p className="sr d3 lead" style={{ maxWidth: 680, marginBottom: '2.2rem' }}>
+            <p className="sr d3 lead" style={{ maxWidth: 620, marginBottom: '1.8rem' }}>
               Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
             </p>
 
-            <div className="sr d4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="sr d4 hero-buttons-container">
+              <div className="hero-buttons">
                 <a href="#waitlist" className="btn btn-teal">
                   Join the Waitlist <ArrowRight size={15}/>
+                </a>
+                <a href="#product" className="btn btn-outline" style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }}>
+                  Try Live Demo
                 </a>
                 <a href="#features" className="btn btn-outline">
                   See Features
@@ -209,7 +210,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="sr d5" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.2rem' }}>
+            <div className="sr d5 hero-features">
               {[
                 '420+ compounds in our protocol library',
                 'Built on clinical dosing data from peer-reviewed sources',
@@ -225,13 +226,13 @@ export default function Hero() {
           </div>
 
           {/* Right — phone */}
-          <div className="sr-right d2" style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem' }}>
+          <div className="sr-right d2 hero-phone-container" style={{ display: 'flex', justifyContent: 'center' }}>
             <PhoneMockup/>
           </div>
         </div>
 
         {/* Scroll cue */}
-        <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '4rem', opacity: 0 }}>
+        <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '3rem', opacity: 0 }}>
           <ChevronDown size={18} color="var(--text-3)" />
         </div>
       </div>
@@ -250,8 +251,64 @@ export default function Hero() {
       </div>
 
       <style>{`
-        @media (max-width: 860px) {
-          #hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+        #hero-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 3rem;
+          align-items: center;
+          width: 100%;
+        }
+        .hero-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+          max-width: 100%;
+        }
+        .hero-buttons-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 1.5rem;
+          width: 100%;
+        }
+        .hero-buttons {
+          display: flex;
+          gap: .75rem;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        .hero-features {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.8rem;
+        }
+        .hero-phone-container {
+          padding-top: 0;
+        }
+        @media (max-width: 960px) {
+          #hero-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            text-align: center;
+          }
+          .hero-content {
+            align-items: center;
+            text-align: center;
+          }
+          .hero-buttons-container {
+            align-items: center;
+          }
+          .hero-buttons {
+            justify-content: center;
+          }
+          .hero-features {
+            align-items: center;
+          }
+          .hero-phone-container {
+            padding-top: 1rem;
+          }
         }
       `}</style>
     </section>
