@@ -9,27 +9,50 @@ const links = [
   { label: 'Investors', href: '#funding' },
 ]
 
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 24)
+    const fn = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
   return (
     <>
-      <header style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        transition: 'background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease',
-        background: scrolled ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
-        borderBottom: scrolled ? '1px solid rgba(0, 0, 0, 0.04)' : '1px solid transparent',
-        backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
-        boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.03)' : 'none',
-      }}>
+      {/* Hover Trigger Zone when scrolled and menu is closed */}
+      {scrolled && !hovered && !open && (
+        <div 
+          onMouseEnter={() => setHovered(true)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '16px',
+            zIndex: 199,
+            background: 'transparent'
+          }}
+        />
+      )}
+
+      <header 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+          transform: (scrolled && !hovered && !open) ? 'translateY(-100%)' : 'translateY(0)',
+          transition: 'transform .3s cubic-bezier(0.16, 1, 0.3, 1), background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease',
+          background: scrolled ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
+          borderBottom: scrolled ? '1px solid rgba(0, 0, 0, 0.04)' : '1px solid transparent',
+          backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+          boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.03)' : 'none',
+        }}
+      >
         <nav style={{
           maxWidth: 1160, margin: '0 auto', padding: '0 1.5rem',
           height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between',

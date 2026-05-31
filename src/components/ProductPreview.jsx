@@ -17,9 +17,9 @@ export default function ProductPreview() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth
-      // Target device total width is 454px (430px screen + 24px bezel)
-      if (width < 520) {
-        setScale((width - 40) / 454)
+      // Target device total width is 364px (340px screen + 24px bezel)
+      if (width < 420) {
+        setScale((width - 40) / 364)
       } else {
         setScale(1)
       }
@@ -48,7 +48,7 @@ export default function ProductPreview() {
           justifyContent: 'center',
           alignItems: 'center',
           width: '100%',
-          height: `${956 * scale}px`,
+          height: `${760 * scale}px`,
           margin: '0 auto',
           position: 'relative',
           overflow: 'visible'
@@ -58,8 +58,8 @@ export default function ProductPreview() {
             transform: `scale(${scale})`,
             transformOrigin: 'center center',
             position: 'absolute',
-            width: '454px',
-            height: '956px',
+            width: '364px',
+            height: '760px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
@@ -83,17 +83,7 @@ export default function ProductPreview() {
                   <div className="sensor" />
                 </div>
 
-                {/* iOS Status Bar Overlay */}
-                <div className="iphone-status-bar">
-                  <span className="time">9:41</span>
-                  <div className="status-icons">
-                    <span className="network">📶</span>
-                    <span className="wifi">📶</span>
-                    <span className="battery">🔋</span>
-                  </div>
-                </div>
-
-                {/* Iframe content */}
+                {/* Iframe content - fits the whole screen */}
                 <div className="iphone-content-area">
                   {iframeLoading && (
                     <div className="iphone-loader">
@@ -123,13 +113,13 @@ export default function ProductPreview() {
       <style>{`
         .iphone-device {
           position: relative;
-          width: 430px;
-          height: 932px;
+          width: 340px;
+          height: 736px;
           background: #000000;
-          border-radius: 56px;
+          border-radius: 46px;
           box-shadow: 
-            0 0 0 4px #2c2b2f,
-            0 0 0 12px #0f0f11,
+            0 0 0 3px #2c2b2f,
+            0 0 0 10px #0f0f11,
             0 25px 60px rgba(0,0,0,0.35);
           box-sizing: content-box;
         }
@@ -140,35 +130,35 @@ export default function ProductPreview() {
           border-radius: 2px;
         }
         .iphone-btn.silent {
-          left: -14px;
-          top: 140px;
+          left: -12px;
+          top: 110px;
           width: 2px;
-          height: 32px;
+          height: 26px;
         }
         .iphone-btn.vol-up {
-          left: -14px;
-          top: 200px;
+          left: -12px;
+          top: 160px;
           width: 2px;
-          height: 60px;
+          height: 48px;
         }
         .iphone-btn.vol-down {
-          left: -14px;
-          top: 280px;
+          left: -12px;
+          top: 220px;
           width: 2px;
-          height: 60px;
+          height: 48px;
         }
         .iphone-btn.power {
-          right: -14px;
-          top: 240px;
+          right: -12px;
+          top: 190px;
           width: 2px;
-          height: 90px;
+          height: 70px;
         }
 
         .iphone-screen {
           position: relative;
           width: 100%;
           height: 100%;
-          border-radius: 44px;
+          border-radius: 36px;
           overflow: hidden;
           background: #ffffff;
           display: flex;
@@ -177,64 +167,38 @@ export default function ProductPreview() {
 
         .iphone-dynamic-island {
           position: absolute;
-          top: 15px;
+          top: 12px;
           left: 50%;
           transform: translateX(-50%);
-          width: 110px;
-          height: 30px;
+          width: 90px;
+          height: 25px;
           background: #000000;
-          border-radius: 20px;
+          border-radius: 16px;
           z-index: 100;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 14px;
+          padding: 0 12px;
           box-sizing: border-box;
           pointer-events: none;
         }
         .camera-lens {
-          width: 8px;
-          height: 8px;
+          width: 6px;
+          height: 6px;
           background: #050515;
           border-radius: 50%;
           box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.4);
         }
         .sensor {
-          width: 8px;
-          height: 8px;
+          width: 6px;
+          height: 6px;
           background: #020205;
           border-radius: 50%;
         }
 
-        .iphone-status-bar {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 48px;
-          padding: 0 32px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-size: 13.5px;
-          font-weight: 600;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-          color: #000000;
-          z-index: 90;
-          pointer-events: none;
-          background: rgba(255, 255, 255, 0.7);
-          backdrop-filter: blur(10px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .status-icons {
-          display: flex;
-          gap: 6px;
-          align-items: center;
-        }
-
         .iphone-content-area {
           flex: 1;
-          margin-top: 48px; /* Below status bar */
+          margin-top: 0;
           position: relative;
           background: #fafafa;
           overflow: hidden;
@@ -266,8 +230,8 @@ export default function ProductPreview() {
           bottom: 8px;
           left: 50%;
           transform: translateX(-50%);
-          width: 140px;
-          height: 5px;
+          width: 110px;
+          height: 4px;
           background: #000000;
           border-radius: 10px;
           z-index: 100;
