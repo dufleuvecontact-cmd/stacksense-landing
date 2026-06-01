@@ -142,7 +142,7 @@ export default function Waitlist() {
                   ))}
                 </ul>
                 <form onSubmit={submit} style={{ display:'flex', flexDirection:'column', gap:'.7rem' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
+                  <div id="wl-form-top" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
                     <div>
                       <label htmlFor="wl-name" style={{ display:'block', fontSize:'.76rem', fontWeight:600, color:'var(--text-2)', marginBottom:'.3rem' }}>
                         Name <span style={{ color:'var(--text-3)', fontWeight:400 }}>(optional)</span>
@@ -253,7 +253,10 @@ export default function Waitlist() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:760px){#waitlist-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:760px){#waitlist-grid{grid-template-columns:1fr!important}}
+        @media(max-width:500px){#wl-form-top{grid-template-columns:1fr!important}}
+      `}</style>
     </section>
   )
 }

@@ -225,6 +225,8 @@ body {
   .section  { padding: 80px 0; }
   .section-sm { padding: 64px 0; }
   .section-band { padding: 80px 0; }
+  .wrap { padding: 0 1.25rem; }
+  .wrap-sm { padding: 0 1.25rem; }
 }
 @media (min-width: 769px) { .show-mob { display: none !important; } }
 
