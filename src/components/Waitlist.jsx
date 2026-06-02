@@ -101,6 +101,8 @@ export default function Waitlist() {
 
       if (error) {
         console.error('Supabase insert error:', error)
+        console.error('code:', error.code, 'message:', error.message, 'details:', error.details, 'hint:', error.hint)
+        alert(`DEBUG: ${error.code || 'no-code'} | ${error.message || 'no-message'} | ${error.details || 'no-details'}`)
         // Duplicate email is a unique constraint violation (code 23505)
         if (error.code === '23505') {
           alert("You're already on the waitlist! Check your email or contact support@stacksense.ca.")
