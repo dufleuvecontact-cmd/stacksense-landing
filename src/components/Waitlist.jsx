@@ -36,7 +36,7 @@ export default function Waitlist() {
       setIsFounder(true)
       supabase
         .from('waitlist')
-        .update({ payment_status: 'paid', tier: 'founding' })
+        .update({ payment_status: 'paid' })
         .eq('referral_code', codeParam)
         .then(() => {
           track('founding_upgrade')
@@ -80,29 +80,17 @@ export default function Waitlist() {
 
     const newCode = gen()
 
-    // Read UTM params for source attribution (Reddit in-app browser strips referrers)
-    const p = new URLSearchParams(window.location.search)
-    const utms = {
-      utm_source: p.get('utm_source') || null,
-      utm_medium: p.get('utm_medium') || null,
-      utm_campaign: p.get('utm_campaign') || null,
-    }
-
     try {
       const { error } = await supabase.from('waitlist').insert([{
         email,
         name: name || null,
         referred_by: refCode || null,
         referral_code: newCode,
-        tier: 'free',
         payment_status: 'none',
-        ...utms,
       }])
 
       if (error) {
         console.error('Supabase insert error:', error)
-        console.error('code:', error.code, 'message:', error.message, 'details:', error.details, 'hint:', error.hint)
-        alert(`DEBUG: ${error.code || 'no-code'} | ${error.message || 'no-message'} | ${error.details || 'no-details'}`)
         // Duplicate email is a unique constraint violation (code 23505)
         if (error.code === '23505') {
           alert("You're already on the waitlist! Check your email or contact support@stacksense.ca.")
