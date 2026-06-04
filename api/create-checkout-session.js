@@ -32,8 +32,10 @@ export default async function handler(req, res) {
         metadata: { referral_code: code },
       },
       metadata: { referral_code: code },
-      success_url: `${req.headers.origin}/?payment=success${code ? `&code=${code}` : ''}#waitlist`,
-      cancel_url: `${req.headers.origin}/?payment=cancel#waitlist`,
+      // Use SITE_URL env var — req.headers.origin is unreliable in Vercel serverless
+      // (can be undefined for same-origin fetches, producing broken success_url)
+      success_url: `${process.env.SITE_URL || 'https://stacksense.ca'}/?payment=success${code ? `&code=${code}` : ''}`,
+      cancel_url: `${process.env.SITE_URL || 'https://stacksense.ca'}/?payment=cancel`,
     });
 
     res.status(200).json({ sessionId: session.id, url: session.url });
