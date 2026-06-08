@@ -170,7 +170,7 @@ export default function Hero() {
       position: 'relative', overflow: 'hidden',
       background: 'var(--bg)',
       paddingTop: 120,
-      paddingBottom: 40,
+      paddingBottom: 0,
     }}>
       {/* Dot grid bg */}
       <div className="dot-grid" style={{
@@ -235,7 +235,7 @@ export default function Hero() {
         </div>
 
         {/* Scroll cue */}
-        <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '3rem', opacity: 0 }}>
+        <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '1.5rem', opacity: 0 }}>
           <ChevronDown size={18} color="var(--text-3)" />
         </div>
       </div>
