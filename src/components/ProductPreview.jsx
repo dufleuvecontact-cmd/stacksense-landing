@@ -30,7 +30,7 @@ export default function ProductPreview() {
   }, [])
 
   return (
-    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden', paddingTop: '2rem' }}>
+    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden', paddingTop: 0 }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive demo</p>
