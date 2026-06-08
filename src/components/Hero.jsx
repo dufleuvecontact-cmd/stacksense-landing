@@ -166,10 +166,11 @@ export default function Hero() {
 
   return (
     <section ref={ref} style={{
-      minHeight: '100vh', display: 'flex', alignItems: 'center',
+      minHeight: 'auto', display: 'flex', alignItems: 'center',
       position: 'relative', overflow: 'hidden',
       background: 'var(--bg)',
-      paddingTop: 80,
+      paddingTop: 120,
+      paddingBottom: 40,
     }}>
       {/* Dot grid bg */}
       <div className="dot-grid" style={{
