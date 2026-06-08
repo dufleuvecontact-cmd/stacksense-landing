@@ -192,15 +192,9 @@ export default function Hero() {
               <span className="teal-text">Every dose, every cycle.</span>
             </h1>
 
-            <div className="sr d3" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.2rem' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e8efee', overflow: 'hidden' }}>
-                {/* [Photo of Jad] */}
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7a9490', fontSize: '10px' }}>Photo</div>
-              </div>
-              <div style={{ textAlign: 'left', fontSize: '0.85rem', color: 'var(--text-2)', lineHeight: 1.3 }}>
-                <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder<br/>
-                Running peptide protocols since 2022
-              </div>
+            <div className="sr d3" style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-2)', lineHeight: 1.3, marginBottom: '1.2rem' }}>
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder<br/>
+              Biohacking since 2024
             </div>
 
             <p className="sr d4 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>
