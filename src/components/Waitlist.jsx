@@ -220,7 +220,7 @@ export default function Waitlist() {
                     </span>
                   </label>
                   <div style={{ textAlign: 'center', marginTop: '0.5rem', marginBottom: '0.2rem', fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 500 }}>
-                    🔒 847 people already on the waitlist
+                    58 people and counting on the waitlist
                   </div>
                   <button type="submit" className="btn btn-teal" disabled={!email || !consent || isSubmitting}
                     style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting) ? .5 : 1 }}>
