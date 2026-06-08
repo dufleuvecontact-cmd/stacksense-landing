@@ -93,7 +93,7 @@ export default function Waitlist() {
         console.error('Supabase insert error:', error)
         // Duplicate email is a unique constraint violation (code 23505)
         if (error.code === '23505') {
-          alert("You're already on the waitlist! Check your email or contact support@stacksense.online.")
+          alert("You're already on the waitlist! Check your email or contact support@stacksense.ca.")
         } else {
           alert('Something went wrong saving your spot. Please try again.')
         }
@@ -130,7 +130,7 @@ export default function Waitlist() {
         alert('Security error: received an invalid redirect URL from the server.')
       } else {
         console.error('Stripe error:', data)
-        alert('Failed to initiate payment. Please try again or contact support@stacksense.online.')
+        alert('Failed to initiate payment. Please try again or contact support@stacksense.ca.')
       }
     } catch (err) {
       console.error(err)
@@ -140,7 +140,7 @@ export default function Waitlist() {
   }
 
   function copy() {
-    navigator.clipboard.writeText(`https://stacksense.online/?ref=${code}`).catch(() => {})
+    navigator.clipboard.writeText(`https://stacksense.ca/?ref=${code}`).catch(() => {})
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
   }
@@ -248,7 +248,7 @@ export default function Waitlist() {
                   <p style={{ fontSize: '.75rem', color: 'var(--text-3)', marginBottom: '1rem' }}>Share your unique link to help others discover StackSense.</p>
                   <div style={{ display: 'flex', gap: '.5rem' }}>
                     <div style={{ flex: 1, background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '.5rem .75rem', fontSize: '.75rem', color: 'var(--text-2)', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', userSelect: 'all' }}>
-                      https://stacksense.online/?ref={code}
+                      https://stacksense.ca/?ref={code}
                     </div>
                     <button onClick={copy} className="btn btn-teal" style={{ padding: '.5rem .75rem', minWidth: 85, justifyContent: 'center' }}>
                       {copied ? <Check size={14} /> : <><Copy size={13} /> Copy</>}

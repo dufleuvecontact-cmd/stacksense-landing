@@ -36,7 +36,7 @@ export default function Contact() {
             <Mail size={24} color="var(--teal)" style={{ marginBottom: '1rem' }} />
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Email Us</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>For general inquiries and support.</p>
-            <a href="mailto:contact@stacksense.online" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>contact@stacksense.online</a>
+            <a href="mailto:contact@stacksense.ca" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>contact@stacksense.ca</a>
           </div>
 
           <div className="card-flat" style={{ padding: '2rem' }}>

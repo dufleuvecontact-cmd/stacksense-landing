@@ -4,7 +4,7 @@
 const navCols = {
   Product:  [['Features','#features'],['Product Preview','#product'],['Roadmap','#roadmap'],['Join Waitlist','#waitlist']],
   Company:  [['Investors','/investors'],['Contact','#contact']],
-  Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests','mailto:legal@stacksense.online']],
+  Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests','mailto:legal@stacksense.ca']],
 }
 
 

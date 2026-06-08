@@ -92,7 +92,7 @@
       <p>When a user deletes their account, we apply the following grace period to prevent accidents:</p>
       <ul>
         <li><strong>0 to 24 hours after deletion request:</strong> Account is soft-deleted. User can sign in and reverse the deletion by clicking a recovery link in the deletion-confirmation email.</li>
-        <li><strong>24 hours to 7 days after deletion:</strong> Account remains soft-deleted. Recovery requires emailing <a href="mailto:privacy@stacksense.online">privacy@stacksense.online</a> with proof of identity.</li>
+        <li><strong>24 hours to 7 days after deletion:</strong> Account remains soft-deleted. Recovery requires emailing <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> with proof of identity.</li>
         <li><strong>After 7 days:</strong> Hard deletion runs on the next nightly cron job. Recovery is no longer possible.</li>
         <li><strong>7 days to 90 days:</strong> Data is purged from primary DB. Backups roll off on their normal cycle (we use Supabase point-in-time recovery with a 7-day retention plus weekly snapshots retained 30 days, so worst case ~6 months for the oldest snapshot to roll off).</li>
         <li><strong>After 90 days:</strong> All identifying health data is gone from primary systems. Backups may still hold up to 6-month-old snapshots. We do not selectively delete from backups. When backups age out on rotation, that data is gone.</li>
@@ -126,11 +126,11 @@ ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
       <ul>
         <li>Delete from <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code>, and any other health-data tables</li>
         <li>Delete from <code>marketing_preferences</code></li>
-        <li>Anonymize the <code>users</code> row: clear <code>email</code>, <code>display_name</code>, <code>password_hash</code>, replace <code>email</code> with <code>deleted-{user_id}@deleted.stacksense.online</code>, keep only <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> for compliance proof</li>
+        <li>Anonymize the <code>users</code> row: clear <code>email</code>, <code>display_name</code>, <code>password_hash</code>, replace <code>email</code> with <code>deleted-{user_id}@deleted.stacksense.ca</code>, keep only <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> for compliance proof</li>
         <li>Do NOT delete the row entirely. We keep the anonymized stub for consent proof if a future complaint arises.</li>
         <li>Anonymize the Stripe customer record (Stripe API: update customer with empty PII, then archive)</li>
       </ul>
-      <p>Log every action in the deletion audit log and email the user from <a href="mailto:privacy@stacksense.online">privacy@stacksense.online</a> confirming deletion (sent to the original email since we have not yet anonymized at that point - anonymize last, after email send).</p>
+      <p>Log every action in the deletion audit log and email the user from <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> confirming deletion (sent to the original email since we have not yet anonymized at that point - anonymize last, after email send).</p>
 
       <h2>Retention enforcement for other categories</h2>
       <ul>
@@ -263,7 +263,7 @@ ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
       <p>Lorsque un utilisateur supprime son compte, nous appliquons la période de grâce suivante afin d'éviter les accidents :</p>
       <ul>
         <li><strong>0 à 24 heures après la demande de suppression :</strong> le compte est supprimé logiquement. L'utilisateur peut se reconnecter et annuler la suppression en cliquant sur un lien de récupération dans l'e-mail de confirmation de suppression.</li>
-        <li><strong>24 heures à 7 jours après la suppression :</strong> le compte reste supprimé logiquement. La récupération nécessite d'écrire à <a href="mailto:privacy@stacksense.online">privacy@stacksense.online</a> avec une preuve d'identité.</li>
+        <li><strong>24 heures à 7 jours après la suppression :</strong> le compte reste supprimé logiquement. La récupération nécessite d'écrire à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> avec une preuve d'identité.</li>
         <li><strong>Après 7 jours :</strong> la suppression définitive est effectuée lors du prochain travail cron nocturne. La récupération n'est plus possible.</li>
         <li><strong>7 à 90 jours :</strong> les données sont purgées de la base de données principale. Les sauvegardes sont supprimées selon leur cycle normal (nous utilisons la récupération point-in-time Supabase avec une conservation de 7 jours plus des instantanés hebdomadaires conservés 30 jours, soit au pire environ 6 mois pour les instantanés les plus anciens).</li>
         <li><strong>Après 90 jours :</strong> toutes les données de santé identifiantes sont supprimées des systèmes principaux. Les sauvegardes peuvent encore contenir des instantanés vieux de 6 mois. Nous ne supprimons pas sélectivement des sauvegardes. Lorsque les sauvegardes arrivent en fin de cycle, les données disparaissent.</li>
@@ -297,11 +297,11 @@ ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
       <ul>
         <li>Supprimer dans <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code> et toutes les autres tables de données de santé</li>
         <li>Supprimer dans <code>marketing_preferences</code></li>
-        <li>Anonymiser la ligne <code>users</code> : effacer <code>email</code>, <code>display_name</code>, <code>password_hash</code>, remplacer <code>email</code> par <code>deleted-{user_id}@deleted.stacksense.online</code>, conserver uniquement <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> pour preuve de conformité</li>
+        <li>Anonymiser la ligne <code>users</code> : effacer <code>email</code>, <code>display_name</code>, <code>password_hash</code>, remplacer <code>email</code> par <code>deleted-{user_id}@deleted.stacksense.ca</code>, conserver uniquement <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> pour preuve de conformité</li>
         <li>Ne PAS supprimer la ligne complètement. Nous conservons l'enregistrement anonymisé pour prouver le consentement en cas de plainte future.</li>
         <li>Anonymiser le client Stripe (API Stripe : mettre à jour le client avec des PII vides, puis archiver)</li>
       </ul>
-      <p>Consigner chaque action dans le journal d'audit de suppression. Envoyer un e-mail de confirmation à l'utilisateur depuis <a href="mailto:privacy@stacksense.online">privacy@stacksense.online</a> (envoyé à l'adresse originale avant anonymisation finale).</p>
+      <p>Consigner chaque action dans le journal d'audit de suppression. Envoyer un e-mail de confirmation à l'utilisateur depuis <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> (envoyé à l'adresse originale avant anonymisation finale).</p>
 
       <h2>Application de la conservation pour d'autres catégories</h2>
       <ul>
