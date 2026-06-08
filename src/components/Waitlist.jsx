@@ -151,7 +151,7 @@ export default function Waitlist() {
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Early access</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
-            Be first.<span className="teal-text"> Shape the product.</span>
+            Shape the <span className="teal-text">product.</span>
           </h2>
           <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
             Early access members help shape StackSense — and lock in special pricing.
