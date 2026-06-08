@@ -195,7 +195,7 @@ export default function Hero() {
 
             <div className="sr d3" style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-2)', lineHeight: 1.3, marginBottom: '1.2rem' }}>
               <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder<br/>
-              Biohacking since 2024
+              Running peptide protocols since 2022
             </div>
 
             <p className="sr d4 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>

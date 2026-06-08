@@ -220,11 +220,11 @@ export default function Waitlist() {
                     </span>
                   </label>
                   <div style={{ textAlign: 'center', marginTop: '0.5rem', marginBottom: '0.2rem', fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 500 }}>
-                    58 people and counting on the waitlist
+                    Early access — spots limited
                   </div>
                   <button type="submit" className="btn btn-teal" disabled={!email || !consent || isSubmitting}
                     style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting) ? .5 : 1 }}>
-                    {isSubmitting ? 'Joining...' : <>Become a Founding Member — $1 <ArrowRight size={14} /></>}
+                    {isSubmitting ? 'Joining...' : <>Join the Waitlist <ArrowRight size={14} /></>}
                   </button>
                 </form>
               </>

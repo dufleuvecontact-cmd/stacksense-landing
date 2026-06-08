@@ -115,14 +115,12 @@ body {
   font-size: .85rem;
   font-weight: 600;
   letter-spacing: .12em;
-  text-transform: uppercase;
   color: var(--text-3);
 }
 .eyebrow-dark {
   font-size: .85rem;
   font-weight: 600;
   letter-spacing: .12em;
-  text-transform: uppercase;
   color: rgba(255,255,255,.5);
 }
 .lead { font-size: 1.25rem; line-height: 1.8; color: var(--text-2); }
