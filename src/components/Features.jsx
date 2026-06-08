@@ -4,7 +4,6 @@ import { LayoutGrid, Clock, Activity, Search, Bell, LayoutDashboard } from 'luci
 const features = [
   { icon: LayoutGrid,       title: 'Protocol & Cycle Builder',   desc: 'Create and manage supplement and peptide protocols with multiple substances, dosing schedules, and cycle phases.', color: '#1a8c87' },
   { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log every dose as taken, skipped, or snoozed. Track your adherence over time with clear visual feedback.', color: '#0d6b67' },
-  { icon: Activity,         title: 'Bloodwork Analysis',         desc: 'Upload bloodwork markers and get AI-powered summaries with key findings and questions for your doctor.', color: '#25b5af' },
   { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile.', color: '#1a8c87' },
   { icon: Bell,             title: 'Smart Reminders',            desc: 'Configurable daily dose reminders across morning, midday, evening, and bedtime windows.', color: '#0d6b67' },
   { icon: LayoutDashboard,  title: 'Dashboard & Insights',       desc: 'Overview stats, adherence scores, active protocols, and recent activity — all in one place.', color: '#25b5af' },
@@ -25,7 +24,7 @@ export default function Features() {
     <section id="features" ref={ref} className="section" style={{ background: '#fff' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core Features</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core features</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Everything you need to<br/>
             <span className="teal-text"> stay in control</span>
@@ -35,7 +34,7 @@ export default function Features() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px,1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '1rem' }}>
           {features.map((f, i) => (
             <div key={f.title} className={`card sr d${(i % 8) + 1}`} style={{ padding: '1.5rem', cursor: 'default' }}>
               <div style={{

@@ -30,7 +30,7 @@ export default function Funding() {
     <section id="funding" ref={ref} className="section-band">
       <div className="wrap">
         <div className="sr" style={{ textAlign:'center', marginBottom:'3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom:'.75rem' }}>For Investors</p>
+          <p className="eyebrow" style={{ marginBottom:'.75rem' }}>For investors</p>
           <h2 className="h2" style={{ marginBottom:'1rem' }}>
             Seeking<span className="teal-text"> seed-round funding</span>
           </h2>

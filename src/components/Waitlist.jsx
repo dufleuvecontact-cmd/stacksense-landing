@@ -149,7 +149,7 @@ export default function Waitlist() {
     <section id="waitlist" ref={ref} className="section-band">
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Early Access</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Early access</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Be first.<span className="teal-text"> Shape the product.</span>
           </h2>
@@ -158,9 +158,9 @@ export default function Waitlist() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }} id="waitlist-grid">
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'start' }} id="waitlist-grid">
           {/* Form / Success */}
-          <div className="card-flat sr-left" style={{ padding: '2rem' }}>
+          <div className="card-flat sr-left form-container" style={{ padding: '2rem', flex: 1 }}>
             {!submitted ? (
               <>
                 <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '.4rem', color: 'var(--text)' }}>Join the Waitlist — Free</h3>
@@ -176,6 +176,9 @@ export default function Waitlist() {
                   ))}
                 </ul>
                 <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '.7rem' }}>
+                  <div style={{ fontSize: '.7rem', color: 'var(--text-3)', marginBottom: '-.2rem', lineHeight: 1.2 }}>
+                    Got a referral code from a friend? Enter it here — you'll both get priority access.
+                  </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
                     <div>
                       <label htmlFor="wl-name" style={{ display: 'block', fontSize: '.76rem', fontWeight: 600, color: 'var(--text-2)', marginBottom: '.3rem' }}>
@@ -216,9 +219,12 @@ export default function Waitlist() {
                       <a href="/privacy-policy.html" style={{ color: 'var(--teal)', textDecoration: 'none' }}>Privacy Policy</a>.
                     </span>
                   </label>
+                  <div style={{ textAlign: 'center', marginTop: '0.5rem', marginBottom: '0.2rem', fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 500 }}>
+                    58 people and counting on the waitlist
+                  </div>
                   <button type="submit" className="btn btn-teal" disabled={!email || !consent || isSubmitting}
                     style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting) ? .5 : 1 }}>
-                    {isSubmitting ? 'Joining...' : <>Join the Waitlist <ArrowRight size={14} /></>}
+                    {isSubmitting ? 'Joining...' : <>Become a Founding Member — $1 <ArrowRight size={14} /></>}
                   </button>
                 </form>
               </>
@@ -273,7 +279,7 @@ export default function Waitlist() {
           </div>
 
           {/* Right side — Pricing & what you get */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="pricing-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
             <div className="card-flat sr-right d1" style={{ padding: '1.5rem' }}>
               <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '.93rem', fontWeight: 700, color: 'var(--text)', marginBottom: '1rem' }}>Founding Member Pricing</h4>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '.4rem', marginBottom: '.25rem' }}>
@@ -282,7 +288,7 @@ export default function Waitlist() {
               </div>
               <p className="small" style={{ color: 'var(--teal-deep)', fontWeight: 600, marginBottom: '.25rem' }}>+ 6 months free when we launch</p>
               <p className="small" style={{ color: 'var(--text-3)', marginBottom: '1.25rem', fontSize: '.75rem' }}>
-                Note: Release price will be between $13.99 - $19.99/mo (TBD).
+                Founding rate locks in permanently. Launch price will be higher.
               </p>
               <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '.6rem' }}>
                 {[
@@ -312,7 +318,14 @@ export default function Waitlist() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:760px){#waitlist-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        #waitlist-grid { flex-direction: row-reverse; }
+        .form-container, .pricing-container { min-width: 0; }
+        @media(max-width:760px){
+          #waitlist-grid { flex-direction: column-reverse !important; }
+        }
+        @media(max-width:500px){#wl-form-top{grid-template-columns:1fr!important}}
+      `}</style>
     </section>
   )
 }

@@ -41,7 +41,7 @@ export default function Timeline() {
     <section id="timeline" ref={ref} className="section" style={{ background:'var(--bg)' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign:'center', marginBottom:'4.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom:'.75rem' }}>Company Journey</p>
+          <p className="eyebrow" style={{ marginBottom:'.75rem' }}>Company journey</p>
           <h2 className="h2" style={{ marginBottom:'1rem' }}>
             Where we are &amp;<span className="teal-text"> where we're going</span>
           </h2>

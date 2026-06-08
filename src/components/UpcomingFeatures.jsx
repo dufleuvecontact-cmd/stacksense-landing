@@ -41,7 +41,7 @@ export default function UpcomingFeatures() {
           </div>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(245px,1fr))', gap:'1rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(min(100%, 245px), 1fr))', gap:'1rem' }}>
           {items.map((f, i) => (
             <div key={f.title} className={`card sr d${(i%8)+1}`} style={{ padding:'1.4rem', cursor:'default' }}>
               <div style={{ display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:'.85rem' }}>

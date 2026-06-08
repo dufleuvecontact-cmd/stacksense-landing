@@ -56,7 +56,7 @@ export default function Comparison() {
     <section id="comparison" ref={ref} className="section" style={{ background: 'var(--bg)' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>The 10X Difference</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>The 10X difference</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Why we are <span className="teal-text">different.</span>
           </h2>

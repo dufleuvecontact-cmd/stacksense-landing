@@ -28,7 +28,7 @@ function Item({ q, a, open, onClick }) {
 }
 
 export default function FAQ() {
-  const [open, setOpen] = useState(null)
+  const [open, setOpen] = useState(0)
   const ref = useRef(null)
   useEffect(() => {
     if (!ref.current) return

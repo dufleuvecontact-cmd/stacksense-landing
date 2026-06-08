@@ -22,7 +22,7 @@ export default function Contact() {
     <section id="contact" ref={ref} style={{ padding: '6rem 0', background: '#fff' }}>
       <div className="wrap" style={{ textAlign: 'center' }}>
         <div className="sr">
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Contact Us</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Contact us</p>
           <h2 className="h2" style={{ marginBottom: '1.5rem' }}>
             Get in touch
           </h2>

@@ -30,10 +30,10 @@ export default function ProductPreview() {
   }, [])
 
   return (
-    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden' }}>
+    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden', paddingTop: '2rem' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive Demo</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive demo</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Try the<span className="teal-text"> live app</span> now
           </h2>
@@ -91,7 +91,7 @@ export default function ProductPreview() {
                     </div>
                   )}
                   <iframe 
-                    src="https://stacksense.online/?demo=true" 
+                    src="https://stacksense.ca/?demo=true"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                     allow="clipboard-write"
                     title="StackSense Live Sandbox Demo"

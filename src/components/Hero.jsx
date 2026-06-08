@@ -43,7 +43,7 @@ function PhoneMockup() {
               }}>Last 7 Days</span>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, marginTop: 8 }}>
-              {[['STARTING','0 kg'],['CURRENT','0 kg'],['CHANGE','0.0 kg']].map(([l,v]) => (
+              {[['STARTING','84.2 kg'],['CURRENT','81.7 kg'],['CHANGE','-2.5 kg']].map(([l,v]) => (
                 <div key={l} style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '.5rem', color: '#7a9490', fontFamily: 'var(--font-sans)', letterSpacing: '.05em', marginBottom: 2 }}>{l}</div>
                   <div style={{ fontSize: '.8rem', fontWeight: 700, color: l === 'CHANGE' ? '#1a8c87' : '#0c1a18', fontFamily: 'var(--font-sans)' }}>{v}</div>
@@ -63,8 +63,8 @@ function PhoneMockup() {
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                   <div style={{
                     width: 24, height: 24, borderRadius: 6,
-                    background: i < 6 ? '#1a8c87' : '#e8efee',
-                    opacity: i < 6 ? (i === 5 ? 1 : .75) : 1,
+                    background: i < 5 ? '#1a8c87' : '#e8efee',
+                    opacity: i < 5 ? (i === 4 ? 1 : .75) : 1,
                   }}/>
                   <span style={{ fontSize: '.5rem', color: '#7a9490', fontFamily: 'var(--font-sans)' }}>{d}</span>
                 </div>
@@ -166,10 +166,11 @@ export default function Hero() {
 
   return (
     <section ref={ref} style={{
-      minHeight: '100vh', display: 'flex', alignItems: 'center',
+      minHeight: 'auto', display: 'flex', alignItems: 'center',
       position: 'relative', overflow: 'hidden',
       background: 'var(--bg)',
-      paddingTop: 80,
+      paddingTop: 120,
+      paddingBottom: 40,
     }}>
       {/* Dot grid bg */}
       <div className="dot-grid" style={{
@@ -188,12 +189,17 @@ export default function Hero() {
             </div>
 
             <h1 className="sr d2 h1" style={{ marginBottom: '1.2rem' }}>
-              Tired of tracking peptides in<br/>
-              <span className="teal-text">spreadsheets?</span>
+              Master your stack.<br/>
+              <span className="teal-text">Every dose, every cycle.</span>
             </h1>
 
-            <p className="sr d3 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>
-              Built by a biohacker who got tired of tracking peptides in spreadsheets. 420+ compounds. One app.
+            <div className="sr d3" style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-2)', lineHeight: 1.3, marginBottom: '1.2rem' }}>
+              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder<br/>
+              Biohacking since 2024
+            </div>
+
+            <p className="sr d4 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>
+              Track your entire protocol — peptides, supplements, bloodwork, and body composition — in one place. Built by a biohacker, for biohackers.
             </p>
 
             <div className="sr d4 hero-buttons-container">
@@ -201,13 +207,10 @@ export default function Hero() {
                 <a href="#waitlist" className="btn btn-teal">
                   Join the Waitlist <ArrowRight size={15}/>
                 </a>
-                <a href="#product" className="btn btn-outline" style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }}>
-                  Try Live Demo
-                </a>
-                <a href="#features" className="btn btn-outline">
-                  See Features
-                </a>
               </div>
+              <a href="#product" style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--text-2)', textDecoration: 'none', fontWeight: 500 }}>
+                &rarr; Or explore the live demo first
+              </a>
             </div>
 
             <div className="sr d5 hero-features">
@@ -237,18 +240,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Backed-by strip */}
-      <div style={{
-        position: 'absolute', bottom: 0, left: 0, right: 0,
-        borderTop: '1px solid var(--border)', background: 'rgba(255,255,255,.6)',
-        backdropFilter: 'blur(10px)', padding: '.9rem 1.5rem',
-      }}>
-        <div style={{ maxWidth: 1160, margin: '0 auto', display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text-3)', fontWeight: 600 }}>
-            Currently reaching out for funding
-          </span>
-        </div>
-      </div>
+
 
       <style>{`
         #hero-grid {
