@@ -188,8 +188,8 @@ export default function Hero() {
             </div>
 
             <h1 className="sr d2 h1" style={{ marginBottom: '1.2rem' }}>
-              Know exactly what your stack is doing —<br/>
-              <span className="teal-text">every compound, every dose, every cycle.</span>
+              Master your stack.<br/>
+              <span className="teal-text">Every dose, every cycle.</span>
             </h1>
 
             <div className="sr d3" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.2rem' }}>
