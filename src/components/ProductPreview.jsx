@@ -33,7 +33,7 @@ export default function ProductPreview() {
     <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive Demo</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive demo</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Try the<span className="teal-text"> live app</span> now
           </h2>
