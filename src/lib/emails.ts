@@ -1,6 +1,6 @@
 export const EMAILS = {
-  contact:  'contact@stacksense.ca',
-  legal:    'legal@stacksense.ca',
-  privacy:  'privacy@stacksense.ca',
-  security: 'security@stacksense.ca',
+  contact:  'contact@stacksense.online',
+  legal:    'legal@stacksense.online',
+  privacy:  'privacy@stacksense.online',
+  security: 'security@stacksense.online',
 } as const
