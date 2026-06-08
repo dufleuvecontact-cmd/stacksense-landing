@@ -158,9 +158,9 @@ export default function Waitlist() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'start' }} id="waitlist-grid">
+        <div style={{ maxWidth: 540, margin: '0 auto' }}>
           {/* Form / Success */}
-          <div className="card-flat sr-left form-container" style={{ padding: '2rem', flex: 1 }}>
+          <div className="card-flat sr form-container" style={{ padding: '2rem' }}>
             {!submitted ? (
               <>
                 <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '.4rem', color: 'var(--text)' }}>Join the Waitlist — Free</h3>
@@ -234,16 +234,14 @@ export default function Waitlist() {
                   <Check size={20} color="var(--teal)" strokeWidth={3} />
                 </div>
                 <h3 className="h3" style={{ marginBottom: '.5rem' }}>
-                  {isFounder ? "You're a Founding Member!" : "You're on the list"}
+                  You're on the list
                 </h3>
                 <p className="body-text" style={{ marginBottom: '1.5rem', color: 'var(--text-2)' }}>
-                  {isFounder
-                    ? "Your $9.99/mo rate and 6 free months are locked in. We'll reach out when the app launches."
-                    : 'Your spot is saved. Share your link below to invite others.'}
+                  Your spot is saved. Share your link below to invite others.
                 </p>
 
                 {/* Referral link */}
-                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1.25rem', marginBottom: '1.25rem' }}>
+                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1.25rem' }}>
                   <p style={{ fontSize: '.8rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.4rem', fontFamily: 'var(--font-sans)' }}>Invite your friends</p>
                   <p style={{ fontSize: '.75rem', color: 'var(--text-3)', marginBottom: '1rem' }}>Share your unique link to help others discover StackSense.</p>
                   <div style={{ display: 'flex', gap: '.5rem' }}>
@@ -255,75 +253,19 @@ export default function Waitlist() {
                     </button>
                   </div>
                 </div>
-
-                {/* Founding member upsell — only shown to free-tier users */}
-                {/* TODO: send automated follow-up email to free-tier users who didn't upgrade */}
-                {!isFounder && (
-                  <div style={{ background: 'rgba(26,140,135,.04)', border: '1px solid rgba(26,140,135,.2)', borderRadius: 10, padding: '1.25rem', textAlign: 'left' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
-                      <Star size={14} color="var(--teal)" strokeWidth={2} />
-                      <span style={{ fontSize: '.85rem', fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Upgrade to Founding Member</span>
-                      <span style={{ fontSize: '.7rem', background: 'var(--teal)', color: '#fff', borderRadius: 4, padding: '.1rem .4rem', fontWeight: 700, fontFamily: 'var(--font-sans)', marginLeft: 'auto' }}>First 100 only</span>
-                    </div>
-                    <p className="small" style={{ marginBottom: '1rem', lineHeight: 1.6 }}>
-                      Lock in <strong>$9.99/mo forever</strong> + <strong>6 months free</strong> at launch with a $1 deposit. Release price will be $13.99–$19.99/mo.
-                    </p>
-                    <button onClick={upgrade} className="btn btn-teal" disabled={isUpgrading}
-                      style={{ width: '100%', justifyContent: 'center', opacity: isUpgrading ? .6 : 1 }}>
-                      {isUpgrading ? 'Redirecting to payment...' : <>Become a Founding Member — $1 <ArrowRight size={14} /></>}
-                    </button>
-                  </div>
-                )}
               </div>
             )}
           </div>
-
-          {/* Right side — Pricing & what you get */}
-          <div className="pricing-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
-            <div className="card-flat sr-right d1" style={{ padding: '1.5rem' }}>
-              <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '.93rem', fontWeight: 700, color: 'var(--text)', marginBottom: '1rem' }}>Founding Member Pricing</h4>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '.4rem', marginBottom: '.25rem' }}>
-                <span style={{ fontSize: '2rem', fontWeight: 800, fontFamily: 'var(--font-sans)', color: 'var(--text)', letterSpacing: '-.03em' }}>$9.99</span>
-                <span style={{ fontSize: '.82rem', color: 'var(--text-3)', fontFamily: 'var(--font-sans)' }}>/month forever</span>
-              </div>
-              <p className="small" style={{ color: 'var(--teal-deep)', fontWeight: 600, marginBottom: '.25rem' }}>+ 6 months free when we launch</p>
-              <p className="small" style={{ color: 'var(--text-3)', marginBottom: '1.25rem', fontSize: '.75rem' }}>
-                Founding rate locks in permanently. Launch price will be higher.
-              </p>
-              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '.6rem' }}>
-                {[
-                  { icon: Shield, text: 'Unlimited protocols & substances' },
-                  { icon: Zap, text: 'AI bloodwork analysis & research' },
-                  { icon: Clock, text: 'Full dose history & adherence tracking' },
-                ].map(({ icon: Icon, text }) => (
-                  <div key={text} style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
-                    <div style={{ width: 28, height: 28, borderRadius: 8, background: 'rgba(26,140,135,.08)', border: '1px solid rgba(26,140,135,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Icon size={13} color="var(--teal)" />
-                    </div>
-                    <span className="body-text">{text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="card-flat sr-right d2" style={{ padding: '1.25rem', background: 'rgba(26,140,135,.03)', borderColor: 'rgba(26,140,135,.15)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--teal)' }} />
-                <span style={{ fontSize: '.78rem', fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Why $1?</span>
-              </div>
-              <p className="small" style={{ lineHeight: 1.65 }}>
-                A small commitment to confirm serious interest. It reserves your spot, locks your rate, and ensures we're building for people who actually want this tool.
-              </p>
-            </div>
+          
+          {/* Context below form */}
+          <div className="sr card-flat" style={{ marginTop: '1.5rem', padding: '1.5rem', textAlign: 'center', background: 'rgba(26,140,135,.03)', borderColor: 'rgba(26,140,135,.15)' }}>
+            <p className="body-text" style={{ color: 'var(--teal-deep)', fontWeight: 600 }}>
+              Founding members who join now lock in $9.99/mo forever.
+            </p>
           </div>
         </div>
       </div>
       <style>{`
-        #waitlist-grid { flex-direction: row-reverse; }
-        .form-container, .pricing-container { min-width: 0; }
-        @media(max-width:760px){
-          #waitlist-grid { flex-direction: column-reverse !important; }
-        }
         @media(max-width:500px){#wl-form-top{grid-template-columns:1fr!important}}
       `}</style>
     </section>

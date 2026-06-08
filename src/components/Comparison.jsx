@@ -61,7 +61,7 @@ export default function Comparison() {
             Why we are <span className="teal-text">different.</span>
           </h2>
           <p className="lead" style={{ maxWidth: 620, margin: '0 auto' }}>
-            Every peptide tracker tracks injections. StackSense tracks your entire biohacking protocol — 420+ compounds, supplements, and analytics in one place.
+            Most tracking apps are built for one thing. StackSense tracks everything — supplements, peptides, bloodwork, mood, and body composition — so you can finally see the full picture.
           </p>
         </div>
 

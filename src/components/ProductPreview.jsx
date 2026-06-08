@@ -38,7 +38,7 @@ export default function ProductPreview() {
             Try the<span className="teal-text"> live app</span> now
           </h2>
           <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Explore active cycles, view half-life decay graphs, track your symptoms, and review AI bloodwork insights.
+            Log doses, track how you feel, view cycle data, and get AI-powered bloodwork insights — try it before you sign up.
           </p>
         </div>
 

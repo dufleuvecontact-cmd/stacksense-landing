@@ -189,17 +189,17 @@ export default function Hero() {
             </div>
 
             <h1 className="sr d2 h1" style={{ marginBottom: '1.2rem' }}>
-              Master your stack.<br/>
-              <span className="teal-text">Every dose, every cycle.</span>
+              Finally know what your<br/>
+              <span className="teal-text">supplements are actually doing.</span>
             </h1>
 
             <div className="sr d3" style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-2)', lineHeight: 1.3, marginBottom: '1.2rem' }}>
               <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder<br/>
-              Running peptide protocols since 2022
+              Built this because he couldn't figure out which of his 8 supplements was actually working.
             </div>
 
             <p className="sr d4 lead" style={{ maxWidth: 620, margin: '0 auto 1.8rem' }}>
-              Track your entire protocol — peptides, supplements, bloodwork, and body composition — in one place. Built by a biohacker, for biohackers.
+              Track doses, cycles, bloodwork, and how you feel — all in one place. Whether you take 3 supplements or run a full protocol.
             </p>
 
             <div className="sr d4 hero-buttons-container">
@@ -217,7 +217,7 @@ export default function Hero() {
               {[
                 '420+ compounds in our protocol library',
                 'Built on clinical dosing data from peer-reviewed sources',
-                'Designed by someone who actually uses these protocols daily',
+                'Designed by someone who got tired of guessing what was working',
                 'Currently onboarding beta testers',
               ].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>

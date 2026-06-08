@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
-  { q:'What is StackSense and who is it for?', a:'StackSense is an app for biohackers tracking peptide, supplement, and hormone protocols — doses, cycles, bloodwork, and body composition in one place.' },
+  { q:'What is StackSense and who is it for?', a:'StackSense is a health tracking app for people who take supplements, run peptide protocols, or want to understand how their stack affects their body. If you\'ve ever wondered whether your supplements are actually working — this is built for you.' },
   { q:'When will StackSense be available?', a:'We\'re currently in active development. Our target is a limited early access launch for waitlist members first, followed by a broader public launch. Join the waitlist to be among the first notified.' },
   { q:'Is my data private and secure?', a:'Yes. Privacy is foundational to how we build. Your data is encrypted, never sold, and never shared with third parties. You always retain full ownership and control. See our Privacy Policy for full details.' },
   { q:'How does the waitlist referral system work?', a:'When you sign up you\'ll receive a unique referral link. Each person who joins via your link moves you up the priority queue and unlocks tier rewards — including early access, a free first month, and founding member status.' },

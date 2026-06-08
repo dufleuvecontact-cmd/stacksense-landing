@@ -29,7 +29,7 @@ export default function Footer() {
               <span style={{ fontFamily:'var(--font-sans)',fontWeight:700,fontSize:'.95rem',letterSpacing:'-.02em' }}>StackSense</span>
             </div>
             <p style={{ fontSize:'.82rem',color:'rgba(255,255,255,.45)',lineHeight:1.7,maxWidth:265,marginBottom:'1.25rem' }}>
-              A structured platform for tracking, managing, and analysing peptide workflows. Built for precision. Designed for clarity.
+              Health protocol tracking for serious supplement users.
             </p>
           </div>
 

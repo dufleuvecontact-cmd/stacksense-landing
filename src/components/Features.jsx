@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { LayoutGrid, Clock, Activity, Search, Bell, LayoutDashboard } from 'lucide-react'
 
 const features = [
-  { icon: LayoutGrid,       title: 'Protocol & Cycle Builder',   desc: 'Create and manage supplement and peptide protocols with multiple substances, dosing schedules, and cycle phases.', color: '#1a8c87' },
+  { icon: LayoutGrid,       title: 'Protocol & Cycle Builder',   desc: 'Build protocols for supplements, peptides, or any health routine — with custom dosing schedules and cycle phases.', color: '#1a8c87' },
   { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log every dose as taken, skipped, or snoozed. Track your adherence over time with clear visual feedback.', color: '#0d6b67' },
   { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile.', color: '#1a8c87' },
   { icon: Bell,             title: 'Smart Reminders',            desc: 'Configurable daily dose reminders across morning, midday, evening, and bedtime windows.', color: '#0d6b67' },
@@ -30,7 +30,7 @@ export default function Features() {
             <span className="teal-text"> stay in control</span>
           </h2>
           <p className="lead" style={{ maxWidth: 500, margin: '0 auto' }}>
-            A focused toolkit built around clarity, safety, and consistency.
+            Everything you need to track your stack and actually understand what it's doing.
           </p>
         </div>
 
