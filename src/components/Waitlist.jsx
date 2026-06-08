@@ -224,7 +224,7 @@ export default function Waitlist() {
                   </div>
                   <button type="submit" className="btn btn-teal" disabled={!email || !consent || isSubmitting}
                     style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting) ? .5 : 1 }}>
-                    {isSubmitting ? 'Joining...' : <>Join the Waitlist <ArrowRight size={14} /></>}
+                    {isSubmitting ? 'Joining...' : <>Become a Founding Member — $1 <ArrowRight size={14} /></>}
                   </button>
                 </form>
               </>
