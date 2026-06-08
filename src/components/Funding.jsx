@@ -90,7 +90,7 @@ export default function Funding() {
               </ul>
             </div>
             <p style={{ fontSize:'.88rem',fontFamily:'var(--font-sans)',fontWeight:600,color:'var(--text)' }}>
-              Contact us at <a href="mailto:contact@stacksense.ca" style={{ color:'var(--teal)',textDecoration:'none' }}>contact@stacksense.ca</a>
+              Contact us at <a href="mailto:contact@stacksense.online" style={{ color:'var(--teal)',textDecoration:'none' }}>contact@stacksense.online</a>
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-Contact: mailto:security@stacksense.ca
+Contact: mailto:security@stacksense.online
 Expires: 2027-05-20T00:00:00.000Z
 Preferred-Languages: en, fr
-Policy: https://www.stacksense.ca/security-policy.html
+Policy: https://www.stacksense.online/security-policy.html
