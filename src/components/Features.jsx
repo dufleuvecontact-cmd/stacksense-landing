@@ -34,9 +34,9 @@ export default function Features() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
           {features.map((f, i) => (
-            <div key={f.title} className={`card sr d${(i % 8) + 1}`} style={{ padding: '1.5rem', cursor: 'default' }}>
+            <div key={f.title} className={`card sr d${(i % 8) + 1}`} style={{ flex: '1 1 300px', maxWidth: '380px', padding: '1.5rem', cursor: 'default' }}>
               <div style={{
                 width: 40, height: 40, borderRadius: 11,
                 background: `${f.color}14`, border: `1px solid ${f.color}28`,
