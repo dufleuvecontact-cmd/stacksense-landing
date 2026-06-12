@@ -6,7 +6,7 @@ const links = [
   { label: 'Product', href: '#product' },
   { label: 'Timeline', href: '#timeline' },
   { label: 'Waitlist', href: '#waitlist' },
-  { label: 'Investors', href: '#funding' },
+  { label: 'Investors', href: '/investors' },
 ]
 
 
