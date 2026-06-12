@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   const { email, code } = req.body;
-  const priceId = process.env.STRIPE_PRICE_ID;
+  const priceId = process.env.STRIPE_PRICE_ID || process.env.VITE_STRIPE_PRICE_ID;
 
   if (!priceId) {
     return res.status(500).json({ message: 'STRIPE_PRICE_ID is not configured on the server.' });
