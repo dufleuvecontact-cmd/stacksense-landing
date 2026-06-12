@@ -69,31 +69,21 @@ export default function Waitlist() {
 
     setIsSubmitting(true)
 
-    if (refCode) {
-      const { data, error } = await supabase.from('waitlist').select('referral_code').eq('referral_code', refCode).maybeSingle()
-      if (error || !data) {
-        alert('The referral code you entered is invalid. Please check it and try again, or leave it blank.')
-        setIsSubmitting(false)
-        return
-      }
-    }
-
     const newCode = gen()
 
     try {
-      const { error } = await supabase.from('waitlist').insert([{
-        email,
-        name: name || null,
-        referred_by: refCode || null,
-        referral_code: newCode,
-        payment_status: 'none',
-      }])
+      const res = await fetch('/api/join-waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name, refCode, newCode })
+      })
+      const data = await res.json()
 
-      if (error) {
-        console.error('Supabase insert error:', error)
-        // Duplicate email is a unique constraint violation (code 23505)
-        if (error.code === '23505') {
-          alert("You're already on the waitlist! Check your email or contact support@stacksense.ca.")
+      if (!res.ok) {
+        if (data.code === 'DUPLICATE') {
+          alert(data.message)
+        } else if (data.code === 'INVALID_REF') {
+          alert(data.message)
         } else {
           alert('Something went wrong saving your spot. Please try again.')
         }
@@ -101,7 +91,7 @@ export default function Waitlist() {
         return
       }
 
-      // Lead saved — now safe to show success regardless of what happens next
+      // Lead saved — now safe to show success
       track('waitlist_join')
       setCode(newCode)
       setSubmitted(true)
@@ -179,7 +169,7 @@ export default function Waitlist() {
                   <div style={{ fontSize: '.7rem', color: 'var(--text-3)', marginBottom: '-.2rem', lineHeight: 1.2 }}>
                     Got a referral code from a friend? Enter it here — you'll both get priority access.
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
+                  <div id="wl-form-top" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
                     <div>
                       <label htmlFor="wl-name" style={{ display: 'block', fontSize: '.76rem', fontWeight: 600, color: 'var(--text-2)', marginBottom: '.3rem' }}>
                         Name <span style={{ color: 'var(--text-3)', fontWeight: 400 }}>(optional)</span>
