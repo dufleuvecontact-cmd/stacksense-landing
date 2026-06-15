@@ -91,11 +91,9 @@ export default function ProductPreview() {
                     </div>
                   )}
                   <iframe
-                    src="https://stacksense.ca/?demo=true"
+                    src="https://stacksense.online/?demo=true"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                     allow="clipboard-write"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                    referrerPolicy="strict-origin-when-cross-origin"
                     title="StackSense Live Sandbox Demo"
                     onLoad={() => setIframeLoading(false)}
                   />
