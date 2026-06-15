@@ -90,8 +90,8 @@ export default function ProductPreview() {
                       <div className="spinner" />
                     </div>
                   )}
-                  <iframe 
-                    src="https://stacksense.online/?demo=true"
+                  <iframe
+                    src="https://stacksense.ca/?demo=true"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                     allow="clipboard-write"
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
