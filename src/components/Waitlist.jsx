@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Mail, User, ArrowRight, Check, Shield, Zap, Clock, Users, Copy, Star } from 'lucide-react'
-import { supabase } from '../supabaseClient'
+// supabase import removed — payment status is now updated via server-side Stripe webhook
 import { track } from '@vercel/analytics'
 
 export default function Waitlist() {
@@ -34,16 +34,10 @@ export default function Waitlist() {
       setCode(codeParam)
       setSubmitted(true)
       setIsFounder(true)
-      supabase
-        .from('waitlist')
-        .update({ payment_status: 'paid' })
-        .eq('referral_code', codeParam)
-        .then(() => {
-          track('founding_upgrade')
-          window.history.replaceState(null, '', window.location.pathname + '#waitlist')
-          setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 100)
-        })
-        .catch(err => console.error(err))
+      // Payment status is updated server-side via Stripe webhook
+      track('founding_upgrade')
+      window.history.replaceState(null, '', window.location.pathname + '#waitlist')
+      setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 100)
     }
 
     if (p.get('payment') === 'cancel') {
@@ -52,7 +46,7 @@ export default function Waitlist() {
     }
   }, [])
 
-  function gen() { return Math.random().toString(36).substring(2, 8).toUpperCase() }
+
 
   async function submit(e) {
     e.preventDefault()
@@ -69,13 +63,13 @@ export default function Waitlist() {
 
     setIsSubmitting(true)
 
-    const newCode = gen()
+
 
     try {
       const res = await fetch('/api/join-waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name, refCode, newCode })
+        body: JSON.stringify({ email, name, refCode })
       })
       const data = await res.json()
 
@@ -93,7 +87,7 @@ export default function Waitlist() {
 
       // Lead saved — now safe to show success
       track('waitlist_join')
-      setCode(newCode)
+      setCode(data.code)
       setSubmitted(true)
     } catch (err) {
       console.error(err)
@@ -112,7 +106,7 @@ export default function Waitlist() {
         body: JSON.stringify({ email, code }),
       })
       const data = await res.json()
-      if (data.url && data.url.startsWith('https://checkout.stripe.com/')) {
+      if (data.url && (() => { try { return new URL(data.url).hostname === 'checkout.stripe.com'; } catch { return false; } })()) {
         window.location.href = data.url
         return
       } else if (data.url) {
@@ -224,16 +218,22 @@ export default function Waitlist() {
                   <Check size={20} color="var(--teal)" strokeWidth={3} />
                 </div>
                 <h3 className="h3" style={{ marginBottom: '.5rem' }}>
-                  You're on the list
+                  {isFounder ? 'Thank you for your payment!' : "You're on the list"}
                 </h3>
                 <p className="body-text" style={{ marginBottom: '1.5rem', color: 'var(--text-2)' }}>
-                  Your spot is saved. Share your link below to invite others.
+                  {isFounder
+                    ? "Your Founding Member spot and pricing are locked in."
+                    : "Your spot is saved. Share your link below to invite others."}
                 </p>
 
                 {/* Referral link */}
-                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1.25rem' }}>
-                  <p style={{ fontSize: '.8rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.4rem', fontFamily: 'var(--font-sans)' }}>Invite your friends</p>
-                  <p style={{ fontSize: '.75rem', color: 'var(--text-3)', marginBottom: '1rem' }}>Share your unique link to help others discover StackSense.</p>
+                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1.25rem', marginBottom: !isFounder ? '1.25rem' : '0' }}>
+                  <p style={{ fontSize: '.8rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.4rem', fontFamily: 'var(--font-sans)' }}>
+                    Earn 2 months free
+                  </p>
+                  <p style={{ fontSize: '.75rem', color: 'var(--text-3)', marginBottom: '1rem', lineHeight: 1.5 }}>
+                    Share your unique link below. <strong>If just 1 person joins</strong>, you'll automatically get 2 additional months of StackSense for free when we launch.
+                  </p>
                   <div style={{ display: 'flex', gap: '.5rem' }}>
                     <div style={{ flex: 1, background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '.5rem .75rem', fontSize: '.75rem', color: 'var(--text-2)', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', userSelect: 'all' }}>
                       https://stacksense.ca/?ref={code}
@@ -243,14 +243,34 @@ export default function Waitlist() {
                     </button>
                   </div>
                 </div>
+
+                {/* Founding member upsell */}
+                {!isFounder && (
+                  <div style={{ background: 'rgba(26,140,135,.04)', border: '1px solid rgba(26,140,135,.2)', borderRadius: 10, padding: '1.25rem', textAlign: 'left' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
+                      <Star size={14} color="var(--teal)" strokeWidth={2} />
+                      <span style={{ fontSize: '.85rem', fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>Upgrade to Founding Member</span>
+                      <span style={{ fontSize: '.7rem', background: 'var(--teal)', color: '#fff', borderRadius: 4, padding: '.1rem .4rem', fontWeight: 700, fontFamily: 'var(--font-sans)', marginLeft: 'auto' }}>First 100 only</span>
+                    </div>
+                    <p className="small" style={{ marginBottom: '1rem', lineHeight: 1.6 }}>
+                      Lock in <strong>$9.99/mo forever</strong> + <strong>6 months free</strong> at launch with a $1 deposit. Release price will be $13.99–$19.99/mo.
+                    </p>
+                    <button onClick={upgrade} disabled={isUpgrading} className="btn btn-teal" style={{ width: '100%', justifyContent: 'center' }}>
+                      {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now for $1'}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
           
           {/* Context below form */}
           <div className="sr card-flat" style={{ marginTop: '1.5rem', padding: '1.5rem', textAlign: 'center', background: 'rgba(26,140,135,.03)', borderColor: 'rgba(26,140,135,.15)' }}>
-            <p className="body-text" style={{ color: 'var(--teal-deep)', fontWeight: 600 }}>
+            <p className="body-text" style={{ color: 'var(--teal-deep)', fontWeight: 600, marginBottom: '0.4rem' }}>
               Founding members who join now lock in $9.99/mo forever.
+            </p>
+            <p className="small" style={{ color: 'var(--text-3)', fontWeight: 500 }}>
+              100% fully refundable at any time.
             </p>
           </div>
         </div>

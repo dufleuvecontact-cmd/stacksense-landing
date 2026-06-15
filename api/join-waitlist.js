@@ -1,18 +1,56 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import crypto from 'crypto';
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://pjapdxatvghedkbxtnzo.supabase.co';
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqYXBkeGF0dmdoZWRrYnh0bnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNTEwNzAsImV4cCI6MjA5MDkyNzA3MH0.1Zp5S-qVWMTNcjTOZ4Vmq71BqVq7DTO-75e3n4RX95k';
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_key');
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing Supabase configuration. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
+}
+
+const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
 export default async function handler(req, res) {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', process.env.SITE_URL || 'https://stacksense.ca');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { email, name, refCode, newCode } = req.body;
+  if (!supabase) {
+    console.error('Supabase client not initialized.');
+    return res.status(500).json({ message: 'Service temporarily unavailable.' });
+  }
+
+  const { email, name, refCode } = req.body;
+
+  // Server-side input validation
+  if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ message: 'Please provide a valid email address.' });
+  }
+  if (email.length > 254) {
+    return res.status(400).json({ message: 'Email address is too long.' });
+  }
+  if (name && (typeof name !== 'string' || name.length > 100 || !/^[A-Za-z\s\-']+$/.test(name))) {
+    return res.status(400).json({ message: 'Please enter a valid name (letters, spaces, hyphens only, max 100 characters).' });
+  }
+  if (refCode && (typeof refCode !== 'string' || refCode.length > 20 || !/^[A-Z0-9]+$/.test(refCode))) {
+    return res.status(400).json({ message: 'Invalid referral code format.' });
+  }
+
+  // Generate referral code server-side (cryptographically secure)
+  const newCode = crypto.randomBytes(4).toString('hex').toUpperCase();
 
   try {
     // 1. Check if referral code is valid
@@ -41,15 +79,16 @@ export default async function handler(req, res) {
 
     // 3. Send Referral Email
     const siteUrl = process.env.SITE_URL || 'https://stacksense.ca';
-    const referralLink = `${siteUrl}/?ref=${newCode}`;
+    const referralLink = `${siteUrl}/?ref=${encodeURIComponent(newCode)}`;
+    const safeName = escapeHtml(name);
 
-    if (process.env.RESEND_API_KEY) {
+    if (resend) {
       await resend.emails.send({
         from: 'StackSense <founders@stacksense.ca>',
         to: email,
         subject: 'You\'re on the list! (+ How to get 2 free months)',
         html: `
-          <p>Hi ${name ? name : 'there'},</p>
+          <p>Hi ${safeName || 'there'},</p>
           <p>Thanks for joining the StackSense waitlist! Your spot is securely saved.</p>
           <p><strong>Want 2 months of StackSense Unlimited for free?</strong></p>
           <p>We're prioritizing users who help us spread the word. If you refer just <strong>1 person</strong> using your unique link below, you'll automatically get 2 months free when we launch.</p>
@@ -64,9 +103,9 @@ export default async function handler(req, res) {
       console.log('RESEND_API_KEY not configured. Email skipped.');
     }
 
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, code: newCode });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+    console.error('Waitlist error:', err);
+    res.status(500).json({ message: 'An internal error occurred. Please try again later.' });
   }
 }
