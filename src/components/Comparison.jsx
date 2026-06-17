@@ -58,7 +58,7 @@ export default function Comparison() {
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>The 10X difference</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
-            Why we are <span className="teal-text">different.</span>
+            How StackSense <span className="teal-text">compares.</span>
           </h2>
           <p className="lead" style={{ maxWidth: 620, margin: '0 auto' }}>
             Most tracking apps are built for one thing. StackSense tracks everything — supplements, peptides, bloodwork, mood, and body composition — so you can finally see the full picture.
