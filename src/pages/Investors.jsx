@@ -15,8 +15,8 @@ const slides = [
     title: 'StackSense',
     subtitle: 'The intelligent supplement & peptide tracking platform.',
     body: 'Finally know what your supplements are actually doing — with data, not guesswork.',
-    gradient: 'linear-gradient(135deg, #081412 0%, #0d2825 50%, #143d38 100%)',
-    dark: true,
+    gradient: '#fff',
+    dark: false,
   },
   {
     id: 'problem',
@@ -103,8 +103,8 @@ const slides = [
       { icon: Lightbulb, label: 'Domain Expertise', desc: 'Advisors in regulatory, clinical data, and health-tech product design' },
       { icon: TrendingUp, label: 'Growth Strategy', desc: 'Help refining our go-to-market, pricing, and user acquisition playbook' },
     ],
-    gradient: 'linear-gradient(135deg, #081412 0%, #0d2825 50%, #143d38 100%)',
-    dark: true,
+    gradient: '#fff',
+    dark: false,
   },
 ]
 
@@ -118,27 +118,27 @@ function TitleSlide({ slide }) {
     }}>
       <p style={{
         fontSize: '.75rem', fontWeight: 600, letterSpacing: '.15em',
-        color: 'rgba(26,140,135,.9)', marginBottom: '1.5rem',
+        color: 'var(--teal)', marginBottom: '1.5rem',
         textTransform: 'uppercase',
       }}>{slide.eyebrow}</p>
       <h2 style={{
         fontFamily: 'var(--font-sans)', fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-        fontWeight: 800, color: '#fff', letterSpacing: '-.03em',
+        fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em',
         lineHeight: 1.05, marginBottom: '.75rem',
       }}>{slide.title}</h2>
       <p style={{
         fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
-        color: 'rgba(255,255,255,.65)', maxWidth: 560, lineHeight: 1.6,
+        color: 'var(--text-2)', maxWidth: 560, lineHeight: 1.6,
         marginBottom: '1rem',
       }}>{slide.subtitle}</p>
       <p style={{
         fontFamily: 'var(--font-serif)', fontStyle: 'italic',
-        fontSize: '.95rem', color: 'rgba(255,255,255,.4)', maxWidth: 480,
+        fontSize: '.95rem', color: 'var(--text-3)', maxWidth: 480,
         lineHeight: 1.7,
       }}>{slide.body}</p>
       <div style={{
         marginTop: '2rem', width: 60, height: 3, borderRadius: 2,
-        background: 'linear-gradient(90deg, transparent, rgba(26,140,135,.6), transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(26,140,135,.4), transparent)',
       }} />
     </div>
   )
@@ -282,16 +282,24 @@ function ProductSlide({ slide }) {
           </div>
         ))}
       </div>
-      <div style={{
-        textAlign: 'center', padding: '.75rem',
+      <a href="/#product" style={{
+        display: 'block', textAlign: 'center', padding: '.75rem',
         background: 'rgba(26,140,135,.05)', borderRadius: 8,
-        border: '1px solid rgba(26,140,135,.12)',
-      }}>
+        border: '1px solid rgba(26,140,135,.12)', textDecoration: 'none',
+        transition: 'background .15s ease, border-color .15s ease',
+      }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(26,140,135,.1)'; e.currentTarget.style.borderColor = 'rgba(26,140,135,.25)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(26,140,135,.05)'; e.currentTarget.style.borderColor = 'rgba(26,140,135,.12)' }}
+      >
+        <span style={{
+          fontSize: '.82rem', color: 'var(--text-2)',
+          fontFamily: 'var(--font-sans)', fontWeight: 500,
+        }}>Try the live demo at </span>
         <span style={{
           fontSize: '.82rem', color: 'var(--teal)',
-          fontFamily: 'var(--font-sans)', fontWeight: 600,
-        }}>{slide.cta}</span>
-      </div>
+          fontFamily: 'var(--font-sans)', fontWeight: 700,
+        }}>stacksense.ca →</span>
+      </a>
     </div>
   )
 }
@@ -424,18 +432,14 @@ function AskSlide({ slide }) {
       padding: '2.5rem 2rem', minHeight: 420,
       display: 'flex', flexDirection: 'column', justifyContent: 'center',
     }}>
-      <p style={{
-        fontSize: '.75rem', fontWeight: 600, letterSpacing: '.15em',
-        color: 'rgba(26,140,135,.9)', marginBottom: '.5rem',
-        textTransform: 'uppercase',
-      }}>{slide.eyebrow}</p>
+      <p className="eyebrow" style={{ marginBottom: '.5rem', color: 'var(--teal)' }}>{slide.eyebrow}</p>
       <h3 style={{
         fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-        fontWeight: 700, color: '#fff', letterSpacing: '-.02em',
+        fontWeight: 700, color: 'var(--text)', letterSpacing: '-.02em',
         marginBottom: '1rem', lineHeight: 1.2,
       }}>{slide.title}</h3>
       <p style={{
-        fontSize: '.9rem', color: 'rgba(255,255,255,.55)',
+        fontSize: '.9rem', color: 'var(--text-2)',
         fontFamily: 'var(--font-sans)', lineHeight: 1.7,
         marginBottom: '1.75rem', maxWidth: 520,
       }}>{slide.body}</p>
@@ -444,24 +448,24 @@ function AskSlide({ slide }) {
       }}>
         {slide.lookingFor.map((l, i) => (
           <div key={i} style={{
-            padding: '1rem', background: 'rgba(255,255,255,.04)',
-            border: '1px solid rgba(255,255,255,.08)', borderRadius: 10,
+            padding: '1rem', background: 'var(--bg-card-alt)',
+            border: '1px solid var(--border)', borderRadius: 10,
           }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
-              background: 'rgba(26,140,135,.15)',
-              border: '1px solid rgba(26,140,135,.25)',
+              background: 'rgba(26,140,135,.08)',
+              border: '1px solid rgba(26,140,135,.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '.6rem',
             }}>
-              <l.icon size={15} color="#25b5af" strokeWidth={1.8} />
+              <l.icon size={15} color="var(--teal)" strokeWidth={1.8} />
             </div>
             <div style={{
-              fontSize: '.82rem', fontWeight: 700, color: '#fff',
+              fontSize: '.82rem', fontWeight: 700, color: 'var(--text)',
               fontFamily: 'var(--font-sans)', marginBottom: '.2rem',
             }}>{l.label}</div>
             <div style={{
-              fontSize: '.72rem', color: 'rgba(255,255,255,.45)',
+              fontSize: '.72rem', color: 'var(--text-3)',
               fontFamily: 'var(--font-sans)', lineHeight: 1.5,
             }}>{l.desc}</div>
           </div>
@@ -561,36 +565,29 @@ export default function Investors() {
     <main style={{ paddingTop: 80, minHeight: '100vh', background: 'var(--bg)' }}>
 
       {/* ── Hero Banner ─────────────────────────────────── */}
-      <section ref={heroRef} style={{
+      <section ref={heroRef} className="dot-grid" style={{
         position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(135deg, #081412 0%, #0d2825 50%, #143d38 100%)',
+        background: 'var(--bg)',
         padding: '5rem 0 4rem',
       }}>
-        {/* Subtle grid overlay */}
-        <div style={{
-          position: 'absolute', inset: 0, opacity: .08, pointerEvents: 'none',
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,.3) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }} />
-
         <div className="wrap" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div className="sr">
-            <span className="pill pill-white" style={{ marginBottom: '1.25rem', display: 'inline-flex' }}>
+            <span className="pill pill-teal" style={{ marginBottom: '1.25rem', display: 'inline-flex' }}>
               Investor Relations · Mentorship Focus
             </span>
           </div>
           <h1 className="sr" style={{
             fontFamily: 'var(--font-sans)', fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            fontWeight: 800, color: '#fff', letterSpacing: '-.03em',
+            fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em',
             lineHeight: 1.1, marginBottom: '1rem',
           }}>
             Building the infrastructure for
             <br />
-            <span style={{ color: '#25b5af' }}>intelligent supplementation.</span>
+            <span style={{ color: 'var(--teal)' }}>intelligent supplementation.</span>
           </h1>
           <p className="sr" style={{
             fontFamily: 'var(--font-sans)', fontSize: 'clamp(.95rem, 1.5vw, 1.15rem)',
-            color: 'rgba(255,255,255,.5)', maxWidth: 560, margin: '0 auto 2rem',
+            color: 'var(--text-2)', maxWidth: 560, margin: '0 auto 2rem',
             lineHeight: 1.7,
           }}>
             We're seeking experienced mentors and strategic advisors to help shape the future of health-tech tracking. Explore our deck below.
@@ -599,7 +596,7 @@ export default function Investors() {
             <a href="#deck" className="btn btn-teal" style={{ fontSize: '.85rem' }}>
               View Pitch Deck <ChevronDown size={15} />
             </a>
-            <a href="#investor-contact" className="btn btn-outline-dark" style={{ fontSize: '.85rem' }}>
+            <a href="#investor-contact" className="btn btn-outline" style={{ fontSize: '.85rem' }}>
               Get in Touch <ArrowRight size={15} />
             </a>
           </div>
@@ -609,7 +606,7 @@ export default function Investors() {
       {/* ── Pitch Deck Section ──────────────────────────── */}
       <section id="deck" ref={deckRef} style={{
         padding: '4rem 0',
-        background: 'var(--bg-band)',
+        background: '#fff',
         borderBottom: '1px solid var(--border)',
       }}>
         <div className="wrap">
