@@ -58,18 +58,79 @@ export default async function handler(req, res) {
       // Send Confirmation/Receipt Email
       if (resend) {
         try {
+          const siteUrl = process.env.SITE_URL || 'https://stacksense.ca';
+          const name = session.customer_details?.name || '';
+          const safeName = name ? name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;') : '';
+          
           await resend.emails.send({
-            from: 'StackSense <founders@stacksense.ca>',
+            from: 'StackSense <contact@stacksense.ca>',
             to: email,
             subject: 'StackSense Founding Member Receipt & Confirmation',
-            html: `
-              <p>Hi there,</p>
-              <p>Thank you for becoming a Founding Member of StackSense!</p>
-              <p>Your payment was successful and your $9.99/mo rate (along with your 6 free months) is locked in. We will reach out when the app is ready for you to log in.</p>
-              <p>As a reminder, your deposit is <strong>100% fully refundable at any time</strong> before launch. Just reply to this email.</p>
-              <p>Please keep this email as your receipt.</p>
-              <p>Best,<br/>Jad & the StackSense Team</p>
-            `,
+            html: `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; padding: 20px; margin: 0; color: #111111; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden;">
+          
+          <!-- Header with Logo -->
+          <tr>
+            <td align="center" style="padding: 30px 20px; border-bottom: 1px solid #eaeaea; background-color: #ffffff;">
+              <img src="${siteUrl}/logo.png" alt="StackSense" style="height: 40px; width: auto; display: block;" />
+            </td>
+          </tr>
+
+          <!-- Body Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+              <h2 style="margin-top: 0; color: #111111; font-size: 22px; font-weight: 700;">Welcome to the Founding Team! 🚀</h2>
+              
+              <p style="color: #444444; font-size: 16px;">Hi ${safeName || 'there'},</p>
+              
+              <p style="color: #444444; font-size: 16px;">Thank you so much for becoming a Founding Member of StackSense. Your support means everything to us at this early stage.</p>
+              
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 30px 0; background-color: #fafafa; border: 1px solid #eaeaea; border-radius: 8px;">
+                <tr>
+                  <td style="padding: 25px;">
+                    <h3 style="margin-top: 0; color: #111111; font-size: 18px;">Your Founder Benefits are Locked In</h3>
+                    <ul style="color: #555555; font-size: 15px; margin: 0; padding-left: 20px;">
+                      <li style="margin-bottom: 10px;"><strong>6 Months Free</strong> of StackSense Unlimited at launch</li>
+                      <li style="margin-bottom: 10px;">Lifetime locked-in rate of <strong>$9.99/mo</strong> (normally $19.99)</li>
+                      <li style="margin-bottom: 10px;">VIP access to our private beta</li>
+                      <li style="margin-bottom: 0;">Direct feedback line to the founders</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #444444; font-size: 16px;">Your $1 deposit payment was successful. We will reach out the moment the app is ready for you to log in.</p>
+              
+              <p style="color: #444444; font-size: 16px;">As a reminder, your deposit is <strong>100% fully refundable at any time</strong> before launch. If you change your mind, just reply to this email.</p>
+              
+              <p style="color: #444444; font-size: 16px; margin-top: 30px; margin-bottom: 0;">
+                Best,<br/>
+                <strong style="color: #111111;">Jad & the StackSense Team</strong>
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="background-color: #fafafa; padding: 20px; border-top: 1px solid #eaeaea;">
+              <p style="color: #999999; font-size: 13px; margin: 0;">© 2026 StackSense. Please keep this email as your receipt.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
           });
           console.log(`Sent receipt email to ${email}`);
         } catch (err) {
