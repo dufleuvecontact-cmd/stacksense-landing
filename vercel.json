@@ -19,5 +19,11 @@
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron-drip",
+      "schedule": "0 14 * * *"
+    }
   ]
 }
