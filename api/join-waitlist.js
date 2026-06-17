@@ -84,7 +84,7 @@ export default async function handler(req, res) {
 
     if (resend) {
       await resend.emails.send({
-        from: 'StackSense <founders@stacksense.ca>',
+        from: 'StackSense <contact@stacksense.ca>',
         to: email,
         subject: 'You\'re on the list! (+ How to get 2 free months)',
         html: `<!DOCTYPE html>
