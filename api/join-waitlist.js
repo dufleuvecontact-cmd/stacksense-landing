@@ -89,13 +89,15 @@ export default async function handler(req, res) {
         subject: 'You\'re on the list! (+ How to get 2 free months)',
         html: `
           <p>Hi ${safeName || 'there'},</p>
-          <p>Thanks for joining the StackSense waitlist! Your spot is securely saved.</p>
-          <p><strong>Want 2 months of StackSense Unlimited for free?</strong></p>
-          <p>We're prioritizing users who help us spread the word. If you refer just <strong>1 person</strong> using your unique link below, you'll automatically get 2 months free when we launch.</p>
+          <p>We are so glad you joined us and we really appreciate your interest in our business!</p>
+          <p>You have successfully joined the StackSense waitlist. Your spot is securely saved.</p>
+          <p><strong>Want to earn rewards like 2 months of StackSense Unlimited for free?</strong></p>
+          <p>We're prioritizing users who help us spread the word. We'd love it if you invited people to join us. If you refer just <strong>1 person</strong> using your unique referral code or link below, you'll automatically get 2 months free when we launch.</p>
+          <p><strong>Your unique referral code:</strong> ${newCode}</p>
           <p><strong>Your unique referral link:</strong><br/>
           <a href="${referralLink}">${referralLink}</a></p>
-          <p>Just share this link with a friend or in your community. When they join the waitlist, we'll track the referral to your account.</p>
-          <p>Stay tuned for early access updates.</p>
+          <p>Just share this code or link with a friend or in your community. When they join the waitlist using it, we'll track the referral to your account.</p>
+          <p>Stay tuned for early access updates!</p>
           <p>Best,<br/>Jad & the StackSense Team</p>
         `,
       });
