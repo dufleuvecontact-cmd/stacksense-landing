@@ -102,7 +102,7 @@ export default async function handler(req, res) {
           <!-- Header with Logo -->
           <tr>
             <td align="center" style="padding: 30px 20px; border-bottom: 1px solid #dce8e5; background-color: #ffffff;">
-              <img src="\${siteUrl}/logo.png" alt="StackSense" style="height: 40px; width: auto; display: block;" />
+              <img src="${siteUrl}/logo.png" alt="StackSense" style="height: 40px; width: auto; display: block;" />
             </td>
           </tr>
 
@@ -111,7 +111,7 @@ export default async function handler(req, res) {
             <td style="padding: 40px 30px;">
               <h2 style="margin-top: 0; color: #0c1a18; font-size: 22px; font-weight: 700;">You're on the list! 🎉</h2>
               
-              <p style="color: #3a504d; font-size: 16px;">Hi \${safeName || 'there'},</p>
+              <p style="color: #3a504d; font-size: 16px;">Hi ${safeName || 'there'},</p>
               
               <p style="color: #3a504d; font-size: 16px;">We are so glad you joined us and we really appreciate your interest in StackSense! You have successfully joined the waitlist and your spot is securely saved.</p>
               
@@ -126,7 +126,7 @@ export default async function handler(req, res) {
                       <tr>
                         <td align="center" style="padding: 15px;">
                           <span style="display: block; font-size: 13px; color: #667c78; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;">Your Unique Code</span>
-                          <strong style="font-size: 24px; color: #0c1a18; letter-spacing: 0.1em;">\${newCode}</strong>
+                          <strong style="font-size: 24px; color: #0c1a18; letter-spacing: 0.1em;">${newCode}</strong>
                         </td>
                       </tr>
                     </table>
@@ -134,7 +134,7 @@ export default async function handler(req, res) {
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td align="center">
-                          <a href="\${referralLink}" style="display: inline-block; background-color: #1a8c87; color: #ffffff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 8px; font-size: 15px;">Share Your Referral Link</a>
+                          <a href="${referralLink}" style="display: inline-block; background-color: #1a8c87; color: #ffffff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 8px; font-size: 15px;">Share Your Referral Link</a>
                         </td>
                       </tr>
                     </table>
