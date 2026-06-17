@@ -8,23 +8,24 @@ export default function MarqueeStrip({ dark = false }) {
       padding: '1.5rem 0',
       background: dark ? 'rgba(255,255,255,.02)' : 'var(--bg)',
     }}>
-      <div className="wrap" style={{
-        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1.5rem 2rem'
-      }}>
-        {words.map((w, i) => (
-          <span key={i} style={{
-            display: 'inline-flex', alignItems: 'center', gap: '1.5rem',
-            fontSize: '.85rem', fontWeight: 600, letterSpacing: '.04em',
-            textTransform: 'uppercase',
-            color: dark ? 'rgba(255,255,255,.45)' : 'var(--text-3)',
-            fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap',
-          }}>
-            {w}
-            {i !== words.length - 1 && (
+      <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', display: 'flex' }}>
+        <div className="marquee-inner" style={{
+          display: 'flex', alignItems: 'center', gap: '2rem', padding: '0 1rem'
+        }}>
+          {/* Double the words to create an infinite scroll effect */}
+          {[...words, ...words, ...words].map((w, i) => (
+            <span key={i} style={{
+              display: 'inline-flex', alignItems: 'center', gap: '2rem',
+              fontSize: '.85rem', fontWeight: 600, letterSpacing: '.04em',
+              textTransform: 'uppercase',
+              color: dark ? 'rgba(255,255,255,.45)' : 'var(--text-3)',
+              fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap',
+            }}>
+              {w}
               <span style={{ width: 4, height: 4, borderRadius: '50%', background: dark ? 'rgba(26,140,135,.5)' : 'var(--border)', display: 'inline-block' }}/>
-            )}
-          </span>
-        ))}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

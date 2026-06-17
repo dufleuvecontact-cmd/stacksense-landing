@@ -82,7 +82,7 @@ export default function Timeline() {
                       Current Stage
                     </div>
                   )}
-                  <div style={{ display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'.5rem',marginTop:s.status==='active'?.35:0 }}>
+                  <div style={{ display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'.5rem',marginTop:s.status==='active' ? '1rem' : 0 }}>
                     <h3 className="h3" style={{ marginBottom:0 }}>{s.stage}</h3>
                     <span className={`pill ${s.status==='done'?'pill-green':s.status==='active'?'pill-teal':'pill-gray'}`}>{s.tag}</span>
                   </div>

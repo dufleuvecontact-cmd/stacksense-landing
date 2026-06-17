@@ -44,7 +44,7 @@ export default function BloodworkAI() {
                 <FileText color="var(--teal)" size={22} />
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text)', marginBottom: '0.15rem' }}>LabCorp_Comprehensive_Panel_Oct.pdf</div>
+                <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text)', marginBottom: '0.15rem', wordBreak: 'break-all' }}>LabCorp_Comprehensive_Panel_Oct.pdf</div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-3)' }}>1.2 MB • Uploaded Today</div>
               </div>
               <CheckCircle2 color="var(--teal)" size={22} />

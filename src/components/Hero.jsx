@@ -177,7 +177,7 @@ export default function Hero() {
         position: 'absolute', inset: 0, opacity: .5, pointerEvents: 'none',
       }}/>
 
-      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: '1.5rem', paddingBottom: '2.5rem' }}>
+      <div className="wrap" style={{ position: 'relative', zIndex: 1, width: '100%', paddingTop: '1.5rem', paddingBottom: '0' }}>
         <div id="hero-grid">
 
           {/* Left / Content */}
@@ -232,11 +232,6 @@ export default function Hero() {
           <div className="sr-right d2 hero-phone-container" style={{ display: 'flex', justifyContent: 'center' }}>
             <PhoneMockup/>
           </div>
-        </div>
-
-        {/* Scroll cue */}
-        <div className="sr-fade d6" style={{ textAlign: 'center', marginTop: '1.5rem', opacity: 0 }}>
-          <ChevronDown size={18} color="var(--text-3)" />
         </div>
       </div>
 
