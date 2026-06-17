@@ -620,12 +620,14 @@ export default function Investors() {
           {/* Slide viewer */}
           <div id="pitch-deck-viewer" style={{
             maxWidth: 680, margin: '0 auto', position: 'relative',
+            display: 'flex', flexDirection: 'column', height: 'clamp(600px, 85vh, 760px)'
           }}>
             {/* Slide card */}
             <div style={{
+              flex: 1,
               background: bg,
               border: isDark ? '1px solid rgba(255,255,255,.08)' : '1px solid var(--border)',
-              borderRadius: 20, overflow: 'hidden', position: 'relative',
+              borderRadius: 20, overflowY: 'auto', overflowX: 'hidden', position: 'relative',
               boxShadow: isDark
                 ? '0 24px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(26,140,135,.1)'
                 : '0 12px 40px rgba(0,0,0,.06)',
