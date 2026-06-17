@@ -93,15 +93,15 @@ export default async function handler(req, res) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f5f7f6; padding: 20px; margin: 0; color: #0c1a18; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f5f7f6; padding: 20px 0;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; padding: 20px; margin: 0; color: #111111; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; padding: 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #dce8e5; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden;">
           
           <!-- Header with Logo -->
           <tr>
-            <td align="center" style="padding: 30px 20px; border-bottom: 1px solid #dce8e5; background-color: #ffffff;">
+            <td align="center" style="padding: 30px 20px; border-bottom: 1px solid #eaeaea; background-color: #ffffff;">
               <img src="${siteUrl}/logo.png" alt="StackSense" style="height: 40px; width: auto; display: block;" />
             </td>
           </tr>
@@ -109,24 +109,24 @@ export default async function handler(req, res) {
           <!-- Body Content -->
           <tr>
             <td style="padding: 40px 30px;">
-              <h2 style="margin-top: 0; color: #0c1a18; font-size: 22px; font-weight: 700;">You're on the list! 🎉</h2>
+              <h2 style="margin-top: 0; color: #111111; font-size: 22px; font-weight: 700;">You're on the list! 🎉</h2>
               
-              <p style="color: #3a504d; font-size: 16px;">Hi ${safeName || 'there'},</p>
+              <p style="color: #444444; font-size: 16px;">Hi ${safeName || 'there'},</p>
               
-              <p style="color: #3a504d; font-size: 16px;">We are so glad you joined us and we really appreciate your interest in StackSense! You have successfully joined the waitlist and your spot is securely saved.</p>
+              <p style="color: #444444; font-size: 16px;">We are so glad you joined us and we really appreciate your interest in StackSense! You have successfully joined the waitlist and your spot is securely saved.</p>
               
               <!-- Referral Section -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 35px 0; background-color: #eff7f4; border: 1px solid #c2e0d7; border-radius: 10px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 35px 0; background-color: #fafafa; border: 1px solid #eaeaea; border-radius: 8px;">
                 <tr>
                   <td style="padding: 25px;">
-                    <h3 style="margin-top: 0; color: #1a8c87; font-size: 18px;">Want 2 free months of StackSense Unlimited?</h3>
-                    <p style="color: #2c423f; font-size: 15px; margin-bottom: 20px;">We're prioritizing users who help us spread the word. We'd love it if you invited people to join us. If you refer just <strong>1 person</strong> using your unique referral code or link below, you'll automatically get 2 months free when we launch.</p>
+                    <h3 style="margin-top: 0; color: #111111; font-size: 18px;">Want 2 free months of StackSense Unlimited?</h3>
+                    <p style="color: #555555; font-size: 15px; margin-bottom: 20px;">We're prioritizing users who help us spread the word. We'd love it if you invited people to join us. If you refer just <strong>1 person</strong> using your unique referral code or link below, you'll automatically get 2 months free when we launch.</p>
                     
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px dashed #1a8c87; border-radius: 8px; margin-bottom: 20px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; margin-bottom: 20px;">
                       <tr>
                         <td align="center" style="padding: 15px;">
-                          <span style="display: block; font-size: 13px; color: #667c78; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;">Your Unique Code</span>
-                          <strong style="font-size: 24px; color: #0c1a18; letter-spacing: 0.1em;">${newCode}</strong>
+                          <span style="display: block; font-size: 13px; color: #888888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;">Your Unique Code</span>
+                          <strong style="font-size: 24px; color: #111111; letter-spacing: 0.1em;">${newCode}</strong>
                         </td>
                       </tr>
                     </table>
@@ -134,7 +134,7 @@ export default async function handler(req, res) {
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td align="center">
-                          <a href="${referralLink}" style="display: inline-block; background-color: #1a8c87; color: #ffffff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 8px; font-size: 15px;">Share Your Referral Link</a>
+                          <a href="${referralLink}" style="display: inline-block; background-color: #1a8c87; color: #ffffff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 6px; font-size: 15px;">Share Your Referral Link</a>
                         </td>
                       </tr>
                     </table>
@@ -142,21 +142,21 @@ export default async function handler(req, res) {
                 </tr>
               </table>
               
-              <p style="color: #3a504d; font-size: 16px;">Just share this code or link with a friend or in your community. When they join the waitlist using it, we'll track the referral to your account.</p>
+              <p style="color: #444444; font-size: 16px;">Just share this code or link with a friend or in your community. When they join the waitlist using it, we'll track the referral to your account.</p>
               
-              <p style="color: #3a504d; font-size: 16px; margin-top: 30px;">Stay tuned for early access updates!</p>
+              <p style="color: #444444; font-size: 16px; margin-top: 30px;">Stay tuned for early access updates!</p>
               
-              <p style="color: #3a504d; font-size: 16px; margin-bottom: 0;">
+              <p style="color: #444444; font-size: 16px; margin-bottom: 0;">
                 Best,<br/>
-                <strong>Jad & the StackSense Team</strong>
+                <strong style="color: #111111;">Jad & the StackSense Team</strong>
               </p>
             </td>
           </tr>
           
           <!-- Footer -->
           <tr>
-            <td align="center" style="background-color: #fafcfa; padding: 20px; border-top: 1px solid #dce8e5;">
-              <p style="color: #94a3b8; font-size: 13px; margin: 0;">© 2026 StackSense. All rights reserved.</p>
+            <td align="center" style="background-color: #fafafa; padding: 20px; border-top: 1px solid #eaeaea;">
+              <p style="color: #999999; font-size: 13px; margin: 0;">© 2026 StackSense. All rights reserved.</p>
             </td>
           </tr>
         </table>
