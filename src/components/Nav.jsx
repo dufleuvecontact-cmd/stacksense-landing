@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const links = [
-  { label: 'Features', href: '#features' },
-  { label: 'Product', href: '#product' },
-  { label: 'Timeline', href: '#timeline' },
-  { label: 'Waitlist', href: '#waitlist' },
+  { label: 'Features', href: '/#features' },
+  { label: 'Product', href: '/#product' },
+  { label: 'Timeline', href: '/#timeline' },
+  { label: 'Waitlist', href: '/#waitlist' },
   { label: 'Investors', href: '/investors' },
 ]
 
@@ -83,7 +83,7 @@ export default function Nav() {
           </ul>
 
           <div id="nav-cta">
-            <a href="#waitlist" className="btn btn-teal" style={{ fontSize: '.82rem', padding: '.55rem 1.3rem' }}>
+            <a href="/#waitlist" className="btn btn-teal" style={{ fontSize: '.82rem', padding: '.55rem 1.3rem' }}>
               Join Waitlist
             </a>
           </div>
@@ -112,7 +112,7 @@ export default function Nav() {
                 </li>
               ))}
             </ul>
-            <a href="#waitlist" className="btn btn-teal" onClick={() => setOpen(false)}
+            <a href="/#waitlist" className="btn btn-teal" onClick={() => setOpen(false)}
               style={{ width: '100%', justifyContent: 'center' }}>Join Waitlist</a>
           </div>
         )}
