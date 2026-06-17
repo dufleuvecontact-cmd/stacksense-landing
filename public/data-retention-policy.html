@@ -99,60 +99,6 @@
       </ul>
       <p>Users are told this explicitly in the deletion flow and in the Privacy Policy.</p>
 
-      <h2>5. Implementation requirements</h2>
-      <h3>Database schema</h3>
-      <p>Add the following fields to the <code>users</code> table (or equivalent):</p>
-      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN deleted_at TIMESTAMPTZ NULL;
-ALTER TABLE users ADD COLUMN purge_after TIMESTAMPTZ NULL;
-ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
-      <p>For all health-data tables, add either a <code>user_id</code> foreign key (which lets cascade-delete handle the wipe) or a <code>deleted_at</code> column (for soft-delete patterns).</p>
-
-      <h3>Soft-delete flow</h3>
-      <p>When a user submits a deletion request from the in-app panel or by email:</p>
-      <ol>
-        <li>Set <code>users.deleted_at = NOW()</code></li>
-        <li>Set <code>users.purge_after = NOW() + INTERVAL '7 days'</code></li>
-        <li>Sign the user out of all sessions</li>
-        <li>Send confirmation email with recovery link (works for 7 days)</li>
-        <li>Log the request in the deletion audit log</li>
-      </ol>
-
-      <h3>Hard-delete cron job</h3>
-      <p>Daily, run a job that:</p>
-      <ol>
-        <li>Finds all users with <code>purge_after < NOW()</code> and <code>deleted_at IS NOT NULL</code></li>
-        <li>For each user, in this order:</li>
-      </ol>
-      <ul>
-        <li>Delete from <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code>, and any other health-data tables</li>
-        <li>Delete from <code>marketing_preferences</code></li>
-        <li>Anonymize the <code>users</code> row: clear <code>email</code>, <code>display_name</code>, <code>password_hash</code>, replace <code>email</code> with <code>deleted-{user_id}@deleted.stacksense.ca</code>, keep only <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> for compliance proof</li>
-        <li>Do NOT delete the row entirely. We keep the anonymized stub for consent proof if a future complaint arises.</li>
-        <li>Anonymize the Stripe customer record (Stripe API: update customer with empty PII, then archive)</li>
-      </ul>
-      <p>Log every action in the deletion audit log and email the user from <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> confirming deletion (sent to the original email since we have not yet anonymized at that point - anonymize last, after email send).</p>
-
-      <h2>Retention enforcement for other categories</h2>
-      <ul>
-        <li><strong>Analytics:</strong> PostHog/Plausible auto-roll-off after 90 days. Verify retention setting in vendor dashboard.</li>
-        <li><strong>Sentry:</strong> Set retention to 90 days in Sentry project settings.</li>
-        <li><strong>Server logs:</strong> Configure log retention to 30 days in Vercel.</li>
-        <li><strong>Backups:</strong> Supabase point-in-time recovery is 7 days by default on paid plans; daily backups retained 30 days on Pro. Set explicit retention in vendor dashboard.</li>
-      </ul>
-
-      <h2>Audit log</h2>
-      <p>Maintain a <code>data_deletion_log</code> table:</p>
-      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">CREATE TABLE data_deletion_log (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL,
-  action TEXT NOT NULL,
-  initiated_by TEXT NOT NULL,
-  reason TEXT,
-  details JSONB,
-  occurred_at TIMESTAMPTZ DEFAULT NOW()
-);
-</pre>
-      <p>Retain audit log indefinitely while StackSense operates. This is your proof that you honor user rights.</p>
 
       <h2>6. Exception: legal hold</h2>
       <p>If StackSense receives a litigation hold or regulator preservation order, the deletion job must skip affected users. Implement an admin flag:</p>
@@ -270,60 +216,6 @@ ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
       </ul>
       <p>Nous informons les utilisateurs de cela explicitement dans le flux de suppression et dans la Politique de confidentialité.</p>
 
-      <h2>5. Exigences de mise en œuvre</h2>
-      <h3>Schéma de base de données</h3>
-      <p>Ajouter les champs suivants à la table <code>users</code> (ou équivalent) :</p>
-      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">ALTER TABLE users ADD COLUMN deleted_at TIMESTAMPTZ NULL;
-ALTER TABLE users ADD COLUMN purge_after TIMESTAMPTZ NULL;
-ALTER TABLE users ADD COLUMN deletion_reason TEXT NULL;</pre>
-      <p>Pour toutes les tables de données de santé, ajouter soit une clé étrangère <code>user_id</code> (ce qui permet à la suppression en cascade de traiter l'effacement), soit une colonne <code>deleted_at</code> (pour les modèles de suppression logique).</p>
-
-      <h3>Flux de suppression logique</h3>
-      <p>Lorsque l'utilisateur soumet une demande de suppression depuis le panneau intégré ou par e-mail :</p>
-      <ol>
-        <li>Définir <code>users.deleted_at = NOW()</code></li>
-        <li>Définir <code>users.purge_after = NOW() + INTERVAL '7 days'</code></li>
-        <li>Déconnecter l'utilisateur de toutes les sessions</li>
-        <li>Envoyer un e-mail de confirmation avec un lien de récupération (valide 7 jours)</li>
-        <li>Consigner la demande dans le journal d'audit de suppression</li>
-      </ol>
-
-      <h3>Tâche cron de suppression définitive</h3>
-      <p>Chaque jour, exécuter un travail qui :</p>
-      <ol>
-        <li>Identifie tous les utilisateurs avec <code>purge_after < NOW()</code> et <code>deleted_at IS NOT NULL</code></li>
-        <li>Pour chaque utilisateur, dans cet ordre :</li>
-      </ol>
-      <ul>
-        <li>Supprimer dans <code>logs</code>, <code>symptoms</code>, <code>body_composition</code>, <code>protocols</code>, <code>cycles</code>, <code>compound_acknowledgments</code>, <code>photos</code> et toutes les autres tables de données de santé</li>
-        <li>Supprimer dans <code>marketing_preferences</code></li>
-        <li>Anonymiser la ligne <code>users</code> : effacer <code>email</code>, <code>display_name</code>, <code>password_hash</code>, remplacer <code>email</code> par <code>deleted-{user_id}@deleted.stacksense.ca</code>, conserver uniquement <code>id</code>, <code>created_at</code>, <code>deleted_at</code>, <code>accepted_tos_version</code>, <code>accepted_privacy_version</code> pour preuve de conformité</li>
-        <li>Ne PAS supprimer la ligne complètement. Nous conservons l'enregistrement anonymisé pour prouver le consentement en cas de plainte future.</li>
-        <li>Anonymiser le client Stripe (API Stripe : mettre à jour le client avec des PII vides, puis archiver)</li>
-      </ul>
-      <p>Consigner chaque action dans le journal d'audit de suppression. Envoyer un e-mail de confirmation à l'utilisateur depuis <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> (envoyé à l'adresse originale avant anonymisation finale).</p>
-
-      <h2>Application de la conservation pour d'autres catégories</h2>
-      <ul>
-        <li><strong>Analyses :</strong> PostHog/Plausible expire automatiquement après 90 jours. Vérifier le paramètre de conservation dans le tableau de bord du fournisseur.</li>
-        <li><strong>Sentry :</strong> Configurer la conservation à 90 jours dans les paramètres du projet.</li>
-        <li><strong>Journaux serveur :</strong> Configurer la conservation à 30 jours sur Vercel.</li>
-        <li><strong>Backups :</strong> Supabase a une récupération point-in-time de 7 jours par défaut sur les offres payantes ; les sauvegardes quotidiennes sont conservées 30 jours sur Pro. Fixer une conservation explicite dans le tableau de bord du fournisseur.</li>
-      </ul>
-
-      <h2>Journal d'audit</h2>
-      <p>Maintenir une table <code>data_deletion_log</code> :</p>
-      <pre style="background:rgba(148,163,184,.08); padding:1rem; border-radius:.85rem; overflow:auto;">CREATE TABLE data_deletion_log (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL,
-  action TEXT NOT NULL,
-  initiated_by TEXT NOT NULL,
-  reason TEXT,
-  details JSONB,
-  occurred_at TIMESTAMPTZ DEFAULT NOW()
-);
-</pre>
-      <p>Conserver le journal d'audit indéfiniment tant que StackSense fonctionne. C'est la preuve que nous respectons les droits des utilisateurs.</p>
 
       <h2>6. Exception : conservation juridique</h2>
       <p>Si StackSense reçoit une mesure de conservation judiciaire ou une ordonnance de régulateur, la tâche de suppression doit ignorer les utilisateurs concernés. Implémenter un indicateur administratif :</p>
