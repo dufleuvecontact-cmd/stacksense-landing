@@ -91,7 +91,7 @@ export default function ProductPreview() {
                     </div>
                   )}
                   <iframe
-                    src="https://stacksense.online/?demo=true"
+                    src="https://www.stacksense.online/?demo=true"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                     allow="clipboard-write"
                     title="StackSense Live Sandbox Demo"
