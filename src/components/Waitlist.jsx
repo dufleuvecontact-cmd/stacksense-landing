@@ -87,6 +87,9 @@ export default function Waitlist() {
 
       // Lead saved — now safe to show success
       track('waitlist_join')
+      if (typeof window !== 'undefined' && window.rdt) {
+        window.rdt('track', 'SignUp');
+      }
       setCode(data.code)
       setSubmitted(true)
     } catch (err) {
