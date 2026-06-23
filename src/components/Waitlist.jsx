@@ -267,8 +267,8 @@ export default function Waitlist() {
                     <input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} required
                       style={{ marginTop: 2, accentColor: 'var(--teal)', width: 14, height: 14, flexShrink: 0 }} />
                     <span className="small">
-                      I agree to StackSense collecting my email for waitlist purposes. See our{' '}
-                      <a href="/privacy-policy.html" style={{ color: 'var(--teal)', textDecoration: 'none' }}>Privacy Policy</a>.
+                      I agree to receive StackSense launch and product-update emails, and to StackSense storing my email per the{' '}
+                      <a href="/privacy-policy.html" style={{ color: 'var(--teal)', textDecoration: 'none' }}>Privacy Policy</a>. Unsubscribe anytime.
                     </span>
                   </label>
                   <div style={{ textAlign: 'center', marginTop: '0.5rem', marginBottom: '0.2rem', fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 500 }}>

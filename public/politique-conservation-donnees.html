@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de conservation des données — StackSense</title>
+  <style>
+    body { margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f5f7f6; color:#0c1a18; }
+    a { color:#1a8c87; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .page { max-width:900px; margin:0 auto; padding:2rem; }
+    header { margin-bottom:2rem; }
+    h1 { font-size:2rem; margin-bottom:.5rem; }
+    h2 { font-size:1.35rem; margin-top:2rem; margin-bottom:1rem; }
+    h3 { font-size:1.05rem; margin-top:1.5rem; margin-bottom:.7rem; }
+    p, li { line-height:1.75; }
+    ul, ol { margin:0 0 1rem 1.4rem; }
+    .card { background:#ffffff; border:1px solid #dce8e5; border-radius:1.25rem; padding:1.75rem; box-shadow:0 12px 40px rgba(15,23,42,.06); }
+    .note { color:#3a504d; margin-top:.5rem; }
+    table { width:100%; border-collapse:collapse; margin-top:1rem; margin-bottom:1rem; }
+    th, td { padding:.85rem .75rem; border:1px solid #dce8e5; text-align:left; }
+    th { background:#eff7f4; font-weight:700; }
+    .footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid #dce8e5; color:#667c78; }
+    .lang-link { display:inline-block; margin:1rem 0; padding:.5rem 1rem; background:#fff; border:1px solid #dce8e5; border-radius:.75rem; color:#1a8c87; font-size:.9rem; }
+    @media(max-width:640px){ .page { padding:1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p style="font-size:.9rem; color:#94a3b8; margin-bottom:.5rem;">Date d'entrée en vigueur : 20/05/26 · Version : 1.0</p>
+      <h1>Politique de conservation des données StackSense</h1>
+      <a href="/data-retention-policy.html" class="lang-link">English version</a>
+      <p class="note">StackSense est toujours en bêta ; ces politiques sont susceptibles de changer au fur et à mesure que le produit évolue. Cette politique définit pendant combien de temps StackSense conserve chaque catégorie de données personnelles, pourquoi et comment elles sont supprimées. Elle soutient la Politique de confidentialité et les obligations de conformité internes.</p>
+    </header>
+
+    <div class="card">
+      <h2>Objectif</h2>
+      <p>Définir pendant combien de temps StackSense conserve chaque catégorie de données personnelles, pourquoi et comment elles sont supprimées. Ce document soutient la section 7 de la Politique de confidentialité et est requis par l'article 5(1)(e) du RGPD, la Loi 25 du Québec et plusieurs lois étatiques sur la vie privée.</p>
+      <p>Il s'agit à la fois d'un engagement public et d'une spécification technique interne.</p>
+
+      <h2>1. Principes de conservation</h2>
+      <ol>
+        <li>Nous ne collectons que le minimum de données nécessaire</li>
+        <li>Nous ne les conservons que le temps nécessaire pour fournir le service ou répondre à une obligation légale</li>
+        <li>Nous les supprimons selon un calendrier documenté</li>
+        <li>Les utilisateurs peuvent déclencher une suppression anticipée via le panneau de droits des données</li>
+        <li>Certaines catégories doivent être conservées plus longtemps parce que la loi l'exige (facturation, fiscalité)</li>
+        <li>Les sauvegardes sont supprimées sur un cycle glissant, pas instantanément, et les utilisateurs en sont informés</li>
+      </ol>
+
+      <h2>2. Calendrier de conservation par catégorie de données</h2>
+      <table>
+        <thead>
+          <tr><th>Catégorie de données</th><th>Source</th><th>Conservation pendant le compte actif</th><th>Conservation après suppression du compte</th><th>Base juridique du délai de conservation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Adresse e-mail et mot de passe haché</td><td>Inscription de l'utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression logique immédiate. Suppression définitive sous 90 jours.</td><td>Exécution du contrat pendant la période active. Conservation limitée après suppression pour le cycle de sauvegarde.</td></tr>
+          <tr><td>Journaux de suppléments, peptides et dosages</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours depuis la base de données principale. Jusqu'à 6 mois en sauvegarde.</td><td>Exécution du contrat. La suppression des données de santé est obligatoire en vertu du droit d'effacement du RGPD.</td></tr>
+          <tr><td>Journaux de symptômes</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours. Jusqu'à 6 mois en sauvegarde.</td><td>Idem.</td></tr>
+          <tr><td>Données de composition corporelle</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Notes sur les sites d'injection</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Photos jointes aux journaux</td><td>Téléversement utilisateur</td><td>Jusqu'à la suppression du compte ou la suppression de la photo par l'utilisateur</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Notes de protocole / plans de cycle</td><td>Saisie utilisateur</td><td>Jusqu'à la suppression du compte</td><td>Suppression définitive sous 90 jours.</td><td>Idem.</td></tr>
+          <tr><td>Niveau et statut d'abonnement</td><td>Stripe + notre base</td><td>Jusqu'à la suppression du compte</td><td>Anonymisation après suppression. Le niveau n'est plus lié.</td><td>Prestation du service.</td></tr>
+          <tr><td>Dossiers de facturation (factures, historique de paiement)</td><td>Stripe</td><td>7 ans à partir de l'émission</td><td>7 ans à partir de l'émission</td><td>Loi fiscale canadienne (Loi de l'impôt sur le revenu), loi québécoise sur la protection du consommateur, principes comptables.</td></tr>
+          <tr><td>Enregistrements client Stripe</td><td>Stripe</td><td>Jusqu'à la suppression du compte</td><td>Anonymisation dans Stripe (champs PII effacés) après 90 jours. Stripe conserve les enregistrements de transaction pour ses obligations de conformité (PCI-DSS, AML).</td><td>La DPA Stripe définit leur conservation.</td></tr>
+          <tr><td>Adresse IP (journaux serveur)</td><td>Serveur Web, Vercel</td><td>30 jours</td><td>30 jours</td><td>Fenêtre d'investigation de sécurité. Requise pour la prévention des abus.</td></tr>
+          <tr><td>Chaînes user-agent, type d'appareil</td><td>Serveur Web</td><td>30 jours</td><td>30 jours</td><td>Idem.</td></tr>
+          <tr><td>Événements analytiques PostHog / Plausible</td><td>Application</td><td>90 jours</td><td>n/a (anonymisés à la collecte)</td><td>Analyse des tendances. Au-delà de 90 jours, nous utilisons des agrégats.</td></tr>
+          <tr><td>Rapports de plantage Sentry (si opt-in)</td><td>Application</td><td>90 jours</td><td>90 jours</td><td>Investigation de bugs.</td></tr>
+          <tr><td>Correspondance e-mail (privacy@, support@)</td><td>Gmail/Workspace</td><td>3 ans</td><td>3 ans</td><td>Délai de prescription pour les réclamations des consommateurs. Nous pourrons réduire cela après avis juridique.</td></tr>
+          <tr><td>Dossiers de conformité (DPA, registre des violations, AIPD, journaux d'audit)</td><td>Interne</td><td>Indéfini pour les dossiers actifs, 7 ans après mise hors service</td><td>Idem</td><td>Requis pour inspection des régulateurs.</td></tr>
+          <tr><td>Registres d'acceptation des CGU et de la Politique de confidentialité</td><td>Base de données</td><td>Indéfini tant que le compte existe, 7 ans après suppression</td><td>7 ans</td><td>Requis pour prouver le consentement en cas de litige.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. Définitions</h2>
+      <ul>
+        <li><strong>Suppression logique :</strong> le compte est marqué comme supprimé, l'utilisateur ne peut plus se connecter, les données ne sont plus accessibles via l'application, mais la ligne existe pendant la période de grâce.</li>
+        <li><strong>Suppression définitive :</strong> la ligne est supprimée de la base de données principale.</li>
+        <li><strong>Suppression des sauvegardes :</strong> les données sont supprimées de la base de données principale mais peuvent persister dans des sauvegardes chiffrées pendant la durée du cycle de rotation. Après cette durée, les sauvegardes deviennent inutilisables et les données disparaissent.</li>
+        <li><strong>Anonymisation :</strong> les champs PII sont nuls ou remplacés par des valeurs non identifiantes. L'enregistrement existe toujours pour une finalité requise légalement (par exemple, facturation) mais ne peut plus être rattaché à l'utilisateur.</li>
+      </ul>
+
+      <h2>4. Période de grâce de suppression</h2>
+      <p>Lorsque un utilisateur supprime son compte, nous appliquons la période de grâce suivante afin d'éviter les accidents :</p>
+      <ul>
+        <li><strong>0 à 24 heures après la demande de suppression :</strong> le compte est supprimé logiquement. L'utilisateur peut se reconnecter et annuler la suppression en cliquant sur un lien de récupération dans l'e-mail de confirmation de suppression.</li>
+        <li><strong>24 heures à 7 jours après la suppression :</strong> le compte reste supprimé logiquement. La récupération nécessite d'écrire à <a href="mailto:privacy@stacksense.ca">privacy@stacksense.ca</a> avec une preuve d'identité.</li>
+        <li><strong>Après 7 jours :</strong> la suppression définitive est effectuée lors du prochain travail cron nocturne. La récupération n'est plus possible.</li>
+        <li><strong>7 à 90 jours :</strong> les données sont purgées de la base de données principale. Les sauvegardes sont supprimées selon leur cycle normal.</li>
+        <li><strong>Après 90 jours :</strong> toutes les données de santé identifiantes sont supprimées des systèmes principaux. Les sauvegardes peuvent encore contenir des instantanés vieux de 6 mois. Nous ne supprimons pas sélectivement des sauvegardes. Lorsque les sauvegardes arrivent en fin de cycle, les données disparaissent.</li>
+      </ul>
+      <p>Nous informons les utilisateurs de cela explicitement dans le flux de suppression et dans la Politique de confidentialité.</p>
+
+      <h2>6. Exception : conservation juridique</h2>
+      <p>Si StackSense reçoit une mesure de conservation judiciaire ou une ordonnance de régulateur, la tâche de suppression doit ignorer les utilisateurs concernés.</p>
+      <p>Lorsqu'une conservation est en place, l'utilisateur reste supprimé logiquement mais les données sont conservées. Informer l'utilisateur qu'une ordonnance légale a été reçue (sauf si la loi interdit de le faire).</p>
+
+      <h2>7. Exception : dossiers de facturation</h2>
+      <p>Les dossiers clients Stripe et nos propres dossiers de facturation locale sont conservés 7 ans à compter de la date de transaction. Cela permet de satisfaire :</p>
+      <ul>
+        <li>La Loi de l'impôt sur le revenu canadienne (6 ans)</li>
+        <li>La période de contestation de la Loi sur la protection du consommateur du Québec</li>
+        <li>Les principes comptables généralement reconnus</li>
+        <li>Les délais potentiels de rétrofacturation</li>
+      </ul>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">Lorsque vous supprimez votre compte, vos données de santé sont effacées de notre base de données active sous 90 jours. Vos dossiers de facturation sont conservés pendant 7 ans parce que la loi fiscale l'exige. Ces dossiers ne montrent que que vous avez payé pour le service, le montant et la date. Ils n'incluent pas de données de santé.</blockquote>
+
+      <h2>8. Suppressions partielles déclenchées par l'utilisateur</h2>
+      <p>Les utilisateurs peuvent également supprimer des entrées individuelles (une saisie incorrecte, une note privée) sans supprimer l'ensemble du compte. Ces suppressions suivent la même règle de cycle de sauvegarde : elles disparaissent de la base principale immédiatement, et des sauvegardes lors de leur rotation.</p>
+
+      <h2>9. Responsabilités des fournisseurs</h2>
+      <table>
+        <thead>
+          <tr><th>Fournisseur</th><th>Engagement de conservation</th><th>Où documenté</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supabase</td><td>Respecte la suppression dans le délai standard des sauvegardes</td><td>DPA</td></tr>
+          <tr><td>Vercel</td><td>Journaux auto-supprimés selon le calendrier, pas de PII utilisateur persistante</td><td>DPA</td></tr>
+          <tr><td>Stripe</td><td>Anonymise les PII client sur demande, conserve les données de transaction pour sa conformité</td><td>DPA</td></tr>
+          <tr><td>Anthropic</td><td>Pas de données personnelles envoyées via notre intégration. Requêtes génériques sur les composés uniquement.</td><td>DPA + revue d'architecture</td></tr>
+          <tr><td>PostHog / Plausible</td><td>Anonymisés à la collecte, conservation de 90 jours</td><td>Paramètres de confidentialité + DPA</td></tr>
+          <tr><td>Sentry</td><td>Conservation de 90 jours que nous contrôlons</td><td>Paramètres de projet</td></tr>
+        </tbody>
+      </table>
+      <p>Lorsque nous supprimons un utilisateur, nous déclenchons la suppression en aval chez chaque fournisseur concerné.</p>
+
+      <h2>10. Communication aux utilisateurs</h2>
+      <blockquote style="background:rgba(148,163,184,.08); padding:1rem; border-left:4px solid #22d3ee; margin:1rem 0;">Lorsque vous supprimez votre compte, vos données de santé sont supprimées de notre base de données active sous 90 jours. Les sauvegardes s'effilent au cours des 6 mois suivants. Vos dossiers de facturation sont conservés pendant 7 ans parce que la loi l'exige.</blockquote>
+
+      <h2>11. Révision</h2>
+      <p>Cette politique est révisée annuellement, ou chaque fois que :</p>
+      <ul>
+        <li>Une nouvelle catégorie de données est ajoutée</li>
+        <li>Un nouveau fournisseur est engagé</li>
+        <li>Des changements législatifs l'exigent</li>
+        <li>Un incident révèle une lacune</li>
+      </ul>
+      <p>Dernière révision : 20/05/26</p>
+      <p><strong>Fin de la politique de conservation des données. Version 1.0.</strong></p>
+    </div>
+
+    <div class="footer">
+      <p>Retour à <a href="/">StackSense</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

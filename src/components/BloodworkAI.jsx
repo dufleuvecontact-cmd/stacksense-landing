@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Activity, CheckCircle2, AlertTriangle, FileText, ChevronRight } from 'lucide-react'
+import { Activity, CheckCircle2, FileText, ChevronRight } from 'lucide-react'
 
 export default function BloodworkAI() {
   const ref = useRef(null)
@@ -25,7 +25,7 @@ export default function BloodworkAI() {
               <span className="teal-text"> actually explained.</span>
             </h2>
             <p className="lead" style={{ maxWidth: 520, margin: '0 auto' }}>
-              Upload your lab results. StackSense's AI flags what's out of range, summarizes key findings, and gives you questions to bring to your doctor, all in plain language.
+              Upload your lab results. StackSense organizes your results next to standard reference ranges, in plain language — and gives you questions to bring to your doctor.
             </p>
           </div>
 
@@ -59,22 +59,22 @@ export default function BloodworkAI() {
               
               <div style={{ padding: '1.5rem' }}>
                 <h4 style={{ fontWeight: 600, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <AlertTriangle size={16} color="#eab308" />
-                  Key Findings to Review
+                  <Activity size={16} color="var(--teal)" />
+                  Your Results at a Glance
                 </h4>
-                
+
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
                   <li style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--text-2)', lineHeight: 1.5 }}>
                     <div style={{ marginTop: '0.2rem' }}><ChevronRight size={14} color="var(--teal)" /></div>
-                    <div><strong>Testosterone (Free)</strong> is slightly below optimal range at <strong>8.2 pg/mL</strong> (Optimal: 10-25 pg/mL).</div>
+                    <div><strong>Testosterone (Free)</strong> — <strong>8.2 pg/mL</strong> (Standard range: 5–25 pg/mL). Measures the unbound, active form of testosterone.</div>
                   </li>
                   <li style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--text-2)', lineHeight: 1.5 }}>
                     <div style={{ marginTop: '0.2rem' }}><ChevronRight size={14} color="var(--teal)" /></div>
-                    <div><strong>Cortisol</strong> is elevated at <strong>22.4 mcg/dL</strong>. This may indicate acute stress or overtraining.</div>
+                    <div><strong>Cortisol</strong> — <strong>22.4 mcg/dL</strong> (Standard range: 6–23 mcg/dL). A hormone involved in the body's stress response.</div>
                   </li>
                   <li style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--text-2)', lineHeight: 1.5 }}>
                     <div style={{ marginTop: '0.2rem' }}><ChevronRight size={14} color="var(--teal)" /></div>
-                    <div><strong>Estradiol</strong> is well managed at <strong>24 pg/mL</strong>, in the ideal range.</div>
+                    <div><strong>Estradiol</strong> — <strong>24 pg/mL</strong> (Standard range: 10–40 pg/mL). The primary form of estrogen in the body.</div>
                   </li>
                 </ul>
 

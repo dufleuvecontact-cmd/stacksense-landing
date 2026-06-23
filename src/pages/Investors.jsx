@@ -24,7 +24,7 @@ const slides = [
     title: 'Millions are supplementing blind.',
     points: [
       { icon: AlertTriangle, text: 'No way to know which supplement in a stack is actually working' },
-      { icon: AlertTriangle, text: 'Dangerous interaction risks with peptides & compounds go unchecked' },
+      { icon: AlertTriangle, text: 'People combine compounds with no easy way to see what the research says' },
       { icon: AlertTriangle, text: 'Existing tools are just pill reminders — zero intelligence, zero insight' },
       { icon: AlertTriangle, text: 'Bloodwork results sit in PDFs with no correlation to protocols' },
     ],
@@ -36,7 +36,7 @@ const slides = [
     title: 'StackSense connects the dots.',
     points: [
       { icon: Activity, text: 'Track doses, cycles, and protocols with clinical-grade logging' },
-      { icon: Shield, text: 'Real-time interaction checking across 420+ compounds' },
+      { icon: Shield, text: 'Educational interaction notes from published research across 420+ compounds' },
       { icon: Brain, text: 'AI-powered bloodwork analysis correlating results to protocols' },
       { icon: BarChart3, text: 'Longitudinal insights showing what\'s actually moving the needle' },
     ],
@@ -61,7 +61,7 @@ const slides = [
     features: [
       { icon: Smartphone, name: 'Protocol Tracking', desc: 'Log every dose, cycle, and compound with smart scheduling' },
       { icon: Brain, name: 'AI Blood Analysis', desc: 'Upload bloodwork, get AI-powered insights correlated to your stack' },
-      { icon: Zap, name: 'Interaction Engine', desc: 'Real-time safety alerts across 420+ compounds' },
+      { icon: Zap, name: 'Interaction Engine', desc: 'Educational interaction notes from published research across 420+ compounds' },
       { icon: BarChart3, name: 'Progress Dashboard', desc: 'Visualize trends, streaks, and health markers over time' },
       { icon: Target, name: 'Bioavailability Calc', desc: 'Optimize timing and delivery for maximum absorption' },
       { icon: Globe, name: 'Compound Library', desc: '420+ research-backed compounds with clinical dosing data' },
