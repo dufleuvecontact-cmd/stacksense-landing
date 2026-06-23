@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Mail, User, ArrowRight, Check, Shield, Zap, Clock, Users, Copy, Star } from 'lucide-react'
+import { Mail, User, ArrowRight, Check, Shield, Users, Copy, Star } from 'lucide-react'
 // supabase import removed — payment status is now updated via server-side Stripe webhook
 import { track } from '@vercel/analytics'
 
@@ -48,23 +48,25 @@ export default function Waitlist() {
 
 
 
-  async function submit(e) {
-    e.preventDefault()
-    if (!email || !consent) return
-
+  function validate() {
+    if (!email || !consent) return false
     if (name && !/^[A-Za-z\s-]{2,50}$/.test(name)) {
       alert('Please enter a valid name (letters, spaces, hyphens only).')
-      return
+      return false
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert('Please enter a valid email address.')
-      return
+      return false
     }
+    return true
+  }
+
+  // Free path: create the waitlist row and show the success state.
+  async function submit(e) {
+    e.preventDefault()
+    if (!validate()) return
 
     setIsSubmitting(true)
-
-
-
     try {
       const res = await fetch('/api/join-waitlist', {
         method: 'POST',
@@ -100,30 +102,74 @@ export default function Waitlist() {
     setIsSubmitting(false)
   }
 
-  async function upgrade() {
+  // Redirect to Stripe checkout. Returns false if it did NOT redirect (so caller can re-enable UI).
+  async function startCheckout(checkoutEmail, checkoutCode) {
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: checkoutEmail, code: checkoutCode || '' }),
+    })
+    const data = await res.json()
+    const safeUrl = data.url && (() => { try { return new URL(data.url).hostname === 'checkout.stripe.com' } catch { return false } })()
+    if (safeUrl) {
+      window.location.href = data.url
+      return true
+    }
+    if (data.url) {
+      console.error('Invalid redirect URL:', data.url)
+      alert('Security error: received an invalid redirect URL from the server.')
+    } else {
+      console.error('Stripe error:', data)
+      alert('Failed to initiate payment. Please try again or contact support@stacksense.ca.')
+    }
+    return false
+  }
+
+  // Founding path: ensure a waitlist row exists (webhook links payment by email), then checkout.
+  async function joinFounding() {
+    if (!validate()) return
     setIsUpgrading(true)
     try {
-      const res = await fetch('/api/create-checkout-session', {
+      const res = await fetch('/api/join-waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, code }),
+        body: JSON.stringify({ email, name, refCode })
       })
       const data = await res.json()
-      if (data.url && (() => { try { return new URL(data.url).hostname === 'checkout.stripe.com'; } catch { return false; } })()) {
-        window.location.href = data.url
-        return
-      } else if (data.url) {
-        console.error('Invalid redirect URL:', data.url)
-        alert('Security error: received an invalid redirect URL from the server.')
+      let joinedCode = ''
+      if (res.ok) {
+        joinedCode = data.code
+        track('waitlist_join')
+        if (typeof window !== 'undefined' && window.rdt) window.rdt('track', 'SignUp')
+      } else if (data.code === 'DUPLICATE') {
+        // Already on the list — row exists, webhook matches by email. Proceed to checkout.
+        joinedCode = ''
+      } else if (data.code === 'INVALID_REF') {
+        alert(data.message); setIsUpgrading(false); return
       } else {
-        console.error('Stripe error:', data)
-        alert('Failed to initiate payment. Please try again or contact support@stacksense.ca.')
+        alert('Something went wrong. Please try again.'); setIsUpgrading(false); return
       }
+      track('founding_checkout')
+      const redirected = await startCheckout(email, joinedCode)
+      if (!redirected) setIsUpgrading(false)
     } catch (err) {
       console.error(err)
       alert('An error occurred. Please try again.')
+      setIsUpgrading(false)
     }
-    setIsUpgrading(false)
+  }
+
+  // Post-join upsell button (success state) — code already known.
+  async function upgrade() {
+    setIsUpgrading(true)
+    try {
+      const redirected = await startCheckout(email, code)
+      if (!redirected) setIsUpgrading(false)
+    } catch (err) {
+      console.error(err)
+      alert('An error occurred. Please try again.')
+      setIsUpgrading(false)
+    }
   }
 
   function copy() {
@@ -135,36 +181,55 @@ export default function Waitlist() {
   return (
     <section id="waitlist" ref={ref} className="section-band">
       <div className="wrap">
-        <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Early access</p>
-          <h2 className="h2" style={{ marginBottom: '1rem' }}>
-            Shape the <span className="teal-text">product.</span>
-          </h2>
-          <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Early access members help shape StackSense — and lock in special pricing.
-          </p>
-        </div>
+        <div className="wl-grid">
+          {/* LEFT — pitch */}
+          <div className="wl-pitch sr">
+            <span className="pill pill-teal" style={{ marginBottom: '1.1rem' }}>Founding members · First 100 only</span>
+            <h2 className="h2" style={{ marginBottom: '1rem' }}>
+              Lock in <span className="teal-text">$9.99/mo</span>, for life.
+            </h2>
+            <p className="lead" style={{ marginBottom: '1.5rem' }}>
+              Founding members lock in $9.99/mo for life and get 6 months free, all for a $1 deposit. Or join the waitlist for free to get early access.
+            </p>
 
-        <div style={{ maxWidth: 540, margin: '0 auto' }}>
+            <div className="wl-offer">
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '.55rem', marginBottom: '.6rem', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--text)', letterSpacing: '-.02em', lineHeight: 1 }}>$9.99</span>
+                <span style={{ color: 'var(--text-3)', fontWeight: 500 }}>/mo, forever</span>
+                <span style={{ marginLeft: 'auto', textDecoration: 'line-through', color: 'var(--text-3)', fontSize: '.9rem' }}>$13.99–19.99</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem' }}>
+                <span className="pill pill-teal">+ 6 months free</span>
+                <span className="pill pill-teal">$1 deposit · refundable</span>
+              </div>
+            </div>
+
+            <ul className="wl-benefits">
+              {['First access the day we launch', 'Founding price locked for life', 'Priority onboarding support', 'Direct line to shape the roadmap'].map(b => (
+                <li key={b}><Check size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }} /><span className="body-text">{b}</span></li>
+              ))}
+            </ul>
+
+            <div className="wl-trust">
+              <span><Shield size={13} color="var(--teal-deep)" /> 100% refundable</span>
+              <span><Check size={13} color="var(--teal-deep)" /> No spam, ever</span>
+              <span><Check size={13} color="var(--teal-deep)" /> Cancel anytime</span>
+            </div>
+          </div>
+
+          {/* RIGHT — form (logic unchanged) */}
+          <div className="wl-form-col sr">
           {/* Form / Success */}
-          <div className="card-flat sr form-container" style={{ padding: '2rem' }}>
+          <div className="card-flat form-container" style={{ padding: '2rem' }}>
             {!submitted ? (
               <>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '.4rem', color: 'var(--text)' }}>Join the Waitlist — Free</h3>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.15rem', fontWeight: 700, marginBottom: '.4rem', color: 'var(--text)' }}>Claim your spot</h3>
                 <p className="body-text" style={{ marginBottom: '1.5rem', color: 'var(--teal-deep)', fontWeight: 500 }}>
-                  Secure your spot. Lock in founding-member pricing when we launch.
+                  Join the waitlist for free, or become a founding member for $1.
                 </p>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.75rem' }}>
-                  {['First access when we launch', 'Priority onboarding support', 'Lock in your founding-user rate', 'Influence the roadmap directly'].map(p => (
-                    <li key={p} style={{ display: 'flex', alignItems: 'center', gap: '.45rem' }}>
-                      <Check size={13} color="var(--teal)" strokeWidth={2.5} />
-                      <span className="body-text">{p}</span>
-                    </li>
-                  ))}
-                </ul>
                 <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '.7rem' }}>
                   <div style={{ fontSize: '.7rem', color: 'var(--text-3)', marginBottom: '-.2rem', lineHeight: 1.2 }}>
-                    Got a referral code from a friend? Enter it here — you'll both get priority access.
+                    Got a referral code from a friend? Enter it here and you'll both get priority access.
                   </div>
                   <div id="wl-form-top" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.7rem' }}>
                     <div>
@@ -207,12 +272,25 @@ export default function Waitlist() {
                     </span>
                   </label>
                   <div style={{ textAlign: 'center', marginTop: '0.5rem', marginBottom: '0.2rem', fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 500 }}>
-                    Early access — spots limited
+                    Founding spots limited to the first 100
                   </div>
-                  <button type="submit" className="btn btn-teal" disabled={!email || !consent || isSubmitting}
-                    style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting) ? .5 : 1 }}>
-                    {isSubmitting ? 'Joining...' : <>Join the Waitlist <ArrowRight size={14} /></>}
+
+                  {/* Primary — join free (also handles Enter via form submit) */}
+                  <button type="submit" className="btn btn-teal"
+                    disabled={!email || !consent || isSubmitting || isUpgrading}
+                    style={{ width: '100%', justifyContent: 'center', marginTop: '.2rem', opacity: (!email || !consent || isSubmitting || isUpgrading) ? .5 : 1 }}>
+                    {isSubmitting ? 'Joining…' : <>Join the waitlist for free <ArrowRight size={14} /></>}
                   </button>
+
+                  {/* Secondary — become a founding member for $1 */}
+                  <button type="button" onClick={joinFounding} className="btn btn-outline"
+                    disabled={!email || !consent || isSubmitting || isUpgrading}
+                    style={{ width: '100%', justifyContent: 'center', marginTop: '.7rem', opacity: (!email || !consent || isSubmitting || isUpgrading) ? .5 : 1 }}>
+                    {isUpgrading ? 'Redirecting to Stripe…' : 'Or become a founding member for $1'}
+                  </button>
+                  <div style={{ textAlign: 'center', fontSize: '.7rem', color: 'var(--text-3)', marginTop: '.4rem' }}>
+                    $1 deposit, 100% refundable. Locks in $9.99/mo for life.
+                  </div>
                 </form>
               </>
             ) : (
@@ -266,19 +344,26 @@ export default function Waitlist() {
               </div>
             )}
           </div>
-          
-          {/* Context below form */}
-          <div className="sr card-flat" style={{ marginTop: '1.5rem', padding: '1.5rem', textAlign: 'center', background: 'rgba(26,140,135,.03)', borderColor: 'rgba(26,140,135,.15)' }}>
-            <p className="body-text" style={{ color: 'var(--teal-deep)', fontWeight: 600, marginBottom: '0.4rem' }}>
-              Founding members who join now lock in $9.99/mo forever.
-            </p>
-            <p className="small" style={{ color: 'var(--text-3)', fontWeight: 500 }}>
-              100% fully refundable at any time.
-            </p>
+          <p className="wl-reassure">Free to join. The founding upgrade is optional and fully refundable.</p>
           </div>
         </div>
       </div>
       <style>{`
+        .wl-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; }
+        .wl-pitch { display: flex; flex-direction: column; align-items: flex-start; }
+        .wl-offer { width: 100%; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,.03); }
+        .wl-benefits { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; width: 100%; }
+        .wl-benefits li { display: flex; align-items: center; gap: .55rem; }
+        .wl-trust { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; }
+        .wl-trust span { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; color: var(--text-2); font-weight: 500; }
+        .wl-reassure { text-align: center; font-size: .78rem; color: var(--text-3); margin-top: 1rem; }
+        @media (max-width: 860px) {
+          .wl-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+          .wl-pitch { align-items: center; text-align: center; }
+          .wl-offer { max-width: 420px; margin-left: auto; margin-right: auto; }
+          .wl-benefits { max-width: 380px; margin-left: auto; margin-right: auto; }
+          .wl-trust { justify-content: center; }
+        }
         @media(max-width:500px){#wl-form-top{grid-template-columns:1fr!important}}
       `}</style>
     </section>

@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { label: 'Features', href: '/#features' },
   { label: 'Product', href: '/#product' },
-  { label: 'Timeline', href: '/#timeline' },
+  { label: 'Roadmap', href: '/#roadmap' },
   { label: 'Waitlist', href: '/#waitlist' },
   { label: 'Investors', href: '/investors' },
 ]
@@ -66,7 +66,10 @@ export default function Nav() {
           maxWidth: 1160, margin: '0 auto', padding: '0 1.5rem',
           height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <div style={{ width: 100 }}></div>
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '.5rem', textDecoration: 'none', flexShrink: 0 }}>
+            <img src="/logo.png" alt="StackSense" width={26} height={26} style={{ display: 'block', objectFit: 'contain' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '1.05rem', color: 'var(--text)', letterSpacing: '-.02em' }}>StackSense</span>
+          </a>
 
           <ul id="nav-links" style={{ display: 'flex', gap: '.15rem', listStyle: 'none', alignItems: 'center' }}>
             {links.map(({ label, href }) => (

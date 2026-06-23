@@ -33,23 +33,27 @@ export default function Contact() {
 
         <div className="sr" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', textAlign: 'left' }}>
           <div className="card-flat" style={{ padding: '2rem' }}>
-            <Mail size={24} color="var(--teal)" style={{ marginBottom: '1rem' }} />
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--teal-muted)', border: '1px solid rgba(26,140,135,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <Mail size={22} color="var(--teal-deep)" />
+            </div>
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Email Us</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>For general inquiries and support.</p>
             <a href="mailto:contact@stacksense.ca" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>contact@stacksense.ca</a>
           </div>
 
           <div className="card-flat" style={{ padding: '2rem' }}>
-            <LinkedinIcon size={24} color="#0077B5" />
-            <div style={{ marginTop: '1rem' }} />
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(0,119,181,.1)', border: '1px solid rgba(0,119,181,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <LinkedinIcon size={22} color="#0077B5" />
+            </div>
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Company LinkedIn</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>Follow StackSense on LinkedIn.</p>
             <a href="https://linkedin.com/company/stacksense-health" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>StackSense.health</a>
           </div>
 
           <div className="card-flat" style={{ padding: '2rem' }}>
-            <LinkedinIcon size={24} color="#0077B5" />
-            <div style={{ marginTop: '1rem' }} />
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(0,119,181,.1)', border: '1px solid rgba(0,119,181,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <LinkedinIcon size={22} color="#0077B5" />
+            </div>
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Founder LinkedIn</h3>
             <p className="body-text" style={{ marginBottom: '1rem' }}>Connect directly with Jad Gouiza.</p>
             <a href="https://www.linkedin.com/in/jad-gouiza" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal)', fontWeight: 600, textDecoration: 'none' }}>Jad Gouiza</a>

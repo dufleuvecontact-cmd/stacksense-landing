@@ -1,12 +1,34 @@
 import { useEffect, useRef } from 'react'
-import { LayoutGrid, Clock, Activity, Search, Bell, LayoutDashboard } from 'lucide-react'
+import { LayoutGrid, Clock, Search, Bell, LayoutDashboard } from 'lucide-react'
 
 const features = [
-  { icon: LayoutGrid,       title: 'Protocol & Cycle Builder',   desc: 'Build protocols for supplements, peptides, or any health routine — with custom dosing schedules and cycle phases.', color: '#1a8c87' },
-  { icon: Clock,            title: 'Dose Logging & Adherence',   desc: 'Log every dose as taken, skipped, or snoozed. Track your adherence over time with clear visual feedback.', color: '#0d6b67' },
-  { icon: Search,           title: 'AI Research Engine',         desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile.', color: '#1a8c87' },
-  { icon: Bell,             title: 'Smart Reminders',            desc: 'Configurable daily dose reminders across morning, midday, evening, and bedtime windows.', color: '#0d6b67' },
-  { icon: LayoutDashboard,  title: 'Dashboard & Insights',       desc: 'Overview stats, adherence scores, active protocols, and recent activity — all in one place.', color: '#25b5af' },
+  {
+    icon: LayoutGrid, title: 'Protocol & Cycle Builder',
+    desc: 'Build protocols for supplements, peptides, or any health routine, with custom dosing schedules and cycle phases.',
+    color: '#1a8c87', span: 3, featured: true,
+    tags: ['Supplements', 'Peptides', 'Cycle phases'],
+  },
+  {
+    icon: Search, title: 'AI Research Engine',
+    desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile, answered from clinical sources.',
+    color: '#0d6b67', span: 3, featured: true,
+    tags: ['Mechanism', 'Dosing', 'Interactions', 'Safety'],
+  },
+  {
+    icon: Clock, title: 'Dose Logging & Adherence',
+    desc: 'Log every dose as taken, skipped, or snoozed. Track adherence over time with clear visual feedback.',
+    color: '#1a8c87', span: 2,
+  },
+  {
+    icon: Bell, title: 'Smart Reminders',
+    desc: 'Configurable dose reminders across morning, midday, evening, and bedtime windows.',
+    color: '#0d6b67', span: 2,
+  },
+  {
+    icon: LayoutDashboard, title: 'Dashboard & Insights',
+    desc: 'Overview stats, adherence scores, active protocols, and recent activity, all in one place.',
+    color: '#25b5af', span: 2,
+  },
 ]
 
 export default function Features() {
@@ -26,33 +48,70 @@ export default function Features() {
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core features</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
-            Everything you need to<br/>
-            <span className="teal-text"> stay in control</span>
+            Everything you need to{' '}
+            <span className="teal-text">stay in control</span>
           </h2>
           <p className="lead" style={{ maxWidth: 500, margin: '0 auto' }}>
-            Everything you need to track your stack and actually understand what it's doing.
+            Track your stack, log your doses, and see what's working, all in one place.
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+        <div className="bento">
           {features.map((f, i) => (
-            <div key={f.title} className={`card sr d${(i % 8) + 1}`} style={{ flex: '1 1 300px', maxWidth: '380px', padding: '1.5rem', cursor: 'default' }}>
+            <div
+              key={f.title}
+              className={`card sr d${(i % 8) + 1} bento-card bento-${f.span}${f.featured ? ' featured' : ''}`}
+              style={{
+                padding: f.featured ? '2rem' : '1.5rem',
+                cursor: 'default',
+                background: f.featured
+                  ? `linear-gradient(135deg, #fff 0%, ${f.color}0a 100%)`
+                  : '#fff',
+                display: 'flex', flexDirection: 'column',
+              }}
+            >
               <div style={{
-                width: 40, height: 40, borderRadius: 11,
+                width: f.featured ? 48 : 40, height: f.featured ? 48 : 40, borderRadius: f.featured ? 13 : 11,
                 background: `${f.color}14`, border: `1px solid ${f.color}28`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem',
               }}>
-                <f.icon size={18} color={f.color} strokeWidth={1.8}/>
+                <f.icon size={f.featured ? 22 : 18} color={f.color} strokeWidth={1.8}/>
               </div>
-              <h3 className="h3" style={{ marginBottom: '.5rem', fontSize: '1.1rem' }}>
+              <h3 className="h3" style={{ marginBottom: '.5rem', fontSize: f.featured ? '1.3rem' : '1.1rem' }}>
                 {f.title}
               </h3>
-              <p className="body-text">{f.desc}</p>
+              <p className="body-text" style={{ marginBottom: f.tags ? '1.25rem' : 0 }}>{f.desc}</p>
+
+              {f.tags && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginTop: 'auto' }}>
+                  {f.tags.map(t => (
+                    <span key={t} className="pill pill-teal" style={{ fontSize: '.7rem' }}>{t}</span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        .bento {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 1rem;
+        }
+        .bento-3 { grid-column: span 3; }
+        .bento-2 { grid-column: span 2; }
+        @media (max-width: 900px) {
+          .bento { grid-template-columns: repeat(2, 1fr); }
+          .bento-3, .bento-2 { grid-column: span 1; }
+          .bento-3.featured { grid-column: span 2; }
+        }
+        @media (max-width: 560px) {
+          .bento { grid-template-columns: 1fr; }
+          .bento-3, .bento-2, .bento-3.featured { grid-column: span 1; }
+        }
+      `}</style>
     </section>
   )
 }
-

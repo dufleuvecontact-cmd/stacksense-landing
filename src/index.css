@@ -25,7 +25,7 @@
 
 /* ── RESET ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   font-family: var(--font-sans);
   background: var(--bg);
@@ -123,6 +123,7 @@ body {
   letter-spacing: .12em;
   color: rgba(255,255,255,.5);
 }
+.teal-text { color: var(--teal-deep); }
 .lead { font-size: 1.25rem; line-height: 1.8; color: var(--text-2); }
 .body-text { font-size: 1.05rem; line-height: 1.8; color: var(--text-2); }
 .small-text { font-size: .9rem; line-height: 1.6; color: var(--text-3); }
@@ -201,6 +202,7 @@ body {
 .divider-dark { border: none; border-top: 1px solid rgba(255,255,255,.07); }
 
 /* ── LAYOUT ──────────────────────────────────────────────── */
+section[id]  { scroll-margin-top: 80px; } /* anchor links clear the fixed nav */
 .section    { padding: 80px 0; }
 .section-sm { padding: 64px 0; }
 .section-band { background: var(--bg-band); padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }

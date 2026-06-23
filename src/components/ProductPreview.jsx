@@ -30,7 +30,7 @@ export default function ProductPreview() {
   }, [])
 
   return (
-    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden', paddingTop: 0, marginTop: '-6rem' }}>
+    <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive demo</p>
@@ -38,7 +38,7 @@ export default function ProductPreview() {
             Try the<span className="teal-text"> live app</span> now
           </h2>
           <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Log doses, track how you feel, view cycle data, and get AI-powered bloodwork insights — try it before you sign up.
+            Log doses, track how you feel, view cycle data, and get AI bloodwork insights. Try it before you sign up.
           </p>
         </div>
 

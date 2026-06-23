@@ -25,7 +25,7 @@ export default function BloodworkAI() {
               <span className="teal-text"> actually explained.</span>
             </h2>
             <p className="lead" style={{ maxWidth: 520, margin: '0 auto' }}>
-              Upload your lab results. StackSense's AI flags what's out of range, summarizes key findings, and gives you questions to bring to your doctor — in plain language.
+              Upload your lab results. StackSense's AI flags what's out of range, summarizes key findings, and gives you questions to bring to your doctor, all in plain language.
             </p>
           </div>
 
@@ -40,8 +40,8 @@ export default function BloodworkAI() {
           }}>
             {/* Uploaded File Item */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: '#fff', padding: '1rem', borderRadius: 16, marginBottom: '1.5rem', border: '1px solid var(--border)' }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--teal-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <FileText color="var(--teal)" size={22} />
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--teal-muted)', border: '1px solid rgba(26,140,135,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FileText color="var(--teal-deep)" size={22} />
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text)', marginBottom: '0.15rem', wordBreak: 'break-all' }}>LabCorp_Comprehensive_Panel_Oct.pdf</div>
@@ -52,9 +52,9 @@ export default function BloodworkAI() {
 
             {/* AI Summary Card */}
             <div style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)' }}>
-              <div style={{ background: 'var(--teal-light)', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(26, 140, 135, 0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Activity size={18} color="var(--teal)" />
-                <span style={{ fontWeight: 600, color: 'var(--teal)', fontSize: '0.9rem' }}>AI Summary Generation</span>
+              <div style={{ background: 'var(--teal-muted)', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(26, 140, 135, 0.12)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Activity size={18} color="var(--teal-deep)" />
+                <span style={{ fontWeight: 600, color: 'var(--teal-deep)', fontSize: '0.9rem' }}>AI Summary Generation</span>
               </div>
               
               <div style={{ padding: '1.5rem' }}>
