@@ -74,8 +74,11 @@ export default function Comparison() {
           </p>
         </div>
 
+        <p className="small-text show-mob" style={{ textAlign: 'center', marginBottom: '.75rem' }}>
+          Swipe the table sideways to compare →
+        </p>
         <div className="sr card-flat" style={{ overflow: 'hidden', padding: '1rem', background: '#fff' }}>
-          <div style={{ overflowX: 'auto' }}>
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: 720 }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid var(--border)' }}>

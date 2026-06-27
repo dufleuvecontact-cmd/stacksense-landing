@@ -227,6 +227,9 @@ section[id]  { scroll-margin-top: 80px; } /* anchor links clear the fixed nav */
   .section-band { padding: 48px 0; }
   .wrap { padding: 0 1.25rem; }
   .wrap-sm { padding: 0 1.25rem; }
+  /* 16px inputs stop iOS Safari auto-zooming on focus; 44px min target for thumbs */
+  .input { font-size: 16px; padding: .7rem 1rem; }
+  .btn { min-height: 44px; }
 }
 @media (min-width: 769px) { .show-mob { display: none !important; } }
 

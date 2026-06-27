@@ -37,7 +37,7 @@ function PhoneMockup() {
       </div>
 
       {/* Floating card – reminder */}
-      <div style={{
+      <div className="hero-float" style={{
         position: 'absolute', top: 60, right: -70,
         background: '#fff', border: '1px solid #dce8e5', borderRadius: 14,
         padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.1)',
@@ -57,7 +57,7 @@ function PhoneMockup() {
       </div>
 
       {/* Floating card – streak */}
-      <div style={{
+      <div className="hero-float" style={{
         position: 'absolute', bottom: 80, left: -65,
         background: '#fff', border: '1px solid #dce8e5', borderRadius: 14,
         padding: '10px 14px', boxShadow: '0 8px 24px rgba(0,0,0,.1)',
@@ -262,6 +262,8 @@ export default function Hero() {
         }
         @media (max-width: 520px) {
           .hero-features { text-align: left; }
+          /* floating cards sit at right:-70 / left:-65 — they clip past the viewport edge here */
+          .hero-float { display: none; }
         }
       `}</style>
     </section>
