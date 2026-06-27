@@ -351,7 +351,7 @@ export default function Waitlist() {
       <style>{`
         .wl-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; }
         .wl-pitch { display: flex; flex-direction: column; align-items: flex-start; }
-        .wl-offer { width: 100%; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,.03); }
+        .wl-offer { width: 100%; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-md); }
         .wl-benefits { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; width: 100%; }
         .wl-benefits li { display: flex; align-items: center; gap: .55rem; }
         .wl-trust { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; }

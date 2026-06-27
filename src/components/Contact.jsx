@@ -19,7 +19,7 @@ export default function Contact() {
   }, [])
 
   return (
-    <section id="contact" ref={ref} style={{ padding: '6rem 0', background: '#fff' }}>
+    <section id="contact" ref={ref} className="section" style={{ background: '#fff' }}>
       <div className="wrap" style={{ textAlign: 'center' }}>
         <div className="sr">
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Contact us</p>

@@ -43,7 +43,7 @@ export default function Features() {
   }, [])
 
   return (
-    <section id="features" ref={ref} className="section" style={{ background: '#fff' }}>
+    <section id="features" ref={ref} className="section" style={{ background: '#fff', borderTop: '1px solid var(--border)' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core features</p>

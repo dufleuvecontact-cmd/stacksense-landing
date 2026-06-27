@@ -35,7 +35,7 @@ export default function BloodworkAI() {
             background: 'var(--bg)',
             borderRadius: 24,
             padding: '2rem',
-            boxShadow: '0 12px 32px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.8)',
+            boxShadow: 'var(--shadow-lg)',
             border: '1px solid var(--border)'
           }}>
             {/* Uploaded File Item */}
