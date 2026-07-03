@@ -277,6 +277,11 @@ export default function Hero() {
           .hero-founder, .hero-lead { margin-left: auto; margin-right: auto; }
           .hero-capture { align-items: center; margin-left: auto; margin-right: auto; }
           .hero-capture .wlc-consent { text-align: left; }
+          /* hero content is centered at this width — center the capture's helper
+             lines too, instead of leaving them stuck to the left edge */
+          .hero-capture .wlc-micro, .hero-capture .wlc-error { text-align: center; }
+          .hero-capture .wlc-ref-toggle { align-self: center; }
+          .hero-capture .wlc-hero > .pill { align-self: center; }
           .hero-features {
             justify-items: center;
             max-width: 420px;
