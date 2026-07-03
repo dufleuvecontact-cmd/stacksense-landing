@@ -235,6 +235,10 @@ section[id]  { scroll-margin-top: 80px; } /* anchor links clear the fixed nav */
   /* 16px inputs stop iOS Safari auto-zooming on focus; 44px min target for thumbs */
   .input { font-size: 16px; padding: .7rem 1rem; }
   .btn { min-height: 44px; }
+  /* tighter reading sizes on small screens — desktop scale reads bloated at 390px */
+  .lead { font-size: 1.05rem; line-height: 1.65; }
+  .body-text { font-size: .95rem; line-height: 1.7; }
+  .eyebrow { font-size: .78rem; }
 }
 @media (min-width: 769px) { .show-mob { display: none !important; } }
 

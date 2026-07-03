@@ -76,7 +76,10 @@ export default function StickyBar() {
         }
         @keyframes sticky-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
         .sticky-bar-inner {
-          max-width: 1160px; margin: 0 auto; padding: .6rem 1.25rem;
+          max-width: 1160px; margin: 0 auto;
+          padding: .6rem 1.25rem;
+          /* keep the bar clear of the iPhone home indicator */
+          padding-bottom: calc(.6rem + env(safe-area-inset-bottom, 0px));
           display: flex; align-items: center; gap: 1.25rem;
         }
         .sticky-bar-label { display: flex; flex-direction: column; flex-shrink: 0; }
@@ -85,11 +88,17 @@ export default function StickyBar() {
         .sticky-bar-form { flex: 1; min-width: 0; }
         .sticky-bar-x {
           background: none; border: none; cursor: pointer; color: var(--text-3);
-          padding: .35rem; flex-shrink: 0; display: flex; align-items: center;
+          min-width: 44px; min-height: 44px; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
         }
         @media (max-width: 720px) {
           .sticky-bar-label { display: none; }
-          .sticky-bar-inner { padding: .55rem .8rem; gap: .5rem; }
+          .sticky-bar-inner {
+            padding: .5rem .6rem .5rem .8rem;
+            padding-bottom: calc(.5rem + env(safe-area-inset-bottom, 0px));
+            gap: .25rem;
+          }
+          .sticky-bar .input { padding: .55rem .8rem; }
         }
       `}</style>
     </div>

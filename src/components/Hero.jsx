@@ -1,6 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CheckCircle2, Bell } from 'lucide-react'
 import WaitlistCapture from './WaitlistCapture'
+
+// The interactive demo section sits directly below the hero; on small phones the
+// static mockup would cost a full screen of scroll (and an iframe load) for a
+// duplicate of it — so we skip rendering it entirely.
+function useIsSmallScreen() {
+  const [small, setSmall] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    const fn = e => setSmall(e.matches)
+    mq.addEventListener('change', fn)
+    return () => mq.removeEventListener('change', fn)
+  }, [])
+  return small
+}
 
 function PhoneMockup() {
   return (
@@ -75,6 +89,7 @@ function PhoneMockup() {
 export default function Hero() {
   const ref = useRef(null)
   const mockRef = useRef(null)
+  const smallScreen = useIsSmallScreen()
 
   useEffect(() => {
     const el = ref.current
@@ -107,7 +122,7 @@ export default function Hero() {
       window.removeEventListener('resize', onScroll)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [smallScreen])
 
   return (
     <section id="hero" ref={ref} style={{
@@ -166,13 +181,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — app mockup with scroll-tilt + glow */}
-          <div className="sr-right d2 hero-phone-container">
-            <div className="hero-glow" aria-hidden="true"/>
-            <div ref={mockRef} style={{ transformOrigin: 'center top', willChange: 'transform', position: 'relative' }}>
-              <PhoneMockup/>
+          {/* Right — app mockup with scroll-tilt + glow (skipped on small phones) */}
+          {!smallScreen && (
+            <div className="sr-right d2 hero-phone-container">
+              <div className="hero-glow" aria-hidden="true"/>
+              <div ref={mockRef} style={{ transformOrigin: 'center top', willChange: 'transform', position: 'relative' }}>
+                <PhoneMockup/>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -214,7 +231,10 @@ export default function Hero() {
           font-weight: 500;
         }
         .hero-demo-link {
-          margin-top: .8rem;
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
+          margin-top: .35rem;
           font-size: .85rem;
           font-weight: 500;
           color: var(--teal-deep);

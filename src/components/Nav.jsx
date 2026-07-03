@@ -93,7 +93,7 @@ export default function Nav() {
 
           <button onClick={() => setOpen(o => !o)} id="nav-toggle" style={{
             background: 'none', border: '1.5px solid var(--border)', color: 'var(--text-2)',
-            borderRadius: 9, padding: '.38rem', cursor: 'pointer',
+            borderRadius: 9, minWidth: 44, minHeight: 44, cursor: 'pointer',
             display: 'none', alignItems: 'center', justifyContent: 'center',
           }} aria-label="Toggle menu">
             {open ? <X size={18}/> : <Menu size={18}/>}
@@ -109,7 +109,7 @@ export default function Nav() {
               {links.map(({ label, href }) => (
                 <li key={href}>
                   <a href={href} onClick={() => setOpen(false)} style={{
-                    display: 'block', padding: '.65rem .5rem', fontSize: '.9rem',
+                    display: 'block', padding: '.8rem .5rem', fontSize: '.95rem',
                     color: 'var(--text-2)', textDecoration: 'none', fontWeight: 500,
                   }}>{label}</a>
                 </li>

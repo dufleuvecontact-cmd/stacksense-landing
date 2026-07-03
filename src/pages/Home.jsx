@@ -10,8 +10,8 @@ import Contact from '../components/Contact'
 // Single-line mid-page nudge — deliberately a link, not a third form.
 function MidCta() {
   return (
-    <div style={{ background: 'var(--bg-band)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '1.1rem 1.5rem', textAlign: 'center' }}>
-      <a href="#waitlist" style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '.95rem', color: 'var(--teal-deep)', textDecoration: 'none' }}>
+    <div style={{ background: 'var(--bg-band)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '.5rem 1.25rem', textAlign: 'center' }}>
+      <a href="#waitlist" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '.35rem .75rem', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '.95rem', color: 'var(--teal-deep)', textDecoration: 'none' }}>
         Sold already? Get early access — free ↓
       </a>
     </div>

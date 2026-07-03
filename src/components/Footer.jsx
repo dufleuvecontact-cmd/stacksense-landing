@@ -2,8 +2,8 @@
 
 
 const navCols = {
-  Product:  [['Features','#features'],['Product Preview','#product'],['Roadmap','#roadmap'],['Join Waitlist','#waitlist']],
-  Company:  [['Investors','/investors'],['Contact','#contact']],
+  Product:  [['Live demo','/#product'],['How it works','/#how'],['Features','/#features'],['Get early access','/#waitlist']],
+  Company:  [['Investors','/investors'],['Contact','/#contact']],
   Legal:    [['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Data Requests','mailto:legal@stacksense.ca']],
 }
 
@@ -40,7 +40,7 @@ export default function Footer() {
               <ul style={{ listStyle:'none',display:'flex',flexDirection:'column',gap:'.5rem' }}>
                 {links.map(([label,href]) => (
                   <li key={label}>
-                    <a href={href} style={{ color:'rgba(255,255,255,.5)',textDecoration:'none',fontSize:'.83rem',transition:'color .15s',fontFamily:'var(--font-sans)' }}
+                    <a href={href} style={{ display:'inline-block',padding:'.3rem 0',color:'rgba(255,255,255,.5)',textDecoration:'none',fontSize:'.83rem',transition:'color .15s',fontFamily:'var(--font-sans)' }}
                       onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.85)'}
                       onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.5)'}>
                       {label}
@@ -57,7 +57,7 @@ export default function Footer() {
           <p style={{ fontSize:'.76rem',color:'rgba(255,255,255,.3)',fontFamily:'var(--font-sans)' }}>© 2026 StackSense Inc. All rights reserved.</p>
           <div style={{ display:'flex',gap:'1.25rem',flexWrap:'wrap' }}>
             {[['Privacy Policy','/privacy-policy.html'],['Terms of Use','/terms-of-service.html'],['Data Retention','/data-retention-policy.html'],['Contact','#contact']].map(([l,h]) => (
-              <a key={l} href={h} style={{ color:'rgba(255,255,255,.3)',textDecoration:'none',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
+              <a key={l} href={h} style={{ display:'inline-block',padding:'.35rem 0',color:'rgba(255,255,255,.3)',textDecoration:'none',fontSize:'.75rem',fontFamily:'var(--font-sans)',transition:'color .15s' }}
                 onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</a>
             ))}

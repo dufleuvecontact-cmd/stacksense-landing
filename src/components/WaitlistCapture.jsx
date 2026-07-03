@@ -284,7 +284,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         .wlc-consent { display: flex; align-items: flex-start; gap: .5rem; cursor: pointer; margin-top: .6rem; text-align: left; }
         .wlc-error { font-size: .78rem; color: #c53030; margin-top: .45rem; text-align: left; }
         .wlc-micro { font-size: .72rem; color: var(--text-3); margin-top: .55rem; font-weight: 500; text-align: left; }
-        .wlc-ref-toggle { background: none; border: none; padding: 0; margin-top: .55rem; font-size: .75rem; color: var(--teal-deep); cursor: pointer; text-decoration: underline; align-self: flex-start; font-family: var(--font-sans); }
+        .wlc-ref-toggle { background: none; border: none; padding: .55rem 0; margin-top: .1rem; min-height: 40px; font-size: .75rem; color: var(--teal-deep); cursor: pointer; text-decoration: underline; align-self: flex-start; font-family: var(--font-sans); }
         .wlc-sticky .wlc-consent { margin-top: .35rem; }
         .wlc-sticky .wlc-consent .small { font-size: .68rem; line-height: 1.35; }
         @media (max-width: 560px) {
