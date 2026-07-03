@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, CheckCircle2, Bell } from 'lucide-react'
+import { CheckCircle2, Bell } from 'lucide-react'
+import WaitlistCapture from './WaitlistCapture'
 
 function PhoneMockup() {
   return (
@@ -109,7 +110,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={ref} style={{
+    <section id="hero" ref={ref} style={{
       minHeight: 'auto', display: 'flex', alignItems: 'center',
       position: 'relative', overflow: 'hidden',
       background: 'var(--bg)',
@@ -126,42 +127,36 @@ export default function Hero() {
 
           {/* Left / Content */}
           <div className="hero-content">
-            <div className="sr d1" style={{ marginBottom: '1.2rem' }}>
+            <div className="sr d1" style={{ marginBottom: '1.1rem' }}>
               <span className="pill pill-teal">
-                Seed Stage · Open Waitlist
+                Beta testers onboarding now · Open waitlist
               </span>
             </div>
 
-            <h1 className="sr d2 h1" style={{ marginBottom: '1.2rem' }}>
-              Finally know what your{' '}
-              <span className="teal-text">supplements are actually doing.</span>
+            <h1 className="sr d2 h1" style={{ marginBottom: '1rem' }}>
+              Are your supplements{' '}
+              <span className="teal-text">actually doing anything?</span>
             </h1>
 
-            <div className="sr d3 hero-founder">
-              <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong> · Founder. Built this because he couldn't figure out which of his 8 supplements was actually working.
-            </div>
-
-            <p className="sr d4 lead hero-lead">
-              Track doses, cycles, bloodwork, and how you feel, all in one place. Whether you take 3 supplements or run a full protocol.
+            <p className="sr d3 lead hero-lead">
+              StackSense tracks what you take and how you feel, then shows you what's working and what's a waste of money. Whether that's 3 pills a day or a whole shelf.
             </p>
 
-            <div className="sr d4 hero-buttons-container">
-              <div className="hero-buttons">
-                <a href="#waitlist" className="btn btn-teal">
-                  Join the Waitlist <ArrowRight size={15}/>
-                </a>
-                <a href="#product" className="btn btn-outline">
-                  Explore the live demo
-                </a>
-              </div>
+            <div className="sr d3 hero-founder">
+              Built by <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong>, who couldn't tell which of his 8 supplements was doing anything.
+            </div>
+
+            <div className="sr d4 hero-capture">
+              <WaitlistCapture variant="hero" source="hero" />
+              <div className="hero-onboarding-note">Beta testers are being onboarded right now.</div>
+              <a href="#product" className="hero-demo-link">Poke around the live demo first ↓</a>
             </div>
 
             <div className="sr d5 hero-features">
               {[
-                '420+ compounds in our protocol library',
-                'Built on clinical dosing data from peer-reviewed sources',
-                'Designed by someone tired of guessing what worked',
-                'Currently onboarding beta testers',
+                'Takes 2 minutes a day',
+                'Knows 420+ supplements and their real clinical doses',
+                'No spreadsheet, no biohacker degree required',
               ].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
                   <CheckCircle2 size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }}/>
@@ -197,30 +192,40 @@ export default function Hero() {
           max-width: 100%;
         }
         .hero-founder {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-2);
           line-height: 1.5;
-          margin-bottom: 1.2rem;
+          margin-bottom: 1.4rem;
           max-width: 540px;
         }
-        .hero-lead { max-width: 540px; margin: 0 0 1.8rem; }
-        .hero-buttons-container {
+        .hero-lead { max-width: 540px; margin: 0 0 1rem; }
+        .hero-capture {
+          width: 100%;
+          max-width: 460px;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          margin-bottom: 1.8rem;
-          width: 100%;
+          margin-bottom: 1.6rem;
         }
-        .hero-buttons {
-          display: flex;
-          gap: .75rem;
-          flex-wrap: wrap;
-          justify-content: flex-start;
+        .hero-onboarding-note {
+          font-size: .72rem;
+          color: var(--text-3);
+          margin-top: .35rem;
+          font-weight: 500;
         }
+        .hero-demo-link {
+          margin-top: .8rem;
+          font-size: .85rem;
+          font-weight: 500;
+          color: var(--teal-deep);
+          text-decoration: none;
+          font-family: var(--font-sans);
+        }
+        .hero-demo-link:hover { text-decoration: underline; }
         .hero-features {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.7rem 1.4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.55rem;
           width: 100%;
           max-width: 560px;
         }
@@ -250,18 +255,25 @@ export default function Hero() {
             text-align: center;
           }
           .hero-founder, .hero-lead { margin-left: auto; margin-right: auto; }
-          .hero-buttons-container { align-items: center; }
-          .hero-buttons { justify-content: center; }
+          .hero-capture { align-items: center; margin-left: auto; margin-right: auto; }
+          .hero-capture .wlc-consent { text-align: left; }
           .hero-features {
-            grid-template-columns: 1fr;
             justify-items: center;
             max-width: 420px;
             margin: 0 auto;
+            align-items: flex-start;
           }
-          .hero-features > div { width: 100%; max-width: 360px; }
+          .hero-features > div { width: 100%; max-width: 360px; text-align: left; }
         }
         @media (max-width: 520px) {
-          .hero-features { text-align: left; }
+          /* Mobile fold budget: H1 + subhead + email + button + consent above the fold */
+          #hero { padding-top: 84px !important; }
+          #hero .h1 { font-size: 1.9rem; }
+          #hero .hero-lead { font-size: 1.02rem; line-height: 1.6; }
+          /* fold budget: capture comes before the founder line on small screens */
+          .hero-founder { order: 5; margin-bottom: 0; margin-top: .2rem; }
+          .hero-capture { margin-bottom: 1.1rem; }
+          .hero-features { order: 6; margin-top: 1rem; }
           /* floating cards sit at right:-70 / left:-65 — they clip past the viewport edge here */
           .hero-float { display: none; }
         }

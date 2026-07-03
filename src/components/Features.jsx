@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { LayoutGrid, Clock, Search, Bell, LayoutDashboard } from 'lucide-react'
+import { LayoutGrid, Clock, Search, Activity } from 'lucide-react'
 
 const features = [
   {
@@ -15,19 +15,14 @@ const features = [
     tags: ['Mechanism', 'Dosing', 'Interactions', 'Safety'],
   },
   {
-    icon: Clock, title: 'Dose Logging & Adherence',
-    desc: 'Log every dose as taken, skipped, or snoozed. Track adherence over time with clear visual feedback.',
-    color: '#1a8c87', span: 2,
+    icon: Clock, title: 'Dose Logging & Smart Reminders',
+    desc: 'Log every dose as taken, skipped, or snoozed — with configurable reminders across morning, midday, evening, and bedtime windows.',
+    color: '#1a8c87', span: 3,
   },
   {
-    icon: Bell, title: 'Smart Reminders',
-    desc: 'Configurable dose reminders across morning, midday, evening, and bedtime windows.',
-    color: '#0d6b67', span: 2,
-  },
-  {
-    icon: LayoutDashboard, title: 'Dashboard & Insights',
-    desc: 'Overview stats, adherence scores, active protocols, and recent activity, all in one place.',
-    color: '#25b5af', span: 2,
+    icon: Activity, title: 'Bloodwork, Explained',
+    desc: 'Upload a blood test, get it explained in plain English — and see how your markers move as your stack changes.',
+    color: '#25b5af', span: 3,
   },
 ]
 

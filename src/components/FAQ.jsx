@@ -2,13 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
-  { q:'What is StackSense and who is it for?', a:'StackSense is a health tracking app for people who take supplements, run peptide protocols, or want to understand how their stack affects their body. If you\'ve ever wondered whether your supplements are actually working, this is built for you.' },
-  { q:'When will StackSense be available?', a:'We\'re currently in active development. Our target is a limited early access launch for waitlist members first, followed by a broader public launch. Join the waitlist to be among the first notified.' },
-  { q:'Is my data private and secure?', a:'Yes. Privacy is foundational to how we build. Your data is encrypted and never sold. We use a small set of vetted service providers (sub-processors) under data-processing agreements to run the product — listed in our Privacy Policy. We never share your data for advertising. You always retain full ownership and control.' },
-  { q:'How does the waitlist referral system work?', a:'When you sign up you\'ll receive a unique referral link. Each person who joins via your link moves you up the priority queue and unlocks tier rewards — including early access, a free first month, and founding member status.' },
-  { q:'I\'m an investor. How can I learn more?', a:'We\'d love to connect. StackSense is actively raising a seed round. Reach us at contact@stacksense.ca or request our investor deck. We typically respond within 48 hours.' },
-  { q:'Will there be a mobile app?', a:'The web app is fully responsive and works well on mobile. A dedicated mobile app is on our roadmap and a high priority for the post-seed phase.' },
-  { q:'Will StackSense be free?', a:'We\'re finalising our pricing model. Founding members who join through the waitlist lock in $9.99/month forever. The current price at release is expected to be between $13.99 and $19.99/month and is still to be decided.' },
+  { q:'I only take a few supplements — is this overkill for me?', a:'No — that\'s exactly who it\'s built for too. If you take 3 things a day, StackSense just tells you whether they\'re doing anything, in about 2 minutes a day. The cycle and protocol tools are there if you ever need them, and invisible if you don\'t.' },
+  { q:'Who\'s behind this?', a:'I\'m Jad. I was spending real money on 8 supplements and couldn\'t tell you which one was doing anything. I built the tracker I couldn\'t find. StackSense is founder-built and currently onboarding beta testers.' },
+  { q:'Is this medical advice?', a:'No. StackSense tracks and explains — it doesn\'t prescribe. It shows you your own data (doses, how you feel, bloodwork trends) so you can have better conversations with your doctor, not replace them.' },
+  { q:'What happens to my email?', a:'Launch updates only. Unsubscribe anytime with one click. Your email is never sold or shared for advertising — details are in our Privacy Policy.' },
+  { q:'What does the $1 founding membership actually buy?', a:'$9.99/mo locked for life — launch price will be $13.99–19.99. Founding members also get 6 months free at launch. The $1 is a deposit paid through Stripe, and the $9.99 lock disappears the day we launch.' },
+  { q:'When do beta invites go out?', a:'In small batches while we\'re in beta. Everyone on the waitlist hears from us before the public launch — joining now puts you ahead of everyone who waits.' },
 ]
 
 function Item({ q, a, open, onClick }) {

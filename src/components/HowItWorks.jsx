@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react'
 import { LayoutGrid, CheckCircle2, Activity } from 'lucide-react'
 
 const steps = [
-  { n: '1', icon: LayoutGrid,   title: 'Build your protocol', desc: 'Add supplements, peptides, or any routine. Set doses, schedules, and cycle phases.' },
-  { n: '2', icon: CheckCircle2, title: 'Log every dose',      desc: 'Mark each dose taken, skipped, or snoozed. Smart reminders keep you on track.' },
-  { n: '3', icon: Activity,     title: "See what's working",  desc: 'Adherence, bloodwork insights, and trends show you what helps and what does not.' },
+  { n: '1', icon: LayoutGrid,   title: 'Log what you take', desc: 'Add your supplements once — StackSense already knows 420+ compounds and their real clinical doses. Reminders handle the rest.' },
+  { n: '2', icon: CheckCircle2, title: 'Rate how you feel in 5 seconds', desc: 'One quick check-in a day for energy, sleep, and mood. No journaling, no spreadsheets.' },
+  { n: '3', icon: Activity,     title: "See what's actually working",  desc: 'Trends line up what you took with how you felt — so you know what to keep and what to stop buying.' },
 ]
 
 // 8-week dose-adherence %, climbing — hand-rolled SVG, no chart dep

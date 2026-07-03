@@ -33,12 +33,12 @@ export default function ProductPreview() {
     <section id="product" ref={ref} className="section" style={{ background: 'var(--bg)', overflow: 'hidden' }}>
       <div className="wrap">
         <div className="sr" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Interactive demo</p>
+          <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Live demo</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
-            Try the<span className="teal-text"> live app</span> now
+            This is the <span className="teal-text">actual app</span> — click around
           </h2>
           <p className="lead" style={{ maxWidth: 480, margin: '0 auto' }}>
-            Log doses, track how you feel, view cycle data, and get AI bloodwork insights. Try it before you sign up.
+            Not a video, not screenshots — a real sandbox of StackSense. Log a dose, poke through cycles, see for yourself before you hand over an email.
           </p>
         </div>
 
