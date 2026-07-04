@@ -1,8 +1,13 @@
+import { lazy, Suspense, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Investors from './pages/Investors'
+import { consumeReturnParams } from './lib/waitlistShared'
+
+// Code-split: the investor pitch deck (~870 lines + two dozen icons) shouldn't
+// ship in the landing-page bundle that almost every visitor downloads.
+const Investors = lazy(() => import('./pages/Investors'))
 
 function NotFound() {
   return (
@@ -15,12 +20,16 @@ function NotFound() {
 }
 
 export default function App() {
+  // Stripe return params are consumed here (child effects run first, so every
+  // JOINED_EVENT listener is already bound and #waitlist exists in the DOM).
+  useEffect(() => { consumeReturnParams() }, [])
+
   return (
     <>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/investors" element={<Investors />} />
+        <Route path="/investors" element={<Suspense fallback={null}><Investors /></Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

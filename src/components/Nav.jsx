@@ -14,6 +14,9 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hovered, setHovered] = useState(false)
+  // Auto-hide is a hover affordance — on touch devices there is no hover to
+  // bring the header back, so keep it permanently visible there.
+  const canHover = typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50)
@@ -33,7 +36,7 @@ export default function Nav() {
   return (
     <>
       {/* Hover Trigger Zone when scrolled and menu is closed */}
-      {scrolled && !hovered && !open && (
+      {canHover && scrolled && !hovered && !open && (
         <div 
           onMouseEnter={() => setHovered(true)}
           style={{
@@ -48,12 +51,14 @@ export default function Nav() {
         />
       )}
 
-      <header 
+      <header
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        onFocus={() => setHovered(true)}
+        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setHovered(false) }}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-          transform: (scrolled && !hovered && !open) ? 'translateY(-100%)' : 'translateY(0)',
+          transform: (canHover && scrolled && !hovered && !open) ? 'translateY(-100%)' : 'translateY(0)',
           transition: 'transform .3s cubic-bezier(0.16, 1, 0.3, 1), background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease',
           background: scrolled ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
           borderBottom: scrolled ? '1px solid rgba(0, 0, 0, 0.04)' : '1px solid transparent',
@@ -95,15 +100,18 @@ export default function Nav() {
             background: 'none', border: '1.5px solid var(--border)', color: 'var(--text-2)',
             borderRadius: 9, minWidth: 44, minHeight: 44, cursor: 'pointer',
             display: 'none', alignItems: 'center', justifyContent: 'center',
-          }} aria-label="Toggle menu">
+          }} aria-label="Menu" aria-expanded={open} aria-controls="mobile-menu">
             {open ? <X size={18}/> : <Menu size={18}/>}
           </button>
         </nav>
 
         {open && (
-          <div style={{
+          <div id="mobile-menu" style={{
             background: 'rgba(245,247,246,.97)', borderBottom: '1px solid var(--border)',
             padding: '1rem 1.5rem 1.5rem',
+            // Landscape phones: the panel can be taller than the viewport while
+            // body scroll is locked — let the panel itself scroll.
+            maxHeight: 'calc(100dvh - 64px)', overflowY: 'auto', WebkitOverflowScrolling: 'touch',
           }}>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '.1rem', marginBottom: '1rem' }}>
               {links.map(({ label, href }) => (

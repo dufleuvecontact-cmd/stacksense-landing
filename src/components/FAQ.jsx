@@ -6,19 +6,21 @@ const faqs = [
   { q:'Who\'s behind this?', a:'I\'m Jad. I was spending real money on 8 supplements and couldn\'t tell you which one was doing anything. I built the tracker I couldn\'t find. StackSense is founder-built and currently onboarding beta testers.' },
   { q:'Is this medical advice?', a:'No. StackSense tracks and explains — it doesn\'t prescribe. It shows you your own data (doses, how you feel, bloodwork trends) so you can have better conversations with your doctor, not replace them.' },
   { q:'What happens to my email?', a:'Launch updates only. Unsubscribe anytime with one click. Your email is never sold or shared for advertising — details are in our Privacy Policy.' },
-  { q:'What does the $1 founding membership actually buy?', a:'$9.99/mo locked for life — launch price will be $13.99–19.99. Founding members also get 6 months free at launch. The $1 is a deposit paid through Stripe, and the $9.99 lock disappears the day we launch.' },
+  { q:'What does the $1 founding membership actually buy?', a:'$9.99/mo locked for life — launch price will be $13.99–19.99. Founding members also get 6 months free at launch. The $1 is a deposit paid through Stripe, and the $9.99 lock disappears the day we launch. The deposit is fully refundable any time before launch — just reply to any of our emails.' },
   { q:'When do beta invites go out?', a:'In small batches while we\'re in beta. Everyone on the waitlist hears from us before the public launch — joining now puts you ahead of everyone who waits.' },
 ]
 
-function Item({ q, a, open, onClick }) {
+function Item({ q, a, open, onClick, i }) {
   return (
     <div style={{ border:'1px solid var(--border)', borderRadius:12, overflow:'hidden', background: open?'#fff':'var(--bg)', transition:'background .2s' }}>
-      <button onClick={onClick} style={{ width:'100%',background:'none',border:'none',padding:'1.05rem 1.25rem',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',cursor:'pointer',textAlign:'left',color:'var(--text)',fontFamily:'var(--font-sans)' }} aria-expanded={open}>
-        <span style={{ fontSize:'.9rem',fontWeight:600,lineHeight:1.4 }}>{q}</span>
-        <ChevronDown size={15} color="var(--text-3)" style={{ flexShrink:0,transform:open?'rotate(180deg)':'none',transition:'transform .22s ease' }}/>
-      </button>
+      <h3 style={{ margin:0 }}>
+        <button onClick={onClick} className="faq-q" id={`faq-q-${i}`} aria-controls={`faq-a-${i}`} style={{ width:'100%',background:'none',border:'none',padding:'1.05rem 1.25rem',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',cursor:'pointer',textAlign:'left',color:'var(--text)',fontFamily:'var(--font-sans)' }} aria-expanded={open}>
+          <span style={{ fontSize:'.9rem',fontWeight:600,lineHeight:1.4 }}>{q}</span>
+          <ChevronDown size={15} color="var(--text-3)" style={{ flexShrink:0,transform:open?'rotate(180deg)':'none',transition:'transform .22s ease' }}/>
+        </button>
+      </h3>
       {open && (
-        <div style={{ padding:'0 1.25rem 1.05rem',borderTop:'1px solid var(--border)',paddingTop:'.7rem' }}>
+        <div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} style={{ padding:'0 1.25rem 1.05rem',borderTop:'1px solid var(--border)',paddingTop:'.7rem' }}>
           <p className="body-text">{a}</p>
         </div>
       )}
@@ -44,7 +46,7 @@ export default function FAQ() {
           <h2 className="h2">Common questions</h2>
         </div>
         <div style={{ display:'flex',flexDirection:'column',gap:'.55rem' }}>
-          {faqs.map((f,i) => <Item key={i} q={f.q} a={f.a} open={open===i} onClick={()=>setOpen(open===i?null:i)}/>)}
+          {faqs.map((f,i) => <Item key={i} i={i} q={f.q} a={f.a} open={open===i} onClick={()=>setOpen(open===i?null:i)}/>)}
         </div>
       </div>
     </section>

@@ -9,10 +9,22 @@ const FOUNDER_KEY = 'stacksense_founder'
 
 export const JOINED_EVENT = 'stacksense:joined'
 export const FOUNDING_EVENT = 'stacksense:founding'
+export const FOUNDING_SETTLED_EVENT = 'stacksense:founding-settled'
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function lsGet(key) { try { return localStorage.getItem(key) } catch { return null } }
-function lsSet(key, val) { try { localStorage.setItem(key, val) } catch { /* private mode */ } }
+// In-memory mirror so joins still stick for the lifetime of the page when
+// localStorage is unavailable (Safari private mode, storage-blocked contexts).
+const mem = new Map()
+function lsGet(key) {
+  try {
+    const v = localStorage.getItem(key)
+    return v !== null ? v : (mem.get(key) ?? null)
+  } catch { return mem.get(key) ?? null }
+}
+function lsSet(key, val) {
+  mem.set(key, val)
+  try { localStorage.setItem(key, val) } catch { /* private mode */ }
+}
 
 export const store = {
   get joined() { return lsGet(JOINED_KEY) === '1' },
@@ -47,22 +59,33 @@ export async function startCheckout(checkoutEmail, checkoutCode) {
     alert('Security error: received an invalid redirect URL from the server.')
   } else {
     console.error('Stripe error:', data)
-    alert('Failed to initiate payment. Please try again or contact support@stacksense.ca.')
+    alert('Failed to initiate payment. Please try again or contact contact@stacksense.ca.')
   }
   return false
 }
 
-// Parsed once at module load: ?ref= plus the Stripe return params.
+// Parsed once at module load: ?ref= (safe to read during import evaluation).
 let refFromUrl = ''
 export function getUrlRef() { return refFromUrl }
 
 if (typeof window !== 'undefined') {
-  const p = new URLSearchParams(window.location.search)
-  refFromUrl = (p.get('ref') || '').toUpperCase()
+  refFromUrl = (new URLSearchParams(window.location.search).get('ref') || '').toUpperCase()
+}
 
-  if (p.get('payment') === 'success' && p.has('code')) {
-    // Payment status is updated server-side via Stripe webhook
-    markJoined({ code: p.get('code'), founder: true })
+// Stripe return params — consumed from App's mount effect (not at import time)
+// so analytics inject() has run, JOINED_EVENT listeners are bound, and
+// #waitlist exists in the DOM. The flag keeps this idempotent under
+// StrictMode's dev double-invoke.
+let consumed = false
+export function consumeReturnParams() {
+  if (consumed || typeof window === 'undefined') return
+  consumed = true
+  const p = new URLSearchParams(window.location.search)
+
+  if (p.get('payment') === 'success') {
+    // Payment status is updated server-side via Stripe webhook.
+    // No code param on the DUPLICATE-join path — still mark founder.
+    markJoined({ code: p.get('code') || undefined, founder: true })
     track('founding_upgrade')
     window.history.replaceState(null, '', window.location.pathname + '#waitlist')
     setTimeout(() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }), 100)

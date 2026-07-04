@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { CheckCircle2, Bell } from 'lucide-react'
 import WaitlistCapture from './WaitlistCapture'
 
-// The interactive demo section sits directly below the hero; on small phones the
-// static mockup would cost a full screen of scroll (and an iframe load) for a
-// duplicate of it — so we skip rendering it entirely.
+// The interactive demo section sits directly below the hero; whenever the hero
+// grid stacks to one column (<=960px) the static mockup would cost a full
+// screen of scroll (and an iframe load) for a duplicate of it — so we skip
+// rendering it entirely. Keep this in sync with the #hero-grid breakpoint.
 function useIsSmallScreen() {
-  const [small, setSmall] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches)
+  const [small, setSmall] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 960px)').matches)
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 640px)')
+    const mq = window.matchMedia('(max-width: 960px)')
     const fn = e => setSmall(e.matches)
     mq.addEventListener('change', fn)
     return () => mq.removeEventListener('change', fn)
@@ -301,6 +302,12 @@ export default function Hero() {
           .hero-features { order: 6; margin-top: 1rem; }
           /* floating cards sit at right:-70 / left:-65 — they clip past the viewport edge here */
           .hero-float { display: none; }
+        }
+        @media (max-height: 480px) and (orientation: landscape) {
+          /* Landscape phones: trim the fold budget by height, not width */
+          #hero { padding-top: 76px !important; padding-bottom: 32px !important; }
+          #hero .h1 { font-size: 1.9rem; }
+          #hero .hero-lead { font-size: 1rem; line-height: 1.55; }
         }
       `}</style>
     </section>

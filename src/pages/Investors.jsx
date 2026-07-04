@@ -506,6 +506,28 @@ export default function Investors() {
   const contactRef = useRef(null)
   const heroRef = useRef(null)
 
+  // Route-level head management: this SPA route otherwise serves the
+  // homepage's title and (once added) its canonical, so Google would treat
+  // /investors as a duplicate of /.
+  useEffect(() => {
+    const prevTitle = document.title
+    document.title = 'Investors — StackSense'
+    let link = document.querySelector('link[rel="canonical"]')
+    const created = !link
+    const prevHref = link ? link.getAttribute('href') : null
+    if (!link) {
+      link = document.createElement('link')
+      link.setAttribute('rel', 'canonical')
+      document.head.appendChild(link)
+    }
+    link.setAttribute('href', 'https://stacksense.ca/investors')
+    return () => {
+      document.title = prevTitle
+      if (created) link.remove()
+      else link.setAttribute('href', prevHref)
+    }
+  }, [])
+
   const goTo = useCallback((index, dir) => {
     if (isAnimating || index === current) return
     setDirection(dir)
@@ -644,14 +666,20 @@ export default function Investors() {
               </div>
 
               {/* Slide content with animation */}
-              <div style={{
-                opacity: isAnimating ? 0 : 1,
-                transform: isAnimating
-                  ? `translateX(${direction * 30}px)`
-                  : 'translateX(0)',
-                transition: 'opacity .28s ease, transform .28s ease',
-              }}>
-                <SlideContent slide={slide} />
+              <div aria-live="polite">
+                <div
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Slide ${current + 1} of ${slides.length}: ${slide.title}`}
+                  style={{
+                    opacity: isAnimating ? 0 : 1,
+                    transform: isAnimating
+                      ? `translateX(${direction * 30}px)`
+                      : 'translateX(0)',
+                    transition: 'opacity .28s ease, transform .28s ease',
+                  }}>
+                  <SlideContent slide={slide} />
+                </div>
               </div>
             </div>
 
@@ -686,15 +714,21 @@ export default function Investors() {
                   <button
                     key={s.id}
                     onClick={() => goTo(i, i > current ? 1 : -1)}
+                    aria-current={i === current ? 'true' : undefined}
                     style={{
-                      width: i === current ? 24 : 8, height: 8,
-                      borderRadius: 4, border: 'none', cursor: 'pointer',
-                      background: i === current ? 'var(--teal)' : 'var(--border)',
-                      transition: 'all .3s cubic-bezier(.22,1,.36,1)',
-                      padding: 0,
+                      background: 'none', border: 'none', cursor: 'pointer',
+                      padding: '8px 4px', display: 'flex', alignItems: 'center',
                     }}
                     aria-label={`Go to slide ${i + 1}`}
-                  />
+                  >
+                    <span aria-hidden="true" style={{
+                      display: 'block',
+                      width: i === current ? 24 : 8, height: 8,
+                      borderRadius: 4,
+                      background: i === current ? 'var(--teal)' : 'var(--border)',
+                      transition: 'all .3s cubic-bezier(.22,1,.36,1)',
+                    }} />
+                  </button>
                 ))}
               </div>
 

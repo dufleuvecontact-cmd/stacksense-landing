@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const STORAGE_KEY = 'stacksense_cookie_consent'
 
-export function getConsentStatus() {
+function getConsentStatus() {
   try {
     return localStorage.getItem(STORAGE_KEY) // "accepted" | "declined" | null
   } catch {
@@ -22,17 +22,13 @@ function removeAnalytics() {
 }
 
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false)
+  // Consent is known synchronously — lazy init avoids a post-mount state flip
+  const [visible, setVisible] = useState(() => !getConsentStatus())
   const acceptRef = useRef(null)
   const bannerRef = useRef(null)
 
   useEffect(() => {
-    const stored = getConsentStatus()
-    if (stored === 'accepted') {
-      initAnalytics()
-    } else if (!stored) {
-      setVisible(true)
-    }
+    if (getConsentStatus() === 'accepted') initAnalytics()
     // declined → nothing loads
   }, [])
 
@@ -61,13 +57,13 @@ export default function CookieBanner() {
   }, [visible])
 
   function accept() {
-    localStorage.setItem(STORAGE_KEY, 'accepted')
+    try { localStorage.setItem(STORAGE_KEY, 'accepted') } catch { /* private mode */ }
     initAnalytics()
     setVisible(false)
   }
 
   function decline() {
-    localStorage.setItem(STORAGE_KEY, 'declined')
+    try { localStorage.setItem(STORAGE_KEY, 'declined') } catch { /* private mode */ }
     removeAnalytics()
     setVisible(false)
   }
@@ -109,7 +105,7 @@ export default function CookieBanner() {
         </p>
       </div>
 
-      <div style={{ display: 'flex', gap: '.6rem', flexShrink: 0 }}>
+      <div style={{ display: 'flex', gap: '.6rem', flexWrap: 'wrap', flex: '1 1 auto', minWidth: 0 }}>
         <button
           onClick={decline}
           style={{
@@ -122,6 +118,9 @@ export default function CookieBanner() {
             cursor: 'pointer',
             fontFamily: 'inherit',
             transition: 'all .15s',
+            flex: '1 1 auto',
+            textAlign: 'center',
+            minWidth: '140px',
           }}
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
           onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
@@ -142,6 +141,9 @@ export default function CookieBanner() {
             cursor: 'pointer',
             fontFamily: 'inherit',
             transition: 'opacity .15s',
+            flex: '1 1 auto',
+            textAlign: 'center',
+            minWidth: '140px',
           }}
           onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
           onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}

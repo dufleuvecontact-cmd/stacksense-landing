@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 export default function ProductPreview() {
   const [iframeLoading, setIframeLoading] = useState(true)
   const [scale, setScale] = useState(1)
+  const [shouldLoad, setShouldLoad] = useState(false)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -11,6 +12,20 @@ export default function ProductPreview() {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } })
     }, { threshold: 0.08 })
     ref.current.querySelectorAll('.sr,.sr-fade').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
+  // Don't boot a second full app instance during initial page load — mount the
+  // demo iframe only once the section is within 400px of the viewport.
+  useEffect(() => {
+    if (!ref.current) return
+    const obs = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) {
+        setShouldLoad(true)
+        obs.disconnect()
+      }
+    }, { rootMargin: '400px' })
+    obs.observe(ref.current)
     return () => obs.disconnect()
   }, [])
 
@@ -90,13 +105,16 @@ export default function ProductPreview() {
                       <div className="spinner" />
                     </div>
                   )}
-                  <iframe
-                    src="https://www.stacksense.online/?demo=true"
-                    style={{ width: '100%', height: '100%', border: 'none' }}
-                    allow="clipboard-write"
-                    title="StackSense Live Sandbox Demo"
-                    onLoad={() => setIframeLoading(false)}
-                  />
+                  {shouldLoad && (
+                    <iframe
+                      src="https://www.stacksense.online/?demo=true"
+                      style={{ width: '100%', height: '100%', border: 'none' }}
+                      allow="clipboard-write"
+                      loading="lazy"
+                      title="StackSense Live Sandbox Demo"
+                      onLoad={() => setIframeLoading(false)}
+                    />
+                  )}
                 </div>
 
                 {/* Home Indicator */}

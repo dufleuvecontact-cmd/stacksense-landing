@@ -3,8 +3,14 @@ import { ArrowRight, Check, Copy, Star } from 'lucide-react'
 import { track } from '@vercel/analytics'
 import {
   store, markJoined, startCheckout, getUrlRef,
-  JOINED_EVENT, FOUNDING_EVENT, EMAIL_RE,
+  JOINED_EVENT, FOUNDING_EVENT, FOUNDING_SETTLED_EVENT, EMAIL_RE,
 } from '../lib/waitlistShared'
+
+// Ack for the pitch-column founding button: fired on every terminal
+// (non-redirect) outcome so it can re-enable itself without a blind timer.
+function settleFounding() {
+  window.dispatchEvent(new CustomEvent(FOUNDING_SETTLED_EVENT))
+}
 
 /**
  * variant: 'hero' (inline row capture), 'form' (waitlist-section card body),
@@ -24,6 +30,9 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
   const [copied, setCopied] = useState(false)
   const [upgrading, setUpgrading] = useState(false)
   const emailRef = useRef(null)
+  const copyTimer = useRef(null)
+
+  useEffect(() => () => clearTimeout(copyTimer.current), [])
 
   useEffect(() => {
     const onJoined = e => {
@@ -62,15 +71,17 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
       } else {
         setError(data.message || 'Something went wrong. Please try again.')
         setUpgrading(false)
+        settleFounding()
         return
       }
       track('founding_checkout')
       const redirected = await startCheckout(email, joinedCode)
-      if (!redirected) setUpgrading(false)
+      if (!redirected) { setUpgrading(false); settleFounding() }
     } catch (err) {
       console.error(err)
       setError('Network hiccup — please try again.')
       setUpgrading(false)
+      settleFounding()
     }
   }
 
@@ -79,14 +90,22 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
   useEffect(() => {
     if (variant !== 'form') return
     const onFounding = () => {
+      if (store.founder) {
+        // Already a founding member — never route into a second $1 checkout.
+        settleFounding()
+        return
+      }
       if (store.joined && store.email) {
         setUpgrading(true)
-        startCheckout(store.email, store.code).then(r => { if (!r) setUpgrading(false) }).catch(() => setUpgrading(false))
+        startCheckout(store.email, store.code)
+          .then(r => { if (!r) { setUpgrading(false); settleFounding() } })
+          .catch(() => { setUpgrading(false); settleFounding() })
         return
       }
       if (!EMAIL_RE.test(email) || !consent) {
         setError('Enter your email and tick the box first — then the $1 checkout takes about 20 seconds.')
         emailRef.current?.focus()
+        settleFounding()
         return
       }
       joinThenCheckout()
@@ -152,8 +171,9 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
 
   function copy() {
     navigator.clipboard.writeText(`https://stacksense.ca/?ref=${code}`).catch(() => {})
+    clearTimeout(copyTimer.current)
     setCopied(true)
-    setTimeout(() => setCopied(false), 2500)
+    copyTimer.current = setTimeout(() => setCopied(false), 2500)
   }
 
   /* ---------- success card (shared by hero + form; sticky just disappears) ---------- */
@@ -176,7 +196,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         {code && (
           <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1rem', marginBottom: !isFounder ? '1rem' : 0, textAlign: 'left' }}>
             <p style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.55rem', fontFamily: 'var(--font-sans)' }}>
-              Share your link — every friend who joins gets you closer to 2 free months.
+              Share your link — when 1 friend joins, you get 2 free months at launch.
             </p>
             <div style={{ display: 'flex', gap: '.5rem' }}>
               <div style={{ flex: 1, background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '.5rem .75rem', fontSize: '.73rem', color: 'var(--text-2)', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', userSelect: 'all' }}>
@@ -288,8 +308,14 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         .wlc-sticky .wlc-consent { margin-top: .35rem; }
         .wlc-sticky .wlc-consent .small { font-size: .68rem; line-height: 1.35; }
         @media (max-width: 560px) {
-          .wlc-hero .wlc-row { flex-direction: column; }
-          .wlc-hero .wlc-btn { width: 100%; }
+          .wlc-hero .wlc-row, .wlc-form .wlc-row { flex-direction: column; }
+          .wlc-hero .wlc-btn, .wlc-form .wlc-btn { width: 100%; }
+        }
+        /* The form variant sits inside a 2rem-padded card, so it runs out of
+           room earlier than the hero variant does. */
+        @media (max-width: 640px) {
+          .wlc-form .wlc-row { flex-direction: column; }
+          .wlc-form .wlc-btn { width: 100%; }
         }
       `}</style>
     </form>

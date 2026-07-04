@@ -15,6 +15,9 @@ export default function StickyBar() {
   const barRef = useRef(null)
 
   useEffect(() => {
+    // Once the bar is permanently gone, stop listening entirely.
+    if (joined || dismissed) return
+
     const onJoined = () => setJoined(true)
     window.addEventListener(JOINED_EVENT, onJoined)
 
@@ -31,10 +34,14 @@ export default function StickyBar() {
     const onFocusIn = e => {
       if (isField(e.target) && barRef.current && !barRef.current.contains(e.target)) setForeignFocus(true)
     }
-    const onFocusOut = () => setTimeout(() => {
-      const a = document.activeElement
-      if (!isField(a) || (barRef.current && barRef.current.contains(a))) setForeignFocus(false)
-    }, 50)
+    let focusOutTimer = null
+    const onFocusOut = () => {
+      clearTimeout(focusOutTimer)
+      focusOutTimer = setTimeout(() => {
+        const a = document.activeElement
+        if (!isField(a) || (barRef.current && barRef.current.contains(a))) setForeignFocus(false)
+      }, 50)
+    }
     document.addEventListener('focusin', onFocusIn)
     document.addEventListener('focusout', onFocusOut)
 
@@ -43,15 +50,70 @@ export default function StickyBar() {
       window.removeEventListener('scroll', onScroll)
       document.removeEventListener('focusin', onFocusIn)
       document.removeEventListener('focusout', onFocusOut)
+      clearTimeout(focusOutTimer)
     }
-  }, [])
+  }, [joined, dismissed])
+
+  const visible = !joined && !dismissed && pastHero && !foreignFocus
+
+  // Reserve real document space for the fixed bar so it never permanently
+  // covers the footer's legal links or the tail of #contact.
+  useEffect(() => {
+    if (!visible || !barRef.current) return
+    const setPad = () => {
+      document.body.style.paddingBottom = (barRef.current?.offsetHeight || 0) + 'px'
+    }
+    setPad()
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(setPad) : null
+    ro?.observe(barRef.current)
+    return () => {
+      ro?.disconnect()
+      document.body.style.paddingBottom = ''
+    }
+  }, [visible])
+
+  // iOS Safari: fixed elements anchor to the layout viewport, which stays
+  // behind the software keyboard — lift the bar with the visual viewport while
+  // its own input has focus so users can see what they type.
+  useEffect(() => {
+    if (!visible || typeof window === 'undefined' || !window.visualViewport) return
+    const vv = window.visualViewport
+    const adjust = () => {
+      const el = barRef.current
+      if (!el) return
+      const offset = window.innerHeight - vv.height - vv.offsetTop
+      el.style.transform = offset > 0 ? `translateY(-${offset}px)` : ''
+    }
+    const detach = () => {
+      vv.removeEventListener('resize', adjust)
+      vv.removeEventListener('scroll', adjust)
+      if (barRef.current) barRef.current.style.transform = ''
+    }
+    const onFocusIn = e => {
+      if (barRef.current && barRef.current.contains(e.target)) {
+        vv.addEventListener('resize', adjust)
+        vv.addEventListener('scroll', adjust)
+        adjust()
+      }
+    }
+    const onFocusOut = e => {
+      if (barRef.current && barRef.current.contains(e.target)) detach()
+    }
+    document.addEventListener('focusin', onFocusIn)
+    document.addEventListener('focusout', onFocusOut)
+    return () => {
+      document.removeEventListener('focusin', onFocusIn)
+      document.removeEventListener('focusout', onFocusOut)
+      detach()
+    }
+  }, [visible])
 
   function dismiss() {
     setDismissed(true)
     try { sessionStorage.setItem(DISMISS_KEY, '1') } catch { /* private mode */ }
   }
 
-  if (joined || dismissed || !pastHero || foreignFocus) return null
+  if (!visible) return null
 
   return (
     <div ref={barRef} className="sticky-bar" role="complementary" aria-label="Join the waitlist">

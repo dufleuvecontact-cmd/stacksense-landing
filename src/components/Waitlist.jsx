@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Check } from 'lucide-react'
 import WaitlistCapture from './WaitlistCapture'
-import { FOUNDING_EVENT } from '../lib/waitlistShared'
+import { store, FOUNDING_EVENT, FOUNDING_SETTLED_EVENT, JOINED_EVENT } from '../lib/waitlistShared'
 
 export default function Waitlist() {
   const ref = useRef(null)
   const [foundingBusy, setFoundingBusy] = useState(false)
+  const [founder, setFounder] = useState(() => store.founder)
+  const settleTimer = useRef(null)
 
   useEffect(() => {
     if (!ref.current) return
@@ -16,14 +18,32 @@ export default function Waitlist() {
     return () => obs.disconnect()
   }, [])
 
+  // The form acks every terminal (non-redirect) outcome of the founding flow;
+  // re-enable the button on that ack instead of a blind timer.
+  useEffect(() => {
+    const onJoined = e => { if (e.detail?.founder) setFounder(true) }
+    const onSettled = () => {
+      clearTimeout(settleTimer.current)
+      setFoundingBusy(false)
+    }
+    window.addEventListener(JOINED_EVENT, onJoined)
+    window.addEventListener(FOUNDING_SETTLED_EVENT, onSettled)
+    return () => {
+      window.removeEventListener(JOINED_EVENT, onJoined)
+      window.removeEventListener(FOUNDING_SETTLED_EVENT, onSettled)
+      clearTimeout(settleTimer.current)
+    }
+  }, [])
+
   // One CTA per column: this button is the only founding CTA pre-signup.
   // The form (right column) owns the email field and completes the flow.
   function founding() {
     if (foundingBusy) return
     setFoundingBusy(true)
     window.dispatchEvent(new CustomEvent(FOUNDING_EVENT))
-    // If the form rejected (missing email/consent), re-enable after a beat.
-    setTimeout(() => setFoundingBusy(false), 1500)
+    // Safety net if no settle ack ever arrives (e.g. no form mounted).
+    clearTimeout(settleTimer.current)
+    settleTimer.current = setTimeout(() => setFoundingBusy(false), 15000)
   }
 
   return (
@@ -37,7 +57,7 @@ export default function Waitlist() {
               Join now, <span className="teal-text">pay less forever.</span>
             </h2>
             <p className="lead" style={{ marginBottom: '1.5rem' }}>
-              StackSense launches at $13.99–19.99/mo. Everyone on the early-access list locks in $9.99/mo for life — even if you sign up for the app a year from now. It costs nothing to hold your spot, and you can ignore every email we send.
+              StackSense launches at $13.99–19.99/mo. Add a $1 founding deposit and you lock in $9.99/mo for life — even if you don't open the app until a year after launch. Joining the list itself is free, and you can ignore every email we send.
             </p>
 
             <div className="wl-offer">
@@ -48,20 +68,29 @@ export default function Waitlist() {
               <div style={{ textDecoration: 'line-through', color: 'var(--text-3)', fontSize: '.9rem', marginTop: '.35rem' }}>
                 $13.99–19.99/mo — launch price for everyone else
               </div>
-              <button onClick={founding} disabled={foundingBusy} className="btn btn-teal"
-                style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}>
-                {foundingBusy ? 'One moment…' : 'Lock in $9.99/mo — $1 today'}
-              </button>
-              <div style={{ fontSize: '.72rem', color: 'var(--text-3)', marginTop: '.5rem', textAlign: 'center' }}>
-                The $9.99 lock disappears the day we launch.
-              </div>
+              {founder ? (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', marginTop: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600, color: 'var(--teal-deep)' }}>
+                  <Check size={16} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }} />
+                  Your Founding Member pricing is locked in
+                </div>
+              ) : (
+                <button onClick={founding} disabled={foundingBusy} className="btn btn-teal"
+                  style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}>
+                  {foundingBusy ? 'One moment…' : 'Lock in $9.99/mo — $1 today'}
+                </button>
+              )}
+              {!founder && (
+                <div style={{ fontSize: '.72rem', color: 'var(--text-3)', marginTop: '.5rem', textAlign: 'center' }}>
+                  The $9.99 lock disappears the day we launch.
+                </div>
+              )}
             </div>
 
             <ul className="wl-benefits">
               {[
                 'Price locked before launch',
                 'First in line when beta invites go out',
-                'Share your link, earn up to 2 free months',
+                'Refer 1 friend, get 2 free months at launch',
               ].map(b => (
                 <li key={b}><Check size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }} /><span className="body-text">{b}</span></li>
               ))}
