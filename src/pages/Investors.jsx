@@ -63,7 +63,7 @@ const slides = [
       { icon: Brain, name: 'AI Blood Analysis', desc: 'Upload bloodwork, get AI-powered insights correlated to your stack' },
       { icon: Zap, name: 'Interaction Engine', desc: 'Educational interaction notes from published research across 420+ compounds' },
       { icon: BarChart3, name: 'Progress Dashboard', desc: 'Visualize trends, streaks, and health markers over time' },
-      { icon: Target, name: 'Bioavailability Calc', desc: 'Optimize timing and delivery for maximum absorption' },
+      { icon: Target, name: 'Bioavailability Calc (in the making)', desc: 'In development — optimize timing and delivery for maximum absorption' },
       { icon: Globe, name: 'Compound Library', desc: '420+ research-backed compounds with clinical dosing data' },
     ],
     cta: 'Try the live demo at stacksense.ca',
