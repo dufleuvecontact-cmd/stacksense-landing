@@ -38,16 +38,21 @@ function PhoneMockup() {
 
           {/* Real app — non-interactive: locked so it reads as a static live shot.
               embed=1 → app should hide its cookie/demo banners (no-op until app supports it).
-              ponytail: until then, iframe is rendered taller than the 500px screen so the
-              bottom-fixed privacy banner falls in the clipped overflow. Ceiling: assumes the
-              banner is bottom-pinned — drop the extra height once embed=1 is honored. */}
+              ponytail: iframe renders at a real 390px mobile viewport then scales down to
+              the ~240px screen, so the app isn't zoomed in. Extra logical height is clipped
+              by the screen's overflow:hidden, which also hides the bottom-pinned privacy
+              banner. Ceiling: assumes banner is bottom-pinned — drop the extra height once
+              embed=1 is honored. */}
           <iframe
             src="https://www.stacksense.online/?demo=true&embed=1"
             title="StackSense app preview"
             aria-hidden="true"
             tabIndex={-1}
             loading="lazy"
-            style={{ width: '100%', height: 720, border: 'none', display: 'block', pointerEvents: 'none' }}
+            style={{
+              width: 390, height: 1170, border: 'none', display: 'block',
+              pointerEvents: 'none', transformOrigin: 'top left', transform: 'scale(0.6154)',
+            }}
           />
         </div>
       </div>
