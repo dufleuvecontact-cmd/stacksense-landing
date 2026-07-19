@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react'
 import { LayoutGrid, CheckCircle2, Activity } from 'lucide-react'
 
 const steps = [
-  { n: '1', icon: LayoutGrid,   title: 'Log what you take', desc: 'Add your supplements once — StackSense already knows 420+ compounds and their real clinical doses. Reminders handle the rest.' },
-  { n: '2', icon: CheckCircle2, title: 'Rate how you feel in 5 seconds', desc: 'One quick check-in a day for energy, sleep, and mood. No journaling, no spreadsheets.' },
-  { n: '3', icon: Activity,     title: "See what's actually working",  desc: 'Trends line up what you took with how you felt — so you know what to keep and what to stop buying.' },
+  { n: '1', icon: LayoutGrid,   title: 'Invite your client', desc: 'Send a join link — they open the free StackSense app, no account setup on your end.' },
+  { n: '2', icon: CheckCircle2, title: 'Assign a protocol', desc: 'Build it once in your library, assign it in one tap. It clones straight to their schedule and reminders.' },
+  { n: '3', icon: Activity,     title: 'See adherence, not guesses',  desc: 'Your roster shows real dose adherence per client. Symptom and bloodwork detail only appears once they consent to share it.' },
 ]
 
 // 8-week dose-adherence %, climbing — hand-rolled SVG, no chart dep
@@ -60,7 +60,7 @@ export default function HowItWorks() {
             <span className="teal-text">three steps</span>
           </h2>
           <p className="lead" style={{ maxWidth: 500, margin: '0 auto' }}>
-            No spreadsheets, no guesswork. Build it once, log as you go, and let the data tell you what's working.
+            No spreadsheets, no chasing screenshots. Invite a client, assign a protocol, and let adherence speak for itself.
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function HowItWorks() {
             </div>
             <TrendChart />
             <p className="small-text" style={{ marginTop: '.9rem' }}>
-              Consistency trends up once reminders and cycles are dialed in.
+              This is what shows up in your roster once a client's protocol and reminders are dialed in.
             </p>
           </div>
         </div>

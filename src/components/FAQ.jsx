@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
-  { q:'I only take a few supplements — is this overkill for me?', a:'No — that\'s exactly who it\'s built for too. If you take 3 things a day, StackSense just tells you whether they\'re doing anything, in about 2 minutes a day. The cycle and protocol tools are there if you ever need them, and invisible if you don\'t.' },
-  { q:'Who\'s behind this?', a:'I\'m Jad. I was spending real money on 8 supplements and couldn\'t tell you which one was doing anything. I built the tracker I couldn\'t find. StackSense is founder-built and currently onboarding beta testers.' },
-  { q:'Is this medical advice?', a:'No. StackSense tracks and explains — it doesn\'t prescribe. It shows you your own data (doses, how you feel, bloodwork trends) so you can have better conversations with your doctor, not replace them.' },
-  { q:'What happens to my email?', a:'Launch updates only. Unsubscribe anytime with one click. Your email is never sold or shared for advertising — details are in our Privacy Policy.' },
-  { q:'What does the $1 founding membership actually buy?', a:'$9.99/mo locked for life — launch price will be $13.99–19.99. Founding members also get 6 months free at launch. The $1 is a deposit paid through Stripe, and the $9.99 lock disappears the day we launch. The deposit is fully refundable any time before launch — just reply to any of our emails.' },
+  { q:'I only coach a couple of clients — is this overkill?', a:'No — whether you run 3 clients or 300, roster and adherence tracking work the same. The protocol library and AI research tools are there when you need them, and invisible when you don\'t.' },
+  { q:'Who\'s behind this?', a:'I\'m Jad. I started tracking my own supplements because I couldn\'t tell what was working, then kept hearing the same problem from coaches: clients say they\'re compliant, and there\'s no way to check. StackSense is founder-built and currently onboarding founding coaches.' },
+  { q:'Is this medical advice?', a:'No. StackSense tracks and explains — it doesn\'t prescribe or replace your clinical judgment. It gives you your client\'s own data (adherence, how they feel, bloodwork trends, once shared) so you can make better calls, not a diagnosis engine.' },
+  { q:'What can I actually see about a client?', a:'Dose adherence by default, once they\'ve accepted your invite. Symptoms and bloodwork only if they\'ve explicitly consented to share that scope — they control it from their own app at any time.' },
+  { q:'What does the $1 founding membership actually buy?', a:'$9.99/mo locked for life — launch price will be $13.99–19.99. Founding coaches also get 6 months free at launch. The $1 is a deposit paid through Stripe, and the $9.99 lock disappears the day we launch. The deposit is fully refundable any time before launch — just reply to any of our emails.' },
   { q:'When do beta invites go out?', a:'In small batches while we\'re in beta. Everyone on the waitlist hears from us before the public launch — joining now puts you ahead of everyone who waits.' },
 ]
 

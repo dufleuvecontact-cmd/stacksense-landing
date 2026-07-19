@@ -3,25 +3,25 @@ import { LayoutGrid, Clock, Search, Activity } from 'lucide-react'
 
 const features = [
   {
-    icon: LayoutGrid, title: 'Protocol & Cycle Builder',
-    desc: 'Build protocols for supplements, peptides, or any health routine, with custom dosing schedules and cycle phases.',
+    icon: LayoutGrid, title: 'Protocol Templates & One-Tap Assign',
+    desc: 'Build a supplement, peptide, or cycle protocol once. Assign it to any client and it clones straight into their app, schedule, dosing, and reminders included.',
     color: 'var(--teal)', span: 3, featured: true,
-    tags: ['Supplements', 'Peptides', 'Cycle phases'],
+    tags: ['Templates', 'Clone-on-assign', 'Reminders'],
   },
   {
     icon: Search, title: 'AI Research Engine',
-    desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile, answered from clinical sources.',
+    desc: 'Look up mechanism of action, dosing guidance, interactions, and safety profile for any compound, cited from clinical sources, before you recommend it.',
     color: 'var(--teal-deep)', span: 3, featured: true,
     tags: ['Mechanism', 'Dosing', 'Interactions', 'Safety'],
   },
   {
-    icon: Clock, title: 'Dose Logging & Smart Reminders',
-    desc: 'Log every dose as taken, skipped, or snoozed — with configurable reminders across morning, midday, evening, and bedtime windows.',
+    icon: Clock, title: 'Client Roster & Adherence',
+    desc: 'See every client’s dose adherence at a glance. They log taken, skipped, or snoozed doses in their own app — you see the roster, not a spreadsheet.',
     color: 'var(--teal)', span: 3,
   },
   {
-    icon: Activity, title: 'Bloodwork, Explained',
-    desc: 'Upload a blood test, get it explained in plain English — and see how your markers move as your stack changes.',
+    icon: Activity, title: 'Consent-Gated Bloodwork & Symptoms',
+    desc: 'See a client’s blood markers and symptom trends once they’ve agreed to share them. Nothing about their health surfaces on your side by default.',
     color: 'var(--teal-light)', span: 3,
   },
 ]
@@ -44,10 +44,10 @@ export default function Features() {
           <p className="eyebrow" style={{ marginBottom: '.75rem' }}>Core features</p>
           <h2 className="h2" style={{ marginBottom: '1rem' }}>
             Everything you need to{' '}
-            <span className="teal-text">stay in control</span>
+            <span className="teal-text">run your roster</span>
           </h2>
           <p className="lead" style={{ maxWidth: 500, margin: '0 auto' }}>
-            Track your stack, log your doses, and see what's working, all in one place.
+            Assign protocols, track adherence, and see client data — without chasing updates.
           </p>
         </div>
 

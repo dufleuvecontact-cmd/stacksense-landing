@@ -145,34 +145,34 @@ export default function Hero() {
           <div className="hero-content">
             <div className="sr d1" style={{ marginBottom: '1.1rem' }}>
               <span className="pill pill-teal">
-                Beta testers onboarding now · Open waitlist
+                Built for coaches · Free for your clients
               </span>
             </div>
 
             <h1 className="sr d2 h1" style={{ marginBottom: '1rem' }}>
-              Are your supplements{' '}
-              <span className="teal-text">actually doing anything?</span>
+              Stop guessing what your clients{' '}
+              <span className="teal-text">actually did.</span>
             </h1>
 
             <p className="sr d3 lead hero-lead">
-              StackSense tracks what you take and how you feel, then shows you what's working and what's a waste of money. Whether that's 3 pills a day or a whole shelf.
+              StackSense gives every client a free tracking app, and gives you a roster: assigned protocols, real dose adherence, and check-ins, without another status-update DM.
             </p>
 
             <div className="sr d3 hero-founder">
-              Built by <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong>, who couldn't tell which of his 8 supplements was doing anything.
+              Built by <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong>, who was coaching without any real idea whether clients were following the protocol.
             </div>
 
             <div className="sr d4 hero-capture">
               <WaitlistCapture variant="hero" source="hero" />
-              <div className="hero-onboarding-note">Beta testers are being onboarded right now.</div>
+              <div className="hero-onboarding-note">Founding coaches are being onboarded right now.</div>
               <a href="#product" className="hero-demo-link">Poke around the live demo first ↓</a>
             </div>
 
             <div className="sr d5 hero-features">
               {[
-                'Takes 2 minutes a day',
-                'Knows 420+ supplements and their real clinical doses',
-                'No spreadsheet, no biohacker degree required',
+                'Assign a protocol in one tap — it clones straight to their app',
+                'See real dose adherence, not a text update',
+                'Symptoms and bloodwork stay consent-gated until they share',
               ].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
                   <CheckCircle2 size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }}/>
