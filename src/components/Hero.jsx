@@ -23,7 +23,7 @@ function PhoneMockup() {
       {/* Phone shell */}
       <div style={{
         background: '#0c1a18', borderRadius: 40, padding: '10px',
-        boxShadow: '0 40px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(26,140,135,.15)',
+        boxShadow: '0 40px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(45,106,79,.15)',
       }}>
         {/* Screen — live app preview, LOCKED (non-interactive); interactive demo lives in #product */}
         <div style={{
@@ -61,10 +61,10 @@ function PhoneMockup() {
       }}>
         <div style={{
           width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-          background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)',
+          background: 'rgba(45,106,79,.1)', border: '1px solid rgba(45,106,79,.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          <Bell size={12} color="#1a8c87"/>
+          <Bell size={12} color="var(--teal)"/>
         </div>
         <div>
           <div style={{ fontSize: '.65rem', fontWeight: 700, color: '#0c1a18', fontFamily: 'var(--font-sans)' }}>Reminder set</div>
@@ -80,7 +80,7 @@ function PhoneMockup() {
         width: 148,
       }}>
         <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginBottom: 3 }}>Current Streak</div>
-        <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#1a8c87', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>21d</div>
+        <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--teal)', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>21d</div>
         <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginTop: 2 }}>Personal best 🎯</div>
       </div>
     </div>

@@ -5,24 +5,24 @@ const features = [
   {
     icon: LayoutGrid, title: 'Protocol & Cycle Builder',
     desc: 'Build protocols for supplements, peptides, or any health routine, with custom dosing schedules and cycle phases.',
-    color: '#1a8c87', span: 3, featured: true,
+    color: 'var(--teal)', span: 3, featured: true,
     tags: ['Supplements', 'Peptides', 'Cycle phases'],
   },
   {
     icon: Search, title: 'AI Research Engine',
     desc: 'Ask about any compound for mechanism of action, dosing guidance, interactions, and safety profile, answered from clinical sources.',
-    color: '#0d6b67', span: 3, featured: true,
+    color: 'var(--teal-deep)', span: 3, featured: true,
     tags: ['Mechanism', 'Dosing', 'Interactions', 'Safety'],
   },
   {
     icon: Clock, title: 'Dose Logging & Smart Reminders',
     desc: 'Log every dose as taken, skipped, or snoozed — with configurable reminders across morning, midday, evening, and bedtime windows.',
-    color: '#1a8c87', span: 3,
+    color: 'var(--teal)', span: 3,
   },
   {
     icon: Activity, title: 'Bloodwork, Explained',
     desc: 'Upload a blood test, get it explained in plain English — and see how your markers move as your stack changes.',
-    color: '#25b5af', span: 3,
+    color: 'var(--teal-light)', span: 3,
   },
 ]
 

@@ -111,7 +111,7 @@ export default function HowItWorks() {
         .hiw-num {
           flex-shrink: 0;
           width: 34px; height: 34px; border-radius: 10px;
-          background: var(--teal-muted); border: 1px solid rgba(26,140,135,.2);
+          background: var(--teal-muted); border: 1px solid rgba(45,106,79,.2);
           color: var(--teal-deep); font-weight: 700; font-size: .95rem;
           display: flex; align-items: center; justify-content: center;
           font-family: var(--font-sans);

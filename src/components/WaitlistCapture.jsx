@@ -181,7 +181,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
     if (variant === 'sticky') return null
     return (
       <div style={{ textAlign: 'center', width: '100%' }}>
-        <div style={{ width: 44, height: 44, background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto .9rem' }}>
+        <div style={{ width: 44, height: 44, background: 'rgba(45,106,79,.1)', border: '1px solid rgba(45,106,79,.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto .9rem' }}>
           <Check size={18} color="var(--teal)" strokeWidth={3} />
         </div>
         <h3 className="h3" style={{ marginBottom: '.4rem' }}>
@@ -210,7 +210,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         )}
 
         {!isFounder && (
-          <div style={{ background: 'rgba(26,140,135,.04)', border: '1px solid rgba(26,140,135,.2)', borderRadius: 10, padding: '1rem', textAlign: 'left' }}>
+          <div style={{ background: 'rgba(45,106,79,.04)', border: '1px solid rgba(45,106,79,.2)', borderRadius: 10, padding: '1rem', textAlign: 'left' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.4rem' }}>
               <Star size={14} color="var(--teal)" strokeWidth={2} />
               <span style={{ fontSize: '.83rem', fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>

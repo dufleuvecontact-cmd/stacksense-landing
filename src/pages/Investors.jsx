@@ -3,7 +3,7 @@ import {
   ChevronLeft, ChevronRight, ChevronDown,
   AlertTriangle, Lightbulb, TrendingUp, Smartphone,
   Users, UserCheck, Handshake, Mail, ArrowRight,
-  Activity, Shield, Brain, BarChart3, Zap, Target,
+  Activity, Shield, Brain, BarChart3, Zap,
   CheckCircle2, Globe, Heart, ExternalLink
 } from 'lucide-react'
 
@@ -63,7 +63,6 @@ const slides = [
       { icon: Brain, name: 'AI Blood Analysis', desc: 'Upload bloodwork, get AI-powered insights correlated to your stack' },
       { icon: Zap, name: 'Interaction Engine', desc: 'Educational interaction notes from published research across 420+ compounds' },
       { icon: BarChart3, name: 'Progress Dashboard', desc: 'Visualize trends, streaks, and health markers over time' },
-      { icon: Target, name: 'Bioavailability Calc', desc: 'Optimize timing and delivery for maximum absorption' },
       { icon: Globe, name: 'Compound Library', desc: '420+ research-backed compounds with clinical dosing data' },
     ],
     cta: 'Try the live demo at stacksense.ca',
@@ -138,7 +137,7 @@ function TitleSlide({ slide }) {
       }}>{slide.body}</p>
       <div style={{
         marginTop: '2rem', width: 60, height: 3, borderRadius: 2,
-        background: 'linear-gradient(90deg, transparent, rgba(26,140,135,.4), transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(45,106,79,.4), transparent)',
       }} />
     </div>
   )
@@ -162,8 +161,8 @@ function PointsSlide({ slide }) {
           }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8, flexShrink: 0,
-              background: slide.id === 'problem' ? 'rgba(220,80,60,.08)' : 'rgba(26,140,135,.08)',
-              border: `1px solid ${slide.id === 'problem' ? 'rgba(220,80,60,.15)' : 'rgba(26,140,135,.15)'}`,
+              background: slide.id === 'problem' ? 'rgba(220,80,60,.08)' : 'rgba(45,106,79,.08)',
+              border: `1px solid ${slide.id === 'problem' ? 'rgba(220,80,60,.15)' : 'rgba(45,106,79,.15)'}`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <p.icon size={15} color={slide.id === 'problem' ? '#c0392b' : 'var(--teal)'} strokeWidth={1.8} />
@@ -177,8 +176,8 @@ function PointsSlide({ slide }) {
       </div>
       {slide.stat && (
         <div style={{
-          background: 'linear-gradient(135deg, rgba(26,140,135,.06), rgba(26,140,135,.02))',
-          border: '1px solid rgba(26,140,135,.15)', borderRadius: 12,
+          background: 'linear-gradient(135deg, rgba(45,106,79,.06), rgba(45,106,79,.02))',
+          border: '1px solid rgba(45,106,79,.15)', borderRadius: 12,
           padding: '1.25rem', textAlign: 'center',
         }}>
           <div style={{
@@ -264,8 +263,8 @@ function ProductSlide({ slide }) {
           }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
-              background: 'rgba(26,140,135,.08)',
-              border: '1px solid rgba(26,140,135,.15)',
+              background: 'rgba(45,106,79,.08)',
+              border: '1px solid rgba(45,106,79,.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '.6rem',
             }}>
@@ -284,12 +283,12 @@ function ProductSlide({ slide }) {
       </div>
       <a href="/#product" style={{
         display: 'block', textAlign: 'center', padding: '.75rem',
-        background: 'rgba(26,140,135,.05)', borderRadius: 8,
-        border: '1px solid rgba(26,140,135,.12)', textDecoration: 'none',
+        background: 'rgba(45,106,79,.05)', borderRadius: 8,
+        border: '1px solid rgba(45,106,79,.12)', textDecoration: 'none',
         transition: 'background .15s ease, border-color .15s ease',
       }}
-        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(26,140,135,.1)'; e.currentTarget.style.borderColor = 'rgba(26,140,135,.25)' }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(26,140,135,.05)'; e.currentTarget.style.borderColor = 'rgba(26,140,135,.12)' }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(45,106,79,.1)'; e.currentTarget.style.borderColor = 'rgba(45,106,79,.25)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(45,106,79,.05)'; e.currentTarget.style.borderColor = 'rgba(45,106,79,.12)' }}
       >
         <span style={{
           fontSize: '.82rem', color: 'var(--text-2)',
@@ -307,7 +306,7 @@ function ProductSlide({ slide }) {
 function TractionSlide({ slide }) {
   const phaseColors = {
     Done: { bg: 'rgba(16,185,129,.08)', border: 'rgba(16,185,129,.2)', dot: '#10b981', text: '#0a6647' },
-    'In Progress': { bg: 'rgba(26,140,135,.08)', border: 'rgba(26,140,135,.2)', dot: '#1a8c87', text: '#0d6b67' },
+    'In Progress': { bg: 'rgba(45,106,79,.08)', border: 'rgba(45,106,79,.2)', dot: 'var(--teal)', text: 'var(--teal-deep)' },
     Next: { bg: 'rgba(120,150,145,.06)', border: 'var(--border)', dot: 'var(--text-3)', text: 'var(--text-3)' },
   }
   return (
@@ -385,7 +384,7 @@ function TeamSlide({ slide }) {
         }} id="team-member-card">
           <div style={{
             width: 56, height: 56, borderRadius: '50%', flexShrink: 0,
-            background: 'linear-gradient(135deg, #1a8c87, #25b5af)',
+            background: 'linear-gradient(135deg, var(--teal), var(--teal-light))',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: '1.1rem', fontWeight: 800, color: '#fff',
           }}>JG</div>
@@ -453,8 +452,8 @@ function AskSlide({ slide }) {
           }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
-              background: 'rgba(26,140,135,.08)',
-              border: '1px solid rgba(26,140,135,.15)',
+              background: 'rgba(45,106,79,.08)',
+              border: '1px solid rgba(45,106,79,.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '.6rem',
             }}>
@@ -651,7 +650,7 @@ export default function Investors() {
               border: isDark ? '1px solid rgba(255,255,255,.08)' : '1px solid var(--border)',
               borderRadius: 20, overflowY: 'auto', overflowX: 'hidden', position: 'relative',
               boxShadow: isDark
-                ? '0 24px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(26,140,135,.1)'
+                ? '0 24px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(45,106,79,.1)'
                 : '0 12px 40px rgba(0,0,0,.06)',
               transition: 'background .4s ease, border-color .4s ease, box-shadow .4s ease',
             }}>
@@ -764,7 +763,7 @@ export default function Investors() {
                   style={{
                     padding: '.35rem .7rem', borderRadius: 6,
                     border: i === current ? '1px solid var(--teal)' : '1px solid var(--border)',
-                    background: i === current ? 'rgba(26,140,135,.06)' : 'var(--bg-card)',
+                    background: i === current ? 'rgba(45,106,79,.06)' : 'var(--bg-card)',
                     color: i === current ? 'var(--teal)' : 'var(--text-3)',
                     fontSize: '.68rem', fontWeight: 600,
                     fontFamily: 'var(--font-sans)', cursor: 'pointer',
@@ -805,7 +804,7 @@ export default function Investors() {
             <div className="card" style={{ padding: '1.75rem', textAlign: 'center' }}>
               <div style={{
                 width: 48, height: 48, borderRadius: 12,
-                background: 'rgba(26,140,135,.08)', border: '1px solid rgba(26,140,135,.15)',
+                background: 'rgba(45,106,79,.08)', border: '1px solid rgba(45,106,79,.15)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 margin: '0 auto 1rem',
               }}>
@@ -867,8 +866,8 @@ export default function Investors() {
 
           {/* Closing note */}
           <div className="sr" style={{
-            background: 'linear-gradient(135deg, rgba(26,140,135,.05), rgba(26,140,135,.02))',
-            border: '1px solid rgba(26,140,135,.15)', borderRadius: 16,
+            background: 'linear-gradient(135deg, rgba(45,106,79,.05), rgba(45,106,79,.02))',
+            border: '1px solid rgba(45,106,79,.15)', borderRadius: 16,
             padding: '2rem', textAlign: 'center',
           }}>
             <Heart size={20} color="var(--teal)" style={{ marginBottom: '.75rem' }} />
