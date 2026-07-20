@@ -52,12 +52,12 @@ export default function Waitlist() {
         <div className="wl-grid">
           {/* LEFT — price-lock pitch */}
           <div className="wl-pitch sr">
-            <span className="pill pill-teal" style={{ marginBottom: '1.1rem' }}>Early access</span>
+            <span className="pill pill-teal" style={{ marginBottom: '1.1rem' }}>Founding coach access</span>
             <h2 className="h2" style={{ marginBottom: '1rem' }}>
               Join now, <span className="teal-text">pay less forever.</span>
             </h2>
             <p className="lead" style={{ marginBottom: '1.5rem' }}>
-              StackSense launches at $13.99–19.99/mo. Add a $1 founding deposit and you lock in $9.99/mo for life — even if you don't open the app until a year after launch. Joining the list itself is free, and you can ignore every email we send.
+              StackSense launches at $13.99–19.99/mo. Add a $1 founding deposit and you lock in $9.99/mo for life — even if you don't open the dashboard until a year after launch. Joining the list itself is free, and you can ignore every email we send.
             </p>
 
             <div className="wl-offer">
@@ -71,7 +71,7 @@ export default function Waitlist() {
               {founder ? (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', marginTop: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600, color: 'var(--teal-deep)' }}>
                   <Check size={16} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }} />
-                  Your Founding Member pricing is locked in
+                  Your Founding Coach pricing is locked in
                 </div>
               ) : (
                 <button onClick={founding} disabled={foundingBusy} className="btn btn-teal"
@@ -90,7 +90,7 @@ export default function Waitlist() {
               {[
                 'Price locked before launch',
                 'First in line when beta invites go out',
-                'Refer 1 friend, get 2 free months at launch',
+                'Refer 1 coach, get 2 free months at launch',
               ].map(b => (
                 <li key={b}><Check size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }} /><span className="body-text">{b}</span></li>
               ))}
@@ -104,7 +104,7 @@ export default function Waitlist() {
                 Get early access
               </h3>
               <p className="body-text" style={{ marginBottom: '1.25rem', color: 'var(--teal-deep)', fontWeight: 500 }}>
-                Free to join — beta testers are being onboarded right now.
+                Free to join — founding coaches are being onboarded right now.
               </p>
               <WaitlistCapture variant="form" source="waitlist" />
             </div>

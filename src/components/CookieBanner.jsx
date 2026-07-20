@@ -132,7 +132,7 @@ export default function CookieBanner() {
           onClick={accept}
           style={{
             padding: '.5rem 1.1rem',
-            background: 'var(--teal-light, #25b5af)',
+            background: 'var(--teal-light, var(--teal-light))',
             border: '1px solid transparent',
             borderRadius: 8,
             color: '#fff',

@@ -237,7 +237,7 @@ export default function ProductPreview() {
         .spinner {
           width: 36px;
           height: 36px;
-          border: 3px solid #1a8c87;
+          border: 3px solid var(--teal);
           border-top-color: transparent;
           border-radius: 50%;
           animation: spin 1s linear infinite;

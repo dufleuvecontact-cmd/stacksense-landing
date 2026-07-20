@@ -23,7 +23,7 @@ function PhoneMockup() {
       {/* Phone shell */}
       <div style={{
         background: '#0c1a18', borderRadius: 40, padding: '10px',
-        boxShadow: '0 40px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(26,140,135,.15)',
+        boxShadow: '0 40px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(45,106,79,.15)',
       }}>
         {/* Screen — live app preview, LOCKED (non-interactive); interactive demo lives in #product */}
         <div style={{
@@ -66,10 +66,10 @@ function PhoneMockup() {
       }}>
         <div style={{
           width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-          background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)',
+          background: 'rgba(45,106,79,.1)', border: '1px solid rgba(45,106,79,.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          <Bell size={12} color="#1a8c87"/>
+          <Bell size={12} color="var(--teal)"/>
         </div>
         <div>
           <div style={{ fontSize: '.65rem', fontWeight: 700, color: '#0c1a18', fontFamily: 'var(--font-sans)' }}>Reminder set</div>
@@ -85,7 +85,7 @@ function PhoneMockup() {
         width: 148,
       }}>
         <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginBottom: 3 }}>Current Streak</div>
-        <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#1a8c87', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>21d</div>
+        <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--teal)', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>21d</div>
         <div style={{ fontSize: '.58rem', color: '#7a9490', fontFamily: 'var(--font-sans)', marginTop: 2 }}>Personal best 🎯</div>
       </div>
     </div>
@@ -150,34 +150,34 @@ export default function Hero() {
           <div className="hero-content">
             <div className="sr d1" style={{ marginBottom: '1.1rem' }}>
               <span className="pill pill-teal">
-                Beta testers onboarding now · Open waitlist
+                Built for coaches · Free for your clients
               </span>
             </div>
 
             <h1 className="sr d2 h1" style={{ marginBottom: '1rem' }}>
-              Are your supplements{' '}
-              <span className="teal-text">actually doing anything?</span>
+              Stop guessing what your clients{' '}
+              <span className="teal-text">actually did.</span>
             </h1>
 
             <p className="sr d3 lead hero-lead">
-              StackSense tracks what you take and how you feel, then shows you what's working and what's a waste of money. Whether that's 3 pills a day or a whole shelf.
+              StackSense gives every client a free tracking app, and gives you a roster: assigned protocols, real dose adherence, and check-ins, without another status-update DM.
             </p>
 
             <div className="sr d3 hero-founder">
-              Built by <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong>, who couldn't tell which of his 8 supplements was doing anything.
+              Built by <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Jad Gouiza</strong>, who was coaching without any real idea whether clients were following the protocol.
             </div>
 
             <div className="sr d4 hero-capture">
               <WaitlistCapture variant="hero" source="hero" />
-              <div className="hero-onboarding-note">Beta testers are being onboarded right now.</div>
+              <div className="hero-onboarding-note">Founding coaches are being onboarded right now.</div>
               <a href="#product" className="hero-demo-link">Poke around the live demo first ↓</a>
             </div>
 
             <div className="sr d5 hero-features">
               {[
-                'Takes 2 minutes a day',
-                'Knows 420+ supplements and their real clinical doses',
-                'No spreadsheet, no biohacker degree required',
+                'Assign a protocol in one tap — it clones straight to their app',
+                'See real dose adherence, not a text update',
+                'Symptoms and bloodwork stay consent-gated until they share',
               ].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
                   <CheckCircle2 size={15} color="var(--teal)" strokeWidth={2.5} style={{ flexShrink: 0 }}/>

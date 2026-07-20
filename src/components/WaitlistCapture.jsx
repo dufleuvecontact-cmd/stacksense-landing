@@ -181,7 +181,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
     if (variant === 'sticky') return null
     return (
       <div style={{ textAlign: 'center', width: '100%' }}>
-        <div style={{ width: 44, height: 44, background: 'rgba(26,140,135,.1)', border: '1px solid rgba(26,140,135,.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto .9rem' }}>
+        <div style={{ width: 44, height: 44, background: 'rgba(45,106,79,.1)', border: '1px solid rgba(45,106,79,.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto .9rem' }}>
           <Check size={18} color="var(--teal)" strokeWidth={3} />
         </div>
         <h3 className="h3" style={{ marginBottom: '.4rem' }}>
@@ -189,14 +189,14 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         </h3>
         <p className="body-text" style={{ marginBottom: '1.1rem', color: 'var(--text-2)' }}>
           {isFounder
-            ? 'Your Founding Member spot and pricing are locked in.'
+            ? 'Your Founding Coach spot and pricing are locked in.'
             : 'Your spot is saved — check your inbox for your referral link.'}
         </p>
 
         {code && (
           <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '1rem', marginBottom: !isFounder ? '1rem' : 0, textAlign: 'left' }}>
             <p style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.55rem', fontFamily: 'var(--font-sans)' }}>
-              Share your link — when 1 friend joins, you get 2 free months at launch.
+              Share your link — when 1 coach joins, you get 2 free months at launch.
             </p>
             <div style={{ display: 'flex', gap: '.5rem' }}>
               <div style={{ flex: 1, background: '#fff', border: '1px solid var(--border)', borderRadius: 6, padding: '.5rem .75rem', fontSize: '.73rem', color: 'var(--text-2)', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', userSelect: 'all' }}>
@@ -210,7 +210,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
         )}
 
         {!isFounder && (
-          <div style={{ background: 'rgba(26,140,135,.04)', border: '1px solid rgba(26,140,135,.2)', borderRadius: 10, padding: '1rem', textAlign: 'left' }}>
+          <div style={{ background: 'rgba(45,106,79,.04)', border: '1px solid rgba(45,106,79,.2)', borderRadius: 10, padding: '1rem', textAlign: 'left' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.4rem' }}>
               <Star size={14} color="var(--teal)" strokeWidth={2} />
               <span style={{ fontSize: '.83rem', fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--text)' }}>
@@ -221,7 +221,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
               $9.99/mo locked for life — launch price will be $13.99–19.99.
             </p>
             <button onClick={upgrade} disabled={upgrading} className="btn btn-teal" style={{ width: '100%', justifyContent: 'center' }}>
-              {upgrading ? 'Redirecting to Stripe…' : 'Become a founding member for $1 →'}
+              {upgrading ? 'Redirecting to Stripe…' : 'Become a founding coach for $1 →'}
             </button>
           </div>
         )}
@@ -236,7 +236,7 @@ export default function WaitlistCapture({ variant = 'form', source = variant }) 
   return (
     <form onSubmit={submit} className={`wlc wlc-${variant}`} noValidate>
       {fromLink && !sticky && (
-        <span className="pill pill-teal" style={{ marginBottom: '.55rem', alignSelf: 'flex-start' }}>Invited by a friend ✓</span>
+        <span className="pill pill-teal" style={{ marginBottom: '.55rem', alignSelf: 'flex-start' }}>Invited by a coach ✓</span>
       )}
 
       <div className="wlc-row">

@@ -33,7 +33,7 @@ export default function Contact() {
 
         <div className="sr" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', textAlign: 'left' }}>
           <div className="card-flat" style={{ padding: '2rem' }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--teal-muted)', border: '1px solid rgba(26,140,135,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--teal-muted)', border: '1px solid rgba(45,106,79,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
               <Mail size={22} color="var(--teal-deep)" />
             </div>
             <h3 className="h3" style={{ marginBottom: '.5rem' }}>Email Us</h3>
